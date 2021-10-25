@@ -1,0 +1,713 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>Madras Hotel</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- favicon
+                    ============================================ -->
+        <link rel="shortcut icon" type="image/x-icon" href="./../img/favicon.ico"/>
+        <!-- Google Fonts
+                    ============================================ -->
+        <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet"/>
+        <!-- Bootstrap CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/bootstrap.min.css"/>
+        <!-- Bootstrap CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/font-awesome.min.css"/>
+        <!-- owl.carousel CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/owl.carousel.css"/>
+        <link rel="stylesheet" href="./../resources/css/owl.theme.css"/>
+        <link rel="stylesheet" href="./../resources/css/owl.transitions.css"/>
+        <!-- animate CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/animate.css"/>
+        <!-- normalize CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/normalize.css"/>
+        <!-- meanmenu icon CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/meanmenu.min.css"/>
+        <!-- main CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/main.css"/>
+        <!-- morrisjs CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/morrisjs/morris.css"/>
+        <!-- mCustomScrollbar CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/scrollbar/jquery.mCustomScrollbar.min.css"/>
+        <!-- metisMenu CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/metisMenu/metisMenu.min.css"/>
+        <link rel="stylesheet" href="./../resources/css/metisMenu/metisMenu-vertical.css"/>
+        <!-- calendar CSS
+                    ============================================ -->
+        <!--<link rel="stylesheet" href="./../resources/css/calendar/fullcalendar.min.css"/>-->
+        <!--<link rel="stylesheet" href="./../resources/css/calendar/fullcalendar.print.min.css"/>-->
+        <!-- modals CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/modals.css"/>
+        <!-- forms CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/form/all-type-forms.css"/>
+        <!-- style CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/style.css"/>
+        <!-- responsive CSS
+                    ============================================ -->
+        <link rel="stylesheet" href="./../resources/css/responsive.css"/>
+        <!-- modernizr JS
+                    ============================================ -->
+        <script src="./../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    </h:head>
+    <h:body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="left-sidebar-pro">
+            <nav id="sidebar" class="">
+                <div class="sidebar-header">
+                    <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                    <strong><img src="img/logo/logosn.png" alt="" /></strong>
+                </div>
+                <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                    <nav class="sidebar-nav left-sidebar-menu-pro">
+                        <ul class="metismenu" id="menu1">
+
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-envelope icon-wrap"></i> <span class="mini-click-non">User Configuration </span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="Department" href="department.xhtml"><i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Department</span></a></li>
+                                    <li><a title="New User" href="employee.xhtml"><i class="fa fa-television sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">New User</span></a></li>
+                                    <li><a title="User Rights" href="user-right.xhtml"><i class="fa fa-paper-plane sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">User Rights</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-flask icon-wrap"></i> <span class="mini-click-non">Room Service Configuration</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="Room Service Category" href="#"><i class="fa fa-map-marker sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Room Service Category</span></a></li>
+                                    <li><a title="Room Service" href="#"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Room Service </span></a></li>
+                                    <li><a title="Housekeeping Config" href="#"><i class="fa fa-file-pdf-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Housekeeping Config</span></a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-pie-chart icon-wrap"></i> <span class="mini-click-non">Menu Configuration</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="Menu Category" href="itemcategory.xhtml"><i class="fa fa-folder sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Menu Category</span></a></li>
+                                    <li><a title="Menu Master" href="menu-item.xhtml"><i class="fa fa-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Menu Master</span></a></li>
+                                    <li><a title="Unit Master" href="itemunit.xhtml"><i class="fa fa-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Unit Master</span></a></li>
+                                    <li><a title="Move Items To Inventory" href="#"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Move Items To Inventory</span></a></li>
+                                    <li><a title="Side Menu" href="#"><i class="fa fa-tint sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Side Menu</span></a></li>
+                                    <li><a title="Food And Beverage Costing" href="#"><i class="fa fa-tree sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Food And Beverage Costing</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="purchase.xhtml" aria-expanded="false"><i class="fa big-icon fa-flask icon-wrap"></i> <span class="mini-click-non">Inventory Configuration</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="Item Purchase" href="purchase.xhtml"><i class="fa fa-map-marker sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Purchase</span></a></li>
+                                    <li><a title="Expense" href="expense.xhtml"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Expense</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="./../Restaurant/main.xhtml" aria-expanded="false"><i class="fa big-icon fa-bar-chart-o icon-wrap"></i> <span class="mini-click-non">Restaurant Configuration</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="Restaurant KOT" href="./../Restaurant/main.xhtml"><i class="fa fa-signal sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Restaurant KOT</span></a></li>
+                                    <li><a title="Restaurant Setting" href="restaurant.xhtml"><i class="fa fa-line-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Restaurant Setting</span></a></li>
+                                    <li><a title="Restaurant Menu Rate" href="#"><i class="fa fa-area-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Restaurant Menu Rate</span></a></li>
+                                    <li><a title="Table Group Master" href="tablegroup.xhtml"><i class="fa fa-pie-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Table Group Master</span></a></li>
+                                    <li><a title="Table Master" href="table.xhtml"><i class="fa fa-signal sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Table Master</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="room.xhtml" aria-expanded="false"><i class="fa big-icon fa-bar-chart-o icon-wrap"></i> <span class="mini-click-non">Front Office Configuration</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="Room Master" href="room.xhtml"><i class="fa fa-signal sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Room Master</span></a></li>
+                                    <li><a title="Restaurant Setting" href="roomcategory.xhtml"><i class="fa fa-line-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Room Category</span></a></li>
+                                    <li><a title="Floor Master" href="floormaster.xhtml"><i class="fa fa-area-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Floor Master</span></a></li>
+                                    <li><a title="Service Master" href="service.xhtml"><i class="fa fa-pie-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Room Service Master</span></a></li>
+                                    <li><a title="Service Category" href="servicecategory.xhtml"><i class="fa fa-signal sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Room Service Category</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-flask icon-wrap"></i> <span class="mini-click-non">Report Configuration</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="Daily Sales Report" href="daily-sales-report.xhtml"><i class="fa fa-map-marker sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Daily Sales Report</span></a></li>
+                                    <li><a title="Income Report" href="item-wise.xhtml"><i class="fa fa-pie-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Income Report</span></a></li>
+                                    <li><a title="Expense Report" href="expense-report.xhtml"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Expense Report</span></a></li>
+                                    <li><a title="Item Report" href="profit-report.xhtml"><i class="fa fa-bar-chart-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Item Report</span></a></li>
+                                    <li><a title="Store Sheet Report" href="closing-report.xhtml"><i class="fa fa-bar-chart-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Store Sheet Report</span></a></li>
+                                    <li><a title="Credit Report" href="credit-report.xhtml"><i class="fa fa-pie-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Credit Report</span></a></li>
+                                    <li><a title="Deleted Report" href="transaction-logs.xhtml"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Deleted Transaction Report</span></a></li>
+                                    <li><a title="Room Income Report" href="collection-report.xhtml"><i class="fa fa-pie-chart sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Room Collection Report</span></a></li>
+                                    <li><a title="Police Report" href="police-report.xhtml"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Police Report</span></a></li>
+                                    <li><a title="InhouseGuest Report" href="inhouseguest-report.xhtml"><i class="fa fa-bar-chart-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">InhouseGuest Report</span></a></li>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+        <div class="all-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="logo-pro">
+                            <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-advance-area">
+                <div class="header-top-area">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
+                <!--Mobile Menu start--> 
+                <div class="mobile-menu-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="mobile-menu">
+                                    <nav id="dropdown">
+                                        <ul class="mobile-menu-nav">
+                                            <li><a data-toggle="collapse" data-target="#Charts" href="#">FrontOffice Configuration <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                                <ul class="collapse dropdown-header-top">
+                                                    <li><a href="index.html">Room Category</a></li>
+                                                    <li><a href="index-1.html">Floor Master</a></li>
+                                                    <li><a href="index-3.html">Room Master</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a data-toggle="collapse" data-target="#demo" href="#">User Configuration <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                                <ul id="demo" class="collapse dropdown-header-top">
+                                                    <li><a href="mailbox.html">Department</a>
+                                                    </li>
+                                                    <li><a href="mailbox-view.html">New User</a>
+                                                    </li>
+                                                    <li><a href="mailbox-compose.html">User Rights</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a data-toggle="collapse" data-target="#others" href="#">Room Service Configuration <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                                <ul id="others" class="collapse dropdown-header-top">
+                                                    <li><a href="file-manager.html">Room Service Category</a></li>
+                                                    <li><a href="contacts.html">Room Service</a></li>
+                                                    <li><a href="projects.html">House Keeping Config</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Menu Configuration <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                                <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
+                                                    <li><a href="google-map.html">Menu Category</a>
+                                                    </li>
+                                                    <li><a href="data-maps.html">Menu Master</a>
+                                                    </li>
+                                                    <li><a href="pdf-viewer.html">Move Items To Inventory</a>
+                                                    </li>
+                                                    <li><a href="x-editable.html">Side Menu</a>
+                                                    </li>
+                                                    <li><a href="code-editor.html">Food And Beverage Costing</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a data-toggle="collapse" data-target="#Chartsmob" href="#">Restaurant Configuration <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                                <ul id="Chartsmob" class="collapse dropdown-header-top">
+                                                    <li><a href="bar-charts.html">Restaurant Setting</a>
+                                                    </li>
+                                                    <li><a href="line-charts.html">Restaurant Menu Rate</a>
+                                                    </li>
+                                                    <li><a href="area-charts.html">Table Group Master</a>
+                                                    </li>
+                                                    <li><a href="rounded-chart.html">Table Master</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile Menu end -->
+                <div class="breadcome-area">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="breadcome-list single-page-breadcome">
+                                    <div class="row">
+                                        <div class="col-lg-6" />
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <ul class="breadcome-menu">
+                                                <div class="col-md-2">
+                                                    <h:form>
+                                                        <h:commandLink value="Home" class="btn btn-link" action="#{superAdminModel.redirectHome()}" />                                                        
+                                                    </h:form>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <li><span class="btn btn-link">Report</span>
+                                                    </li>
+                                                </div>
+                                                <div class="col-md-2" />
+                                                <div class="col-md-2">
+                                                    <h:form>
+                                                        <h:commandLink action="#{accountModel.logout()}" value="Logout" class="btn btn-primary btn-sm"></h:commandLink>
+                                                    </h:form>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                    <div id="Logout" class="modal modal-adminpro-general default-popup-PrimaryModal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-close-area modal-close-df">
+                                    <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                                </div>
+                                <div class="modal-body">
+                                    <h:form>
+                                        Are You Sure?
+                                        <h:commandButton value="Yes" class="btn btn-warning" action="#{accountModel.logout()}" />
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals Start-->
+            <div class="login-form-area adminpro-pd mg-tb-15">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="tab-content-details shadow-reset">
+                                <h:form>
+                                    <div class="row">
+                                        <div class="col-lg-6">From:</div>
+                                        <div class="col-lg-6">To:</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h:inputText value="#{adminModel.fromDate}" class="form-control" >
+                                                <!--<f:convertDateTime pattern="dd/MM/yyyy" />-->
+                                            </h:inputText> 
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <h:selectOneMenu class="form-control" value="#{adminModel.fromHour}">
+                                                <f:selectItem itemLabel="00" itemValue="00" />
+                                                <f:selectItem itemLabel="01" itemValue="01" />
+                                                <f:selectItem itemLabel="02" itemValue="02" />
+                                                <f:selectItem itemLabel="03" itemValue="03" />
+                                                <f:selectItem itemLabel="04" itemValue="04" />
+                                                <f:selectItem itemLabel="05" itemValue="05" />
+                                                <f:selectItem itemLabel="06" itemValue="06" />
+                                                <f:selectItem itemLabel="07" itemValue="07" />
+                                                <f:selectItem itemLabel="08" itemValue="08" />
+                                                <f:selectItem itemLabel="09" itemValue="09" />
+                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                <f:selectItem itemLabel="11" itemValue="11" />
+                                                <f:selectItem itemLabel="12" itemValue="12" />
+                                                <f:selectItem itemLabel="13" itemValue="13" />
+                                                <f:selectItem itemLabel="14" itemValue="14" />
+                                                <f:selectItem itemLabel="15" itemValue="15" />
+                                                <f:selectItem itemLabel="16" itemValue="16" />
+                                                <f:selectItem itemLabel="17" itemValue="17" />
+                                                <f:selectItem itemLabel="18" itemValue="18" />
+                                                <f:selectItem itemLabel="19" itemValue="19" />
+                                                <f:selectItem itemLabel="20" itemValue="20" />
+                                                <f:selectItem itemLabel="21" itemValue="21" />
+                                                <f:selectItem itemLabel="22" itemValue="22" />
+                                                <f:selectItem itemLabel="23" itemValue="23" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="col-sm-1 col-lg-1 col-md-1 col-xs-12">
+                                            <h:selectOneMenu value="#{adminModel.fromMinute}" class="form-control" >
+                                                <f:selectItem itemLabel="00" itemValue="00" />
+                                                <f:selectItem itemLabel="01" itemValue="01" />
+                                                <f:selectItem itemLabel="02" itemValue="02" />
+                                                <f:selectItem itemLabel="03" itemValue="03" />
+                                                <f:selectItem itemLabel="04" itemValue="04" />
+                                                <f:selectItem itemLabel="05" itemValue="05" />
+                                                <f:selectItem itemLabel="06" itemValue="06" />
+                                                <f:selectItem itemLabel="07" itemValue="07" />
+                                                <f:selectItem itemLabel="08" itemValue="08" />
+                                                <f:selectItem itemLabel="09" itemValue="09" />
+                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                <f:selectItem itemLabel="11" itemValue="11" />
+                                                <f:selectItem itemLabel="12" itemValue="12" />
+                                                <f:selectItem itemLabel="13" itemValue="13" />
+                                                <f:selectItem itemLabel="14" itemValue="14" />
+                                                <f:selectItem itemLabel="15" itemValue="15" />
+                                                <f:selectItem itemLabel="16" itemValue="16" />
+                                                <f:selectItem itemLabel="17" itemValue="17" />
+                                                <f:selectItem itemLabel="18" itemValue="18" />
+                                                <f:selectItem itemLabel="19" itemValue="19" />
+                                                <f:selectItem itemLabel="20" itemValue="20" />
+                                                <f:selectItem itemLabel="21" itemValue="21" />
+                                                <f:selectItem itemLabel="22" itemValue="22" />
+                                                <f:selectItem itemLabel="23" itemValue="23" />
+                                                <f:selectItem itemLabel="24" itemValue="24" />
+                                                <f:selectItem itemLabel="25" itemValue="25" />
+                                                <f:selectItem itemLabel="26" itemValue="26" />
+                                                <f:selectItem itemLabel="27" itemValue="27" />
+                                                <f:selectItem itemLabel="28" itemValue="28" />
+                                                <f:selectItem itemLabel="29" itemValue="29" />
+                                                <f:selectItem itemLabel="30" itemValue="30" />
+                                                <f:selectItem itemLabel="31" itemValue="31" />
+                                                <f:selectItem itemLabel="32" itemValue="32" />
+                                                <f:selectItem itemLabel="33" itemValue="33" />
+                                                <f:selectItem itemLabel="34" itemValue="34" />
+                                                <f:selectItem itemLabel="35" itemValue="35" />
+                                                <f:selectItem itemLabel="36" itemValue="36" />
+                                                <f:selectItem itemLabel="37" itemValue="37" />
+                                                <f:selectItem itemLabel="38" itemValue="38" />
+                                                <f:selectItem itemLabel="39" itemValue="39" />
+                                                <f:selectItem itemLabel="40" itemValue="40" />
+                                                <f:selectItem itemLabel="41" itemValue="41" />
+                                                <f:selectItem itemLabel="42" itemValue="42" />
+                                                <f:selectItem itemLabel="43" itemValue="43" />
+                                                <f:selectItem itemLabel="44" itemValue="44" />
+                                                <f:selectItem itemLabel="45" itemValue="45" />
+                                                <f:selectItem itemLabel="46" itemValue="46" />
+                                                <f:selectItem itemLabel="47" itemValue="47" />
+                                                <f:selectItem itemLabel="48" itemValue="48" />
+                                                <f:selectItem itemLabel="49" itemValue="49" />
+                                                <f:selectItem itemLabel="50" itemValue="50" />
+                                                <f:selectItem itemLabel="51" itemValue="51" />
+                                                <f:selectItem itemLabel="52" itemValue="52" />
+                                                <f:selectItem itemLabel="53" itemValue="53" />
+                                                <f:selectItem itemLabel="54" itemValue="54" />
+                                                <f:selectItem itemLabel="55" itemValue="55" />
+                                                <f:selectItem itemLabel="56" itemValue="56" />
+                                                <f:selectItem itemLabel="57" itemValue="57" />
+                                                <f:selectItem itemLabel="58" itemValue="58" />
+                                                <f:selectItem itemLabel="59" itemValue="59" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="col-lg-2" />
+                                        <div class="col-lg-2">
+                                            <h:inputText value="#{adminModel.toDate}" class="form-control" ></h:inputText>
+                                        </div>                                        
+                                        <div class="col-lg-1">
+                                            <h:selectOneMenu class="form-control" value="#{adminModel.toHour}">
+                                                <f:selectItem itemLabel="00" itemValue="00" />
+                                                <f:selectItem itemLabel="01" itemValue="01" />
+                                                <f:selectItem itemLabel="02" itemValue="02" />
+                                                <f:selectItem itemLabel="03" itemValue="03" />
+                                                <f:selectItem itemLabel="04" itemValue="04" />
+                                                <f:selectItem itemLabel="05" itemValue="05" />
+                                                <f:selectItem itemLabel="06" itemValue="06" />
+                                                <f:selectItem itemLabel="07" itemValue="07" />
+                                                <f:selectItem itemLabel="08" itemValue="08" />
+                                                <f:selectItem itemLabel="09" itemValue="09" />
+                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                <f:selectItem itemLabel="11" itemValue="11" />
+                                                <f:selectItem itemLabel="12" itemValue="12" />
+                                                <f:selectItem itemLabel="13" itemValue="13" />
+                                                <f:selectItem itemLabel="14" itemValue="14" />
+                                                <f:selectItem itemLabel="15" itemValue="15" />
+                                                <f:selectItem itemLabel="16" itemValue="16" />
+                                                <f:selectItem itemLabel="17" itemValue="17" />
+                                                <f:selectItem itemLabel="18" itemValue="18" />
+                                                <f:selectItem itemLabel="19" itemValue="19" />
+                                                <f:selectItem itemLabel="20" itemValue="20" />
+                                                <f:selectItem itemLabel="21" itemValue="21" />
+                                                <f:selectItem itemLabel="22" itemValue="22" />
+                                                <f:selectItem itemLabel="23" itemValue="23" />
+                                            </h:selectOneMenu>                                            
+                                        </div>
+                                        <div class="col-sm-1 col-lg-1 col-md-1 col-xs-12">
+                                            <h:selectOneMenu value="#{adminModel.toMinute}" class="form-control" >
+                                                <f:selectItem itemLabel="00" itemValue="00" />
+                                                <f:selectItem itemLabel="01" itemValue="01" />
+                                                <f:selectItem itemLabel="02" itemValue="02" />
+                                                <f:selectItem itemLabel="03" itemValue="03" />
+                                                <f:selectItem itemLabel="04" itemValue="04" />
+                                                <f:selectItem itemLabel="05" itemValue="05" />
+                                                <f:selectItem itemLabel="06" itemValue="06" />
+                                                <f:selectItem itemLabel="07" itemValue="07" />
+                                                <f:selectItem itemLabel="08" itemValue="08" />
+                                                <f:selectItem itemLabel="09" itemValue="09" />
+                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                <f:selectItem itemLabel="11" itemValue="11" />
+                                                <f:selectItem itemLabel="12" itemValue="12" />
+                                                <f:selectItem itemLabel="13" itemValue="13" />
+                                                <f:selectItem itemLabel="14" itemValue="14" />
+                                                <f:selectItem itemLabel="15" itemValue="15" />
+                                                <f:selectItem itemLabel="16" itemValue="16" />
+                                                <f:selectItem itemLabel="17" itemValue="17" />
+                                                <f:selectItem itemLabel="18" itemValue="18" />
+                                                <f:selectItem itemLabel="19" itemValue="19" />
+                                                <f:selectItem itemLabel="20" itemValue="20" />
+                                                <f:selectItem itemLabel="21" itemValue="21" />
+                                                <f:selectItem itemLabel="22" itemValue="22" />
+                                                <f:selectItem itemLabel="23" itemValue="23" />
+                                                <f:selectItem itemLabel="24" itemValue="24" />
+                                                <f:selectItem itemLabel="25" itemValue="25" />
+                                                <f:selectItem itemLabel="26" itemValue="26" />
+                                                <f:selectItem itemLabel="27" itemValue="27" />
+                                                <f:selectItem itemLabel="28" itemValue="28" />
+                                                <f:selectItem itemLabel="29" itemValue="29" />
+                                                <f:selectItem itemLabel="30" itemValue="30" />
+                                                <f:selectItem itemLabel="31" itemValue="31" />
+                                                <f:selectItem itemLabel="32" itemValue="32" />
+                                                <f:selectItem itemLabel="33" itemValue="33" />
+                                                <f:selectItem itemLabel="34" itemValue="34" />
+                                                <f:selectItem itemLabel="35" itemValue="35" />
+                                                <f:selectItem itemLabel="36" itemValue="36" />
+                                                <f:selectItem itemLabel="37" itemValue="37" />
+                                                <f:selectItem itemLabel="38" itemValue="38" />
+                                                <f:selectItem itemLabel="39" itemValue="39" />
+                                                <f:selectItem itemLabel="40" itemValue="40" />
+                                                <f:selectItem itemLabel="41" itemValue="41" />
+                                                <f:selectItem itemLabel="42" itemValue="42" />
+                                                <f:selectItem itemLabel="43" itemValue="43" />
+                                                <f:selectItem itemLabel="44" itemValue="44" />
+                                                <f:selectItem itemLabel="45" itemValue="45" />
+                                                <f:selectItem itemLabel="46" itemValue="46" />
+                                                <f:selectItem itemLabel="47" itemValue="47" />
+                                                <f:selectItem itemLabel="48" itemValue="48" />
+                                                <f:selectItem itemLabel="49" itemValue="49" />
+                                                <f:selectItem itemLabel="50" itemValue="50" />
+                                                <f:selectItem itemLabel="51" itemValue="51" />
+                                                <f:selectItem itemLabel="52" itemValue="52" />
+                                                <f:selectItem itemLabel="53" itemValue="53" />
+                                                <f:selectItem itemLabel="54" itemValue="54" />
+                                                <f:selectItem itemLabel="55" itemValue="55" />
+                                                <f:selectItem itemLabel="56" itemValue="56" />
+                                                <f:selectItem itemLabel="57" itemValue="57" />
+                                                <f:selectItem itemLabel="58" itemValue="58" />
+                                                <f:selectItem itemLabel="59" itemValue="59" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <h:commandButton value="Search" class="btn btn-primary" action="#{adminModel.searchTableTransactions()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                                <!--List Users-->
+                                <h:form id="reportPrint" style="padding-top: 30px;">
+                                    <p:growl />
+                                    <div class="row" style="padding-left: 50px;">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-6">
+                                            <h5>Items Report between #{adminModel.dateFrom} and #{adminModel.dateTo}</h5>
+                                        </div>
+                                    </div>
+                                    <table class="table table-striped table-hover">
+                                        <thead class="bg-light">
+                                            <tr class="border-0">
+                                                <th class="border-0">#</th>
+                                                <th class="border-0">Item Name</th>
+                                                <th class="border-0">Quantity</th>
+                                                <th class="border-0">Unit Rate</th>
+                                                <th class="border-0">Total Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="#{adminModel.tableTransactionDtos}" var="elements" varStatus="status">
+                                                <tr>
+                                                    <td>${status.index+1}</td>
+                                                    <td>
+                                                        #{elements.itemName}
+                                                    </td>
+                                                    <td>
+                                                        #{elements.quantity}
+                                                    </td>
+                                                    <td>#{elements.unitRate}</td>
+                                                    <td>#{elements.unitRate * elements.quantity}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total(Sales)</td>
+                                                <td>#{adminModel.totalIncome}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total(Cash)</td>
+                                                <td>#{adminModel.totalCash}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total(MoMo)</td>
+                                                <td>#{adminModel.totalMomo}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total(Card)</td>
+                                                <td>#{adminModel.totalCard}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total(NC)</td>
+                                                <td>#{adminModel.totalNc}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total(Credit)</td>
+                                                <td>#{adminModel.totalCredit}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total(Discount)</td>
+                                                <td>#{adminModel.totalDiscounted}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total Income(Cash+Momo+Card - Discount)</td>
+                                                <td>#{adminModel.totalCash + adminModel.totalMomo + adminModel.totalCard - adminModel.totalDiscounted}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </h:form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <h:form style="padding-top: 10px;">
+                        <div class="col-lg-4" />
+                        <div class="col-lg-4">
+                            <p:commandButton class="btn btn-primary" value="Print" type="button" icon="pi pi-print" style="display:block;margin-bottom: 20px">
+                                <p:printer target="reportPrint" />
+                            </p:commandButton>
+                        </div>
+
+                        <div class="col-lg-4" />
+                    </h:form>
+
+                </div>
+            </div>
+            <!-- Modals End-->
+            <div class="footer-copyright-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer-copy-right">
+                                <p>Copyright &copy; 2020 All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jquery
+                    ============================================ -->
+        <!--<script src="./../resources/js/vendor/jquery-1.11.3.min.js"></script>-->
+        <!-- bootstrap JS
+                    ============================================ -->
+        <script src="./../resources/js/bootstrap.min.js"></script>
+        <!-- wow JS
+                    ============================================ -->
+        <script src="./../resources/js/wow.min.js"></script>
+        <!-- price-slider JS
+                    ============================================ -->
+        <script src="./../resources/js/jquery-price-slider.js"></script>
+        <!-- meanmenu JS
+                    ============================================ -->
+        <script src="./../resources/js/jquery.meanmenu.js"></script>
+        <!-- owl.carousel JS
+                    ============================================ -->
+        <script src="./../resources/js/owl.carousel.min.js"></script>
+        <!-- sticky JS
+                    ============================================ -->
+        <script src="./../resources/js/jquery.sticky.js"></script>
+        <!-- scrollUp JS
+                    ============================================ -->
+        <script src="./../resources/js/jquery.scrollUp.min.js"></script>
+        <!-- mCustomScrollbar JS
+                    ============================================ -->
+        <script src="./../resources/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="./../resources/js/scrollbar/mCustomScrollbar-active.js"></script>
+        <!-- metisMenu JS
+                    ============================================ -->
+        <script src="./../resources/js/metisMenu/metisMenu.min.js"></script>
+        <script src="./../resources/js/metisMenu/metisMenu-active.js"></script>
+        <!-- data table JS
+                    ============================================ -->
+        <script src="./../resources/js/data-table/bootstrap-table.js"></script>
+        <script src="./../resources/js/data-table/tableExport.js"></script>
+        <script src="./../resources/js/data-table/data-table-active.js"></script>
+        <script src="./../resources/js/data-table/bootstrap-table-editable.js"></script>
+        <script src="./../resources/js/data-table/bootstrap-editable.js"></script>
+        <script src="./../resources/js/data-table/bootstrap-table-resizable.js"></script>
+        <script src="./../resources/js/data-table/colResizable-1.5.source.js"></script>
+        <script src="./../resources/js/data-table/bootstrap-table-export.js"></script>
+        <!--  editable JS
+                    ============================================ -->
+        <script src="./../resources/js/editable/jquery.mockjax.js"></script>
+        <script src="./../resources/js/editable/mock-active.js"></script>
+        <script src="./../resources/js/editable/select2.js"></script>
+        <script src="./../resources/js/editable/moment.min.js"></script>
+        <script src="./../resources/js/editable/bootstrap-datetimepicker.js"></script>
+        <script src="./../resources/js/editable/bootstrap-editable.js"></script>
+        <script src="./../resources/js/editable/xediable-active.js"></script>
+        <!-- Chart JS
+                    ============================================ -->
+        <script src="./../resources/js/chart/jquery.peity.min.js"></script>
+        <script src="./../resources/js/peity/peity-active.js"></script>
+        <!-- tab JS
+                    ============================================ -->
+        <script src="./../resources/js/tab.js"></script>
+        <!-- plugins JS
+                    ============================================ -->
+        <script src="./../resources/js/plugins.js"></script>
+        <!-- main JS
+                    ============================================ -->
+        <script src="./../resources/js/main.js"></script>
+
+    </h:body>
+</html>
+
