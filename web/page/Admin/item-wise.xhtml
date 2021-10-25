@@ -34,6 +34,21 @@
         <!-- JQuery DataTable Css -->
         <link href="./../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"/>
 
+        <!-- Bootstrap Material Datetime Picker Css -->
+        <link href="./../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+        <!-- Bootstrap DatePicker Css -->
+        <link href="./../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+        <!-- Wait Me Css -->
+        <link href="./../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+        <!-- Bootstrap Select Css -->
+        <link href="./../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+        <!-- Moment Plugin Js -->
+        <script src="./../plugins/momentjs/moment.js"></script>
+
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="./../css/themes/all-themes.css" rel="stylesheet" />
     </h:head>
@@ -134,44 +149,10 @@
         <section class="content">
             <div class="container-fluid">
 
-                <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="defaultModalLabel">New Department</h4>
-                            </div>
-                            <h:form>
-                                <div class="modal-body">
-
-                                    <div class="row clearfix">
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <h:inputText value="#{adminModel.userDepartment.departmentName}" class="form-control" required="true" requiredMessage="Please Fill Department Name"/>
-                                                    <label class="form-label">Department Name</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer" style="padding-top: 30px;">
-                                    <h:commandButton class="btn btn-primary btn-sm" action="#{adminModel.registerUserDepartment()}" value="REGISTER"></h:commandButton>
-
-                                    <button type="button" class="btn bg-blue-grey waves-effect" data-dismiss="modal">CLOSE</button>
-                                </div>
-                            </h:form>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="block-header">
                     <h2>
-                        DEPARTMENT PAGE
+                        REPORT PAGE
                     </h2>
-
-                    <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">New Department</button>
-
                 </div>
                 <!-- Advanced Form Example With Validation -->
 
@@ -179,45 +160,330 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>DEPARTMENT LIST</h2>
+                                <h2>ITEM REPORT</h2>
                             </div>
                             <div>
-                                <div>
-                                    <!--<h3>Member Information</h3>-->
+                                <div class="row" style="padding-top: 30px;">
                                     <h:form>
+                                        <div class="row">
+                                            <div class="col-lg-6">From:</div>
+                                            <div class="col-lg-6">To:</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <h:inputText value="#{adminModel.fromDate}" class="form-control" >
+                                                    <!--<f:convertDateTime pattern="dd/MM/yyyy" />-->
+                                                </h:inputText> 
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <h:selectOneMenu class="form-control" value="#{adminModel.fromHour}">
+                                                    <f:selectItem itemLabel="00" itemValue="00" />
+                                                    <f:selectItem itemLabel="01" itemValue="01" />
+                                                    <f:selectItem itemLabel="02" itemValue="02" />
+                                                    <f:selectItem itemLabel="03" itemValue="03" />
+                                                    <f:selectItem itemLabel="04" itemValue="04" />
+                                                    <f:selectItem itemLabel="05" itemValue="05" />
+                                                    <f:selectItem itemLabel="06" itemValue="06" />
+                                                    <f:selectItem itemLabel="07" itemValue="07" />
+                                                    <f:selectItem itemLabel="08" itemValue="08" />
+                                                    <f:selectItem itemLabel="09" itemValue="09" />
+                                                    <f:selectItem itemLabel="10" itemValue="10" />
+                                                    <f:selectItem itemLabel="11" itemValue="11" />
+                                                    <f:selectItem itemLabel="12" itemValue="12" />
+                                                    <f:selectItem itemLabel="13" itemValue="13" />
+                                                    <f:selectItem itemLabel="14" itemValue="14" />
+                                                    <f:selectItem itemLabel="15" itemValue="15" />
+                                                    <f:selectItem itemLabel="16" itemValue="16" />
+                                                    <f:selectItem itemLabel="17" itemValue="17" />
+                                                    <f:selectItem itemLabel="18" itemValue="18" />
+                                                    <f:selectItem itemLabel="19" itemValue="19" />
+                                                    <f:selectItem itemLabel="20" itemValue="20" />
+                                                    <f:selectItem itemLabel="21" itemValue="21" />
+                                                    <f:selectItem itemLabel="22" itemValue="22" />
+                                                    <f:selectItem itemLabel="23" itemValue="23" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="col-sm-1 col-lg-1 col-md-1 col-xs-12">
+                                                <h:selectOneMenu value="#{adminModel.fromMinute}" class="form-control" >
+                                                    <f:selectItem itemLabel="00" itemValue="00" />
+                                                    <f:selectItem itemLabel="01" itemValue="01" />
+                                                    <f:selectItem itemLabel="02" itemValue="02" />
+                                                    <f:selectItem itemLabel="03" itemValue="03" />
+                                                    <f:selectItem itemLabel="04" itemValue="04" />
+                                                    <f:selectItem itemLabel="05" itemValue="05" />
+                                                    <f:selectItem itemLabel="06" itemValue="06" />
+                                                    <f:selectItem itemLabel="07" itemValue="07" />
+                                                    <f:selectItem itemLabel="08" itemValue="08" />
+                                                    <f:selectItem itemLabel="09" itemValue="09" />
+                                                    <f:selectItem itemLabel="10" itemValue="10" />
+                                                    <f:selectItem itemLabel="11" itemValue="11" />
+                                                    <f:selectItem itemLabel="12" itemValue="12" />
+                                                    <f:selectItem itemLabel="13" itemValue="13" />
+                                                    <f:selectItem itemLabel="14" itemValue="14" />
+                                                    <f:selectItem itemLabel="15" itemValue="15" />
+                                                    <f:selectItem itemLabel="16" itemValue="16" />
+                                                    <f:selectItem itemLabel="17" itemValue="17" />
+                                                    <f:selectItem itemLabel="18" itemValue="18" />
+                                                    <f:selectItem itemLabel="19" itemValue="19" />
+                                                    <f:selectItem itemLabel="20" itemValue="20" />
+                                                    <f:selectItem itemLabel="21" itemValue="21" />
+                                                    <f:selectItem itemLabel="22" itemValue="22" />
+                                                    <f:selectItem itemLabel="23" itemValue="23" />
+                                                    <f:selectItem itemLabel="24" itemValue="24" />
+                                                    <f:selectItem itemLabel="25" itemValue="25" />
+                                                    <f:selectItem itemLabel="26" itemValue="26" />
+                                                    <f:selectItem itemLabel="27" itemValue="27" />
+                                                    <f:selectItem itemLabel="28" itemValue="28" />
+                                                    <f:selectItem itemLabel="29" itemValue="29" />
+                                                    <f:selectItem itemLabel="30" itemValue="30" />
+                                                    <f:selectItem itemLabel="31" itemValue="31" />
+                                                    <f:selectItem itemLabel="32" itemValue="32" />
+                                                    <f:selectItem itemLabel="33" itemValue="33" />
+                                                    <f:selectItem itemLabel="34" itemValue="34" />
+                                                    <f:selectItem itemLabel="35" itemValue="35" />
+                                                    <f:selectItem itemLabel="36" itemValue="36" />
+                                                    <f:selectItem itemLabel="37" itemValue="37" />
+                                                    <f:selectItem itemLabel="38" itemValue="38" />
+                                                    <f:selectItem itemLabel="39" itemValue="39" />
+                                                    <f:selectItem itemLabel="40" itemValue="40" />
+                                                    <f:selectItem itemLabel="41" itemValue="41" />
+                                                    <f:selectItem itemLabel="42" itemValue="42" />
+                                                    <f:selectItem itemLabel="43" itemValue="43" />
+                                                    <f:selectItem itemLabel="44" itemValue="44" />
+                                                    <f:selectItem itemLabel="45" itemValue="45" />
+                                                    <f:selectItem itemLabel="46" itemValue="46" />
+                                                    <f:selectItem itemLabel="47" itemValue="47" />
+                                                    <f:selectItem itemLabel="48" itemValue="48" />
+                                                    <f:selectItem itemLabel="49" itemValue="49" />
+                                                    <f:selectItem itemLabel="50" itemValue="50" />
+                                                    <f:selectItem itemLabel="51" itemValue="51" />
+                                                    <f:selectItem itemLabel="52" itemValue="52" />
+                                                    <f:selectItem itemLabel="53" itemValue="53" />
+                                                    <f:selectItem itemLabel="54" itemValue="54" />
+                                                    <f:selectItem itemLabel="55" itemValue="55" />
+                                                    <f:selectItem itemLabel="56" itemValue="56" />
+                                                    <f:selectItem itemLabel="57" itemValue="57" />
+                                                    <f:selectItem itemLabel="58" itemValue="58" />
+                                                    <f:selectItem itemLabel="59" itemValue="59" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="col-lg-2" />
+                                            <div class="col-lg-2">
+                                                <h:inputText value="#{adminModel.toDate}" class="form-control" ></h:inputText>
+                                            </div>                                        
+                                            <div class="col-lg-1">
+                                                <h:selectOneMenu class="form-control" value="#{adminModel.toHour}">
+                                                    <f:selectItem itemLabel="00" itemValue="00" />
+                                                    <f:selectItem itemLabel="01" itemValue="01" />
+                                                    <f:selectItem itemLabel="02" itemValue="02" />
+                                                    <f:selectItem itemLabel="03" itemValue="03" />
+                                                    <f:selectItem itemLabel="04" itemValue="04" />
+                                                    <f:selectItem itemLabel="05" itemValue="05" />
+                                                    <f:selectItem itemLabel="06" itemValue="06" />
+                                                    <f:selectItem itemLabel="07" itemValue="07" />
+                                                    <f:selectItem itemLabel="08" itemValue="08" />
+                                                    <f:selectItem itemLabel="09" itemValue="09" />
+                                                    <f:selectItem itemLabel="10" itemValue="10" />
+                                                    <f:selectItem itemLabel="11" itemValue="11" />
+                                                    <f:selectItem itemLabel="12" itemValue="12" />
+                                                    <f:selectItem itemLabel="13" itemValue="13" />
+                                                    <f:selectItem itemLabel="14" itemValue="14" />
+                                                    <f:selectItem itemLabel="15" itemValue="15" />
+                                                    <f:selectItem itemLabel="16" itemValue="16" />
+                                                    <f:selectItem itemLabel="17" itemValue="17" />
+                                                    <f:selectItem itemLabel="18" itemValue="18" />
+                                                    <f:selectItem itemLabel="19" itemValue="19" />
+                                                    <f:selectItem itemLabel="20" itemValue="20" />
+                                                    <f:selectItem itemLabel="21" itemValue="21" />
+                                                    <f:selectItem itemLabel="22" itemValue="22" />
+                                                    <f:selectItem itemLabel="23" itemValue="23" />
+                                                </h:selectOneMenu>                                            
+                                            </div>
+                                            <div class="col-sm-1 col-lg-1 col-md-1 col-xs-12">
+                                                <h:selectOneMenu value="#{adminModel.toMinute}" class="form-control" >
+                                                    <f:selectItem itemLabel="00" itemValue="00" />
+                                                    <f:selectItem itemLabel="01" itemValue="01" />
+                                                    <f:selectItem itemLabel="02" itemValue="02" />
+                                                    <f:selectItem itemLabel="03" itemValue="03" />
+                                                    <f:selectItem itemLabel="04" itemValue="04" />
+                                                    <f:selectItem itemLabel="05" itemValue="05" />
+                                                    <f:selectItem itemLabel="06" itemValue="06" />
+                                                    <f:selectItem itemLabel="07" itemValue="07" />
+                                                    <f:selectItem itemLabel="08" itemValue="08" />
+                                                    <f:selectItem itemLabel="09" itemValue="09" />
+                                                    <f:selectItem itemLabel="10" itemValue="10" />
+                                                    <f:selectItem itemLabel="11" itemValue="11" />
+                                                    <f:selectItem itemLabel="12" itemValue="12" />
+                                                    <f:selectItem itemLabel="13" itemValue="13" />
+                                                    <f:selectItem itemLabel="14" itemValue="14" />
+                                                    <f:selectItem itemLabel="15" itemValue="15" />
+                                                    <f:selectItem itemLabel="16" itemValue="16" />
+                                                    <f:selectItem itemLabel="17" itemValue="17" />
+                                                    <f:selectItem itemLabel="18" itemValue="18" />
+                                                    <f:selectItem itemLabel="19" itemValue="19" />
+                                                    <f:selectItem itemLabel="20" itemValue="20" />
+                                                    <f:selectItem itemLabel="21" itemValue="21" />
+                                                    <f:selectItem itemLabel="22" itemValue="22" />
+                                                    <f:selectItem itemLabel="23" itemValue="23" />
+                                                    <f:selectItem itemLabel="24" itemValue="24" />
+                                                    <f:selectItem itemLabel="25" itemValue="25" />
+                                                    <f:selectItem itemLabel="26" itemValue="26" />
+                                                    <f:selectItem itemLabel="27" itemValue="27" />
+                                                    <f:selectItem itemLabel="28" itemValue="28" />
+                                                    <f:selectItem itemLabel="29" itemValue="29" />
+                                                    <f:selectItem itemLabel="30" itemValue="30" />
+                                                    <f:selectItem itemLabel="31" itemValue="31" />
+                                                    <f:selectItem itemLabel="32" itemValue="32" />
+                                                    <f:selectItem itemLabel="33" itemValue="33" />
+                                                    <f:selectItem itemLabel="34" itemValue="34" />
+                                                    <f:selectItem itemLabel="35" itemValue="35" />
+                                                    <f:selectItem itemLabel="36" itemValue="36" />
+                                                    <f:selectItem itemLabel="37" itemValue="37" />
+                                                    <f:selectItem itemLabel="38" itemValue="38" />
+                                                    <f:selectItem itemLabel="39" itemValue="39" />
+                                                    <f:selectItem itemLabel="40" itemValue="40" />
+                                                    <f:selectItem itemLabel="41" itemValue="41" />
+                                                    <f:selectItem itemLabel="42" itemValue="42" />
+                                                    <f:selectItem itemLabel="43" itemValue="43" />
+                                                    <f:selectItem itemLabel="44" itemValue="44" />
+                                                    <f:selectItem itemLabel="45" itemValue="45" />
+                                                    <f:selectItem itemLabel="46" itemValue="46" />
+                                                    <f:selectItem itemLabel="47" itemValue="47" />
+                                                    <f:selectItem itemLabel="48" itemValue="48" />
+                                                    <f:selectItem itemLabel="49" itemValue="49" />
+                                                    <f:selectItem itemLabel="50" itemValue="50" />
+                                                    <f:selectItem itemLabel="51" itemValue="51" />
+                                                    <f:selectItem itemLabel="52" itemValue="52" />
+                                                    <f:selectItem itemLabel="53" itemValue="53" />
+                                                    <f:selectItem itemLabel="54" itemValue="54" />
+                                                    <f:selectItem itemLabel="55" itemValue="55" />
+                                                    <f:selectItem itemLabel="56" itemValue="56" />
+                                                    <f:selectItem itemLabel="57" itemValue="57" />
+                                                    <f:selectItem itemLabel="58" itemValue="58" />
+                                                    <f:selectItem itemLabel="59" itemValue="59" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <h:commandButton value="Search" class="btn btn-primary" action="#{adminModel.searchTableTransactions()}"/>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                    <!--List Users-->
+                                    <h:form id="reportPrint" style="padding-top: 30px;">
                                         <p:growl />
+                                        <div class="row" style="padding-left: 50px;">
+                                            <div class="col-lg-2"></div>
+                                            <div class="col-lg-6">
+                                                <h5>Items Report between #{adminModel.dateFrom} and #{adminModel.dateTo}</h5>
+                                            </div>
+                                        </div>
                                         <table class="table table-striped table-hover">
                                             <thead class="bg-light">
                                                 <tr class="border-0">
                                                     <th class="border-0">#</th>
-                                                    <th class="border-0">Department Name</th>
-                                                    <th class="border-0">Status</th>
-                                                    <th class="border-0">Edit</th>
-                                                    <th class="border-0">Block</th>
+                                                    <th class="border-0">Item Name</th>
+                                                    <th class="border-0">Quantity</th>
+                                                    <th class="border-0">Unit Rate</th>
+                                                    <th class="border-0">Total Price</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="#{adminModel.userDepartments}" var="elements" varStatus="status">
+                                                <c:forEach items="#{adminModel.tableTransactionDtos}" var="elements" varStatus="status">
                                                     <tr>
                                                         <td>${status.index+1}</td>
                                                         <td>
-                                                            #{elements.departmentName}
-                                                        </td>
-                                                        <td>#{elements.status}</td>
-                                                        <td>
-                                                            <h:commandButton class="btn btn-warning" value="Edit" />
+                                                            #{elements.itemName}
                                                         </td>
                                                         <td>
-                                                            <h:commandButton class="btn btn-warning" action="#{adminModel.block(elements)}" value="Block" />
+                                                            #{elements.quantity}
                                                         </td>
+                                                        <td>#{elements.unitRate}</td>
+                                                        <td>#{elements.unitRate * elements.quantity}</td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total(Sales)</td>
+                                                    <td>#{adminModel.totalIncome}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total(Cash)</td>
+                                                    <td>#{adminModel.totalCash}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total(MoMo)</td>
+                                                    <td>#{adminModel.totalMomo}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total(Card)</td>
+                                                    <td>#{adminModel.totalCard}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total(NC)</td>
+                                                    <td>#{adminModel.totalNc}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total(Credit)</td>
+                                                    <td>#{adminModel.totalCredit}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total(Discount)</td>
+                                                    <td>#{adminModel.totalDiscounted}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Total Income(Cash+Momo+Card - Discount)</td>
+                                                    <td>#{adminModel.totalCash + adminModel.totalMomo + adminModel.totalCard - adminModel.totalDiscounted}</td>
+                                                </tr>
+                                            </tfoot>
                                         </table>
                                     </h:form>
                                 </div>
+
+                                <h:form style="padding-top: 10px;">
+                                    <div class="col-lg-4" />
+                                    <div class="col-lg-4">
+                                        <p:commandButton class="btn btn-primary" value="Print" type="button" icon="pi pi-print" style="display:block;margin-bottom: 20px">
+                                            <p:printer target="reportPrint" />
+                                        </p:commandButton>
+                                    </div>
+
+                                    <div class="col-lg-4" />
+                                </h:form>
                                 <!-- Default Size -->
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -226,7 +492,7 @@
         </section>
 
         <!-- Jquery Core Js -->
-        <script src="./../plugins/jquery/jquery.min.js"></script>
+        <!--<script src="./../plugins/jquery/jquery.min.js"></script>-->
 
         <!-- Bootstrap Core Js -->
         <script src="./../plugins/bootstrap/js/bootstrap.js"></script>
@@ -262,7 +528,21 @@
         <script src="./../js/pages/tables/jquery-datatable.js"></script>
 
         <!-- Demo Js -->
-        <script src="./../js/demo.js"></script>
+        <script src="./../js/demo.js"></script>        
+
+        <!-- Moment Plugin Js -->
+        <script src="./../plugins/momentjs/moment.js"></script>
+
+        <!-- Bootstrap Material Datetime Picker Plugin Js -->
+        <script src="./../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+        <!-- Bootstrap Datepicker Plugin Js -->
+        <script src="./../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+        <script src="./../js/pages/forms/basic-form-elements.js"></script>
+
+        <!-- Moment Plugin Js -->
+        <script src="../../plugins/momentjs/moment.js"></script>
 
     </h:body>
 </html>
