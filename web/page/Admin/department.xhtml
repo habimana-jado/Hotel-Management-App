@@ -138,7 +138,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="defaultModalLabel">New Employee</h4>
+                                <h4 class="modal-title" id="defaultModalLabel">New Department</h4>
                             </div>
                             <h:form>
                                 <div class="modal-body">
@@ -147,47 +147,16 @@
                                         <div class="col-sm-12">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <h:inputText value="#{adminModel.user.names}" class="form-control" required="true" requiredMessage="Fill Names" />
-                                                    <label class="form-label">Full Name</label>
+                                                    <h:inputText value="#{adminModel.userDepartment.departmentName}" class="form-control" required="true" requiredMessage="Please Fill Department Name"/>
+                                                    <label class="form-label">Department Name</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <h:inputText value="#{adminModel.user.address}" class="form-control"/>
-                                                    <label class="form-label">Address</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <h:inputText value="#{adminModel.user.phone}" class="form-control " required="true" requiredMessage="Fill Phone No."/>
-                                                    <label class="form-label">Phone</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <h:inputText value="#{adminModel.user.designation}" class="form-control"/>
-                                                    <label class="form-label">Designation</label>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <!--<div>-->
-                                                    <h:selectOneMenu class="form-control show-tick" value="#{adminModel.userDepartmentId}" >
-                                                        <f:selectItem itemLabel="-- Please Select Department --" itemValue="#{null}" />
-                                                        <f:selectItems value="#{adminModel.userDepartments}" var="dep" itemLabel="#{dep.departmentName}" itemValue="#{dep.departmentId}" />
-                                                    </h:selectOneMenu>
-                                                <!--</div>-->
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="modal-footer" style="padding-top: 30px;">
-
-                                    <h:commandButton class="btn btn-primary btn-sm" action="#{adminModel.userRegister()}" value="REGISTER"></h:commandButton>
+                                    <h:commandButton class="btn btn-primary btn-sm" action="#{adminModel.registerUserDepartment()}" value="REGISTER"></h:commandButton>
 
                                     <button type="button" class="btn bg-blue-grey waves-effect" data-dismiss="modal">CLOSE</button>
                                 </div>
@@ -198,10 +167,10 @@
 
                 <div class="block-header">
                     <h2>
-                        EMPLOYEE PAGE
+                        DEPARTMENT PAGE
                     </h2>
 
-                    <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">New Employee</button>
+                    <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">New Department</button>
 
                 </div>
                 <!-- Advanced Form Example With Validation -->
@@ -210,7 +179,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>EMPLOYEE LIST</h2>
+                                <h2>DEPARTMENT LIST</h2>
                             </div>
                             <div>
                                 <div>
@@ -221,44 +190,25 @@
                                             <thead class="bg-light">
                                                 <tr class="border-0">
                                                     <th class="border-0">#</th>
-                                                    <th class="border-0">Names</th>
-                                                    <th class="border-0">Department</th>
-                                                    <th class="border-0">Designation</th>
-                                                    <th class="border-0">Address</th>
-                                                    <th class="border-0">Mobile</th>
+                                                    <th class="border-0">Department Name</th>
                                                     <th class="border-0">Status</th>
                                                     <th class="border-0">Edit</th>
                                                     <th class="border-0">Block</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="#{adminModel.users}" var="elements" varStatus="status">
+                                                <c:forEach items="#{adminModel.userDepartments}" var="elements" varStatus="status">
                                                     <tr>
                                                         <td>${status.index+1}</td>
-
                                                         <td>
-                                                            #{elements.names}
+                                                            #{elements.departmentName}
                                                         </td>
-                                                        <td>#{elements.userDepartment.departmentName}</td>
-                                                        <td>#{elements.designation}</td>
-                                                        <td>#{elements.address}</td>
-
-                                                        <td>#{elements.phone}</td>
                                                         <td>#{elements.status}</td>
                                                         <td>
-                                                            <h:commandLink action="#{adminModel.navigateEditEmployee(elements)}">
-                                                                <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#PrimaryModalalert2">Edit</a>
-                                                            </h:commandLink>
+                                                            <h:commandButton class="btn btn-warning" value="Edit" />
                                                         </td>
                                                         <td>
-                                                            <c:choose>
-                                                                <c:when test="#{elements.status eq 'ACTIVE'}">
-                                                                    <h:commandButton class="btn btn-danger" action="#{adminModel.block(elements)}" value="Block" />                                                                
-                                                                </c:when>
-                                                                <c:when test="#{elements.status eq 'BLOCKED'}">
-                                                                    <h:commandButton class="btn btn-success" action="#{adminModel.activate(elements)}" value="Activate" />                                                                
-                                                                </c:when>
-                                                            </c:choose>
+                                                            <h:commandButton class="btn btn-warning" action="#{adminModel.block(elements)}" value="Block" />
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
