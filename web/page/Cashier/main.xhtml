@@ -1,0 +1,758 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <title>SDORG</title>
+        <!-- Favicon-->
+        <link rel="icon" href="./../favicon.ico" type="image/x-icon"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
+
+        <!-- Bootstrap Core Css -->
+        <link href="./../plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+        <!-- Waves Effect Css -->
+        <link href="./../plugins/node-waves/waves.css" rel="stylesheet" />
+
+        <!-- Animation Css -->
+        <link href="./../plugins/animate-css/animate.css" rel="stylesheet" />
+
+        <!-- Sweet Alert Css -->
+        <link href="./../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+        <!-- Custom Css -->
+        <link href="./../css/style.css" rel="stylesheet"/>
+
+        <!-- JQuery DataTable Css -->
+        <link href="./../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"/>
+
+        <!-- Bootstrap Material Datetime Picker Css -->
+        <link href="./../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+        <!-- Bootstrap DatePicker Css -->
+        <link href="./../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+        <!-- Wait Me Css -->
+        <link href="./../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+        <!-- Bootstrap Select Css -->
+        <link href="./../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+        <!-- Moment Plugin Js -->
+        <script src="./../plugins/momentjs/moment.js"></script>
+
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link href="./../css/themes/all-themes.css" rel="stylesheet" />
+    </h:head>
+    <h:body class="theme-blue">
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="preloader">
+                    <div class="spinner-layer pl-red">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Please wait...</p>
+            </div>
+        </div>
+        <!-- #END# Page Loader -->
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <!-- #END# Overlay For Sidebars -->
+        <!-- Search Bar -->
+
+        <!-- #END# Search Bar -->
+        <!-- Top Bar -->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                    <a href="javascript:void(0);" class="bars"></a>
+                    <a class="navbar-brand" href="../../index.html">RCLGS SYSTEM</a>
+                </div>
+
+            </div>
+        </nav>
+        <!-- #Top Bar -->
+        <section>
+            <!-- Left Sidebar -->
+            <aside id="leftsidebar" class="sidebar">
+                <!-- User Info -->
+                <div class="user-info" >
+
+                    <div class="info-container">
+                        <div class="email" ></div>    
+                        <div class="btn-group user-helper-dropdown">
+                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a><i class="material-icons">input</i>
+                                        <h:form>
+                                            <h:commandButton class="btn btn-link" value="Sign Out" action="#{userModel.logout()}" />
+                                        </h:form></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- User Info -->
+
+                <!-- #User Info -->
+                <!-- Menu -->
+                <div class="menu" >
+                    <ul class="list">
+                        <li class="header">MENU</li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons">home</i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="cooperatives.xhtml">
+                                <i class="material-icons">school</i>
+                                <span>Cooperative List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- #Menu -->
+                <!-- Footer -->
+                <div class="legal">
+                    <div class="copyright">
+                        &copy; 2020 <a href="javascript:void(0);">MUTORA Antoine</a>.
+                    </div>
+                </div>
+                <!-- #Footer -->
+            </aside>
+            <!-- #END# Left Sidebar -->
+            <!-- Right Sidebar -->
+
+            <!-- #END# Right Sidebar -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+
+
+                <p:dialog header="Restaurant KOT" id="dialog" widgetVar="dlg2" modal="true">
+                    <p:ajax update="tablelist" event="close" listener="#{cashierModel.removeUnsavedTransactions()}" />
+                    <p:growl id="msg" />
+                    <h:form>
+                        <div class="row">
+                            <div class="col-lg-5">
+
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Item Name:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <p:inputText id="itemId" value="#{cashierModel.itemSearchKeyWord}" class="form-control" >
+                                                <p:ajax event="keyup" listener="#{cashierModel.searchItems()}" update="suggestionsTable"/>           
+                                            </p:inputText>
+
+                                            <h:dataTable id="suggestionsTable" value="#{cashierModel.suggestedItems}" var="item">
+                                                <h:column>
+                                                    <p:commandLink value="#{item.itemName}" oncomplete="PF('dlg2').show();" class="btn btn-link">
+                                                        <p:ajax event="click" listener="#{cashierModel.chooseItem(item)}" update="@form"/> 
+                                                    </p:commandLink>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Quantity:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.tableTransaction.quantity}" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner" style="padding-top: 15px;">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">KOT Remarks:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.tableTransaction.kotRemarks}" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Waiter Name:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:selectOneMenu value="#{cashierModel.waiterId}" class="form-control">
+                                                <f:selectItem itemValue="" itemLabel="--Select Waiter--" noSelectionOption="true" />
+                                                <f:selectItems value="#{cashierModel.waiters}" var="waiter" itemValue="#{waiter.userId}" itemLabel="#{waiter.names}" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <p:commandButton class="btn btn-primary waves-effect" action="#{cashierModel.registerTransaction()}" value="Register" update="@form :msg" oncomplete="PF('dlg2').show();" ></p:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <table class="table table-striped table-hover table-sm">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">Action</th>
+                                            <th class="border-0">#</th>
+                                            <th class="border-0">Item Name</th>
+                                            <th class="border-0">Quantity</th>
+                                            <th class="border-0">Rate</th>
+                                            <th class="border-0">Amount</th>
+                                            <th class="border-0">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{cashierModel.tableTransactions}" var="elements" varStatus="status">
+                                            <tr>
+                                                <td>
+                                                    <p:commandLink update="@form" actionListener="#{cashierModel.deleteTransaction(elements)}" process="@this" value="Delete" class="btn btn-link" />
+                                                </td>
+                                                <td>${status.index+1}</td>
+                                                <td>
+                                                    #{elements.item.itemName}
+                                                </td>
+                                                <td>
+                                                    #{elements.quantity}
+                                                </td>
+                                                <td>
+                                                    #{elements.item.unitRate}
+                                                </td>
+                                                <td>
+                                                    #{elements.item.unitRate * elements.quantity}
+                                                </td>
+                                                <td>
+                                                    #{elements.kotRemarks}
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <p:commandButton  styleClass="ui-button-success" value="Save" update="@form" oncomplete="PF('dlg2').hide();" icon="pi pi-save">
+                                                    <p:ajax event="click" listener="#{cashierModel.completeTransaction()}"/> 
+                                                </p:commandButton>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">                                            
+                                                <p:commandButton value="Save-Print" action="#{cashierModel.redirectKotPrint()}" >
+                                                </p:commandButton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </h:form>
+                </p:dialog>
+
+
+                <p:dialog header="Restaurant Invoice" id="dialogBilling" widgetVar="dlgBilling" modal="true">
+                    <p:ajax update="tablelist" event="close" listener="#{cashierModel.updateBillingTables()}" />
+                    <h:form id="restaurantinvoice">
+                        <div class="row">                        
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Table No.: #{cashierModel.chosenTableMaster.tableNo}" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Waiter: #{cashierModel.chosenTableMaster.person.names}" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Date Time: #{cashierModel.newDate}" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Customer: Cash " />
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-hover table-sm" style="padding-top: 20px;">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">#</th>
+                                            <th class="border-0">Item Name</th>
+                                            <th class="border-0">Quantity</th>
+                                            <th class="border-0">Rate</th>
+                                            <th class="border-0">Amount</th>
+                                            <th class="border-0">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{cashierModel.tableTransactions}" var="elements" varStatus="status">
+                                            <tr>
+                                                <td>${status.index+1}</td>
+                                                <td>
+                                                    #{elements.item.itemName}
+                                                </td>
+                                                <td>
+                                                    #{elements.quantity}
+                                                </td>
+                                                <td>
+                                                    #{elements.item.unitRate}
+                                                </td>
+                                                <td>
+                                                    #{elements.item.unitRate * elements.quantity}
+                                                </td>
+                                                <td>
+                                                    #{elements.kotRemarks}
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                                <table class="table table-striped table-hover table-sm">
+                                    <tfoot>
+                                        <tr>
+                                            <td>Beverage Amount:</td>
+                                            <td>#{cashierModel.totalBilledBeverage}</td>                                        
+                                            <td>Food Amount:</td>
+                                            <td>#{cashierModel.totalBilledFoods}</td>
+                                            <td>Net Amount:</td>
+                                            <td>#{cashierModel.totalBilledBeverage + cashierModel.totalBilledFoods}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <div class="form-group-inner" style="padding-top: 20px;">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <p:commandButton value="Save" oncomplete="PF('dlgBilling').hide();" action="#{cashierModel.updateTableBilledTransactions()}">
+                                            </p:commandButton>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <p:commandButton value="Save-Print" oncomplete="PF('dlgBilling').hide();" action="#{cashierModel.updateTableTransactions()}">
+                                            </p:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog header="Restaurant Payment" id="dialogPayment" widgetVar="dlgpayment" modal="true">
+                    <p:ajax update="tablelist, leftMenu" event="close" listener="#{cashierModel.updatePaymentTables()}" />
+                    <h:form id="restaurantpayment">
+                        <p:growl />
+                        <div class="row">                        
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Table No.: #{cashierModel.chosenTableMaster.tableNo}" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Waiter: #{cashierModel.chosenTableMaster.person.names}" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Date Time: #{cashierModel.newDate}" />
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h:outputLabel value="Customer: Cash " />
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-hover table-sm" style="padding-top: 20px;">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">#</th>
+                                            <th class="border-0">Item Name</th>
+                                            <th class="border-0">Quantity</th>
+                                            <th class="border-0">Rate</th>
+                                            <th class="border-0">Amount</th>
+                                            <th class="border-0">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{cashierModel.tableTransactions}" var="elements" varStatus="status">
+                                            <tr>
+                                                <td>${status.index+1}</td>
+                                                <td>
+                                                    #{elements.item.itemName}
+                                                </td>
+                                                <td>
+                                                    #{elements.quantity}
+                                                </td>
+                                                <td>
+                                                    #{elements.item.unitRate}
+                                                </td>
+                                                <td>
+                                                    #{elements.item.unitRate * elements.quantity}
+                                                </td>
+                                                <td>
+                                                    #{elements.kotRemarks}
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                                <table class="table table-striped table-hover table-sm">
+                                    <tfoot>
+                                        <tr>
+                                            <td>Beverage Amount:</td>
+                                            <td>#{cashierModel.totalBilledBeverage}</td>                                        
+                                            <td>Food Amount:</td>
+                                            <td>#{cashierModel.totalBilledFoods}</td>
+                                            <td>Gross Amount:</td>
+                                            <td>#{cashierModel.totalBilledBeverage + cashierModel.totalBilledFoods}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Mobile No.:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.payerNumber}" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Payment Mode:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                                            <h:selectOneMenu class="form-control" value="#{cashierModel.paymentMode}" >
+                                                <f:selectItem itemValue="CASH" itemLabel="CASH" />
+                                                <f:selectItem itemValue="MOBILEMONEY" itemLabel="MOBILE MONEY" />
+                                                <f:selectItem itemValue="CASH + MOBILE MONEY" itemLabel="CASH + MOBILE MONEY" />
+                                                <f:selectItem itemValue="CARD" itemLabel="CARD" />
+                                                <f:selectItem itemValue="CARD + MOBILE MONEY" itemLabel="CARD + MOBILE MONEY" />
+                                                <f:selectItem itemValue="CASH + CARD" itemLabel="CARD + CASH" />
+
+                                                <f:selectItem itemValue="NC" itemLabel="NC" />
+                                                <f:selectItem itemValue="CREDIT" itemLabel="CREDIT" />
+                                                <f:selectItem itemValue="CASH + CREDIT" itemLabel="CASH + CREDIT" />
+                                                <f:selectItem itemValue="CREDIT + MOBILE MONEY" itemLabel="MOBILE MONEY + CREDIT" />
+                                                <f:selectItem itemValue="POSTTOROOM" itemLabel="POSTTOROOM" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h:panelGrid columns="2" id="cashMomo" rendered="#{cashierModel.paymentMode == 'CASH + MOBILE MONEY'}">                                
+                                    <div class="row" >
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Cash:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                                            <h:inputText value="#{cashierModel.cash1}" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Mobile Money:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.momo1}" class="form-control" />
+                                        </div>
+                                    </div>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" id="cashCredit" rendered="#{cashierModel.paymentMode == 'CASH + CREDIT'}">    
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Cash:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.cash2}" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Credit:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.credit1}" class="form-control" />
+                                        </div>
+                                    </div>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" id="creditMomo" rendered="#{cashierModel.paymentMode == 'CREDIT + MOBILE MONEY'}">    
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Mobile Money:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                                            <h:inputText value="#{cashierModel.momo2}" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row" >
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Credit:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                                            <h:inputText value="#{cashierModel.credit2}" class="form-control" />
+                                        </div>
+                                    </div>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" id="cardMomo" rendered="#{cashierModel.paymentMode == 'CARD + MOBILE MONEY'}">    
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Mobile Money:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                                            <h:inputText value="#{cashierModel.momo3}" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row" >
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Card:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                                            <h:inputText value="#{cashierModel.card1}" class="form-control" />
+                                        </div>
+                                    </div>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" id="cashCard" rendered="#{cashierModel.paymentMode == 'CASH + CARD'}">    
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Cash:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.cash3}" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Card:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputText value="#{cashierModel.card2}" class="form-control" />
+                                        </div>
+                                    </div>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" id="postToRoom" rendered="#{cashierModel.paymentMode == 'POSTTOROOM'}">    
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Room:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                                            <h:selectOneMenu class="form-control" value="#{cashierModel.roomId}" >
+                                                <f:selectItems value="#{cashierModel.occupiedRooms}" var="el"  itemValue="#{el.roomId}" itemLabel="#{el.roomNumber}" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+
+                                </h:panelGrid>
+                                <div class="form-group-inner" style="padding-top: 20px;">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <p:commandButton value="Check" oncomplete="PF('dlgpayment').show();" action="#{cashierModel.checkPaymentMode()}" update="dialogPayment">
+                                            </p:commandButton>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <p:commandButton value="Save" oncomplete="PF('dlgpayment').hide();" action="#{cashierModel.payTransaction()}" update="leftMenu">
+                                            </p:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </h:form>
+                </p:dialog>
+
+                <div>
+                    <h:form id="leftMenu">
+                        
+                    </h:form>
+                </div>
+
+                <div class="block-header">
+                    <h2>
+                        RESTAURANT
+                    </h2>
+                </div>
+                <!-- Advanced Form Example With Validation -->
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div>
+                            <h:form id="tablelist" style="padding-left: 50px;">
+                                <div class="row">
+                                    <center><h3>Tables</h3></center>
+                                    <c:forEach items="#{cashierModel.tableMasters}" var="item">
+                                        <div class="col-sm-4">
+                                            <div class="card">
+                                                <div class="container-fluid">                            
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="tab-content-details shadow-reset">
+                                                                <div class="row">
+                                                                    <c:choose>
+                                                                        <c:when test="#{item.tableStatus eq 'FULL'}">
+                                                                            <h:outputLabel value="#{item.tableNo}" class="btn btn-block btn-danger" />                                                                       
+                                                                        </c:when>
+                                                                        <c:when test="#{item.tableStatus eq 'BILLED'}">
+                                                                            <h:outputLabel value="#{item.tableNo}" class="btn btn-block" style="background-color: #007ee5" />                                                                       
+                                                                        </c:when>
+                                                                        <c:when test="#{item.tableStatus eq 'VACANT'}">
+                                                                            <h:outputLabel value="#{item.tableNo}" class="btn btn-block btn-success" />                                                                       
+                                                                        </c:when>
+                                                                    </c:choose> 
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.tableStatus eq 'FULL'}">
+                                                                                <h:outputLabel value="#{item.person.names}" />                                                                       
+                                                                            </c:when>
+                                                                            <c:when test="#{item.tableStatus eq 'BILLED'}">
+                                                                                <h:outputLabel value="#{item.person.names}" />                                                                       
+                                                                            </c:when>
+                                                                            <c:when test="#{item.tableStatus eq 'VACANT'}">
+                                                                                <h:outputLabel value="Available" />                                                                       
+                                                                            </c:when>
+                                                                        </c:choose>                                                                 
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="col-sm-6">
+                                                                            <p:commandButton update=":dialog" oncomplete="PF('dlg2').show();" action="#{cashierModel.populateSentTableTransactions(item)}" class="btn btn-link" value="KOT" >
+                                                                            </p:commandButton>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6"></div>
+                                                                    <div class="col-sm-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.tableStatus eq 'FULL'}">
+                                                                                <p:commandButton oncomplete="PF('dlgBilling').show();" class="btn btn-link" value="Billing" >
+                                                                                    <p:ajax oncomplete="PF('dlgBilling').show();" listener="#{cashierModel.populateBilledTableTransactions(item)}" update=":dialogBilling" />
+                                                                                </p:commandButton>                                                                   
+                                                                            </c:when>
+                                                                            <c:when test="#{item.tableStatus eq 'BILLED'}">
+                                                                                <p:commandButton oncomplete="PF('dlgBilling').show();" class="btn btn-link" value="Billing" >
+                                                                                    <p:ajax oncomplete="PF('dlgBilling').show();" listener="#{cashierModel.populateBilledTableTransactions(item)}" update=":dialogBilling" />
+                                                                                </p:commandButton>                                                                     
+                                                                            </c:when>
+                                                                            <c:when test="#{item.tableStatus eq 'VACANT'}">
+                                                                                <h:outputLabel value="History" />                                                                       
+                                                                            </c:when>
+                                                                        </c:choose>                                                                 
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6"></div>
+                                                                    <div class="col-sm-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.tableStatus eq 'FULL'}">
+                                                                                <h:commandButton class="btn btn-link" value="At Glance" />                                                
+                                                                            </c:when>
+                                                                            <c:when test="#{item.tableStatus eq 'BILLED'}">
+                                                                                <p:commandButton oncomplete="PF('dlgpayment').show();" class="btn btn-link" value="Payment" >
+                                                                                    <p:ajax oncomplete="PF('dlgpayment').show();" listener="#{cashierModel.populateSentTableTransactions(item)}" update=":dialogPayment" />
+                                                                                </p:commandButton>                                                                 
+                                                                            </c:when>
+                                                                            <c:when test="#{item.tableStatus eq 'VACANT'}">
+                                                                                <h:commandButton class="btn btn-link" value="At Glance" />                                                           
+                                                                            </c:when>
+                                                                        </c:choose>  
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </c:forEach>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Advanced Form Example With Validation -->
+            </div>
+        </section>
+
+        <!-- Jquery Core Js -->
+        <!--<script src="./../plugins/jquery/jquery.min.js"></script>-->
+
+        <!-- Bootstrap Core Js -->
+        <script src="./../plugins/bootstrap/js/bootstrap.js"></script>
+
+        <!-- Select Plugin Js -->
+        <script src="./../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+        <!-- Jquery Validation Plugin Css -->
+        <script src="./../plugins/jquery-validation/jquery.validate.js"></script>
+
+        <!-- JQuery Steps Plugin Js -->
+        <script src="./../plugins/jquery-steps/jquery.steps.js"></script>
+
+        <!-- Slimscroll Plugin Js -->
+        <script src="./../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script src="./../plugins/node-waves/waves.js"></script>
+
+        <!-- Jquery DataTable Plugin Js -->
+        <script src="./../plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="./../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+        <!-- Custom Js -->
+        <script src="./../js/admin.js"></script>
+        <script src="./../js/pages/tables/jquery-datatable.js"></script>
+
+        <!-- Demo Js -->
+        <script src="./../js/demo.js"></script>        
+
+        <!-- Moment Plugin Js -->
+        <script src="./../plugins/momentjs/moment.js"></script>
+
+        <!-- Bootstrap Material Datetime Picker Plugin Js -->
+        <script src="./../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+        <!-- Bootstrap Datepicker Plugin Js -->
+        <script src="./../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+        <script src="./../js/pages/forms/basic-form-elements.js"></script>
+
+        <!-- Moment Plugin Js -->
+        <script src="../../plugins/momentjs/moment.js"></script>
+
+    </h:body>
+</html>
+
