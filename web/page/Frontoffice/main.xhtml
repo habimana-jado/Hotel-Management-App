@@ -1,0 +1,626 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <title>SDORG</title>
+        <!-- Favicon-->
+        <link rel="icon" href="./../favicon.ico" type="image/x-icon"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
+
+        <!-- Bootstrap Core Css -->
+        <link href="./../plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+        <!-- Waves Effect Css -->
+        <link href="./../plugins/node-waves/waves.css" rel="stylesheet" />
+
+        <!-- Animation Css -->
+        <link href="./../plugins/animate-css/animate.css" rel="stylesheet" />
+
+        <!-- Sweet Alert Css -->
+        <link href="./../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+        <!-- Custom Css -->
+        <link href="./../css/style.css" rel="stylesheet"/>
+
+        <!-- JQuery DataTable Css -->
+        <link href="./../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"/>
+
+        <!-- Bootstrap Material Datetime Picker Css -->
+        <link href="./../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+        <!-- Bootstrap DatePicker Css -->
+        <link href="./../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+        <!-- Wait Me Css -->
+        <link href="./../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+        <!-- Bootstrap Select Css -->
+        <link href="./../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+        <!-- Moment Plugin Js -->
+        <script src="./../plugins/momentjs/moment.js"></script>
+
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link href="./../css/themes/all-themes.css" rel="stylesheet" />
+    </h:head>
+    <h:body class="theme-blue">
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="preloader">
+                    <div class="spinner-layer pl-red">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Please wait...</p>
+            </div>
+        </div>
+        <!-- #END# Page Loader -->
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <!-- #END# Overlay For Sidebars -->
+        <!-- Search Bar -->
+
+        <!-- #END# Search Bar -->
+        <!-- Top Bar -->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                    <a href="javascript:void(0);" class="bars"></a>
+                    <a class="navbar-brand" href="../../index.html">RCLGS SYSTEM</a>
+                </div>
+
+            </div>
+        </nav>
+        <!-- #Top Bar -->
+        <section>
+            <!-- Left Sidebar -->
+            <aside id="leftsidebar" class="sidebar">
+                <!-- User Info -->
+                <div class="user-info" >
+
+                    <div class="info-container">
+                        <div class="email" ></div>    
+                        <div class="btn-group user-helper-dropdown">
+                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a><i class="material-icons">input</i>
+                                        <h:form>
+                                            <h:commandButton class="btn btn-link" value="Sign Out" action="#{userModel.logout()}" />
+                                        </h:form></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- User Info -->
+
+                <!-- #User Info -->
+                <!-- Menu -->
+                <div class="menu" >
+                    <ul class="list">
+                        <li class="header">MENU</li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons">home</i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="cooperatives.xhtml">
+                                <i class="material-icons">school</i>
+                                <span>Cooperative List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- #Menu -->
+                <!-- Footer -->
+                <div class="legal">
+                    <div class="copyright">
+                        &copy; 2020 <a href="javascript:void(0);">MUTORA Antoine</a>.
+                    </div>
+                </div>
+                <!-- #Footer -->
+            </aside>
+            <!-- #END# Left Sidebar -->
+            <!-- Right Sidebar -->
+
+            <!-- #END# Right Sidebar -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+
+                <div>
+                    <h:form id="leftMenu">
+
+                    </h:form>
+                </div>
+
+
+                <p:dialog width="800" header="House Keeping Updates" id="dialogHouseKeeping" widgetVar="dlg2" modal="true">
+                    <p:growl id="msg" />
+                    <h:form id="houseKeepingForm">
+                        <div class="row">
+                            <div class="col-lg-12">                            
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Room No.:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:outputLabel value="#{frontOfficeModel.chosenRoomMaster.roomNumber}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Date Time:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:outputLabel value="#{frontOfficeModel.nowDate}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Status:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:selectOneMenu value="#{frontOfficeModel.status}" class="form-control">
+                                                <f:selectItem itemValue="CLEANED" itemLabel="CLEANED" />
+                                                <f:selectItem itemValue="BLOCKED" itemLabel="BLOCKED" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="login2 pull-right pull-right-pro">Remarks:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <h:inputTextarea rows="3" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <p:commandButton class="btn btn-primary btn-sm" action="#{frontOfficeModel.availRoomFromCleaning()}" value="Register" update="roomlist" oncomplete="PF('dlg2').hide();" ></p:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>  
+                    </h:form>
+                </p:dialog>
+
+
+                <p:dialog header="Guest Info" id="dialogBilling" widgetVar="dlgBilling" modal="true" width="900">
+                    <h:form id="restaurantinvoice">
+                        <div class="row" style="padding-top: 25px; padding-bottom: 25px;">                        
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="Purpose" />
+                                    </div>
+                                    <div class="col-lg-6" align="right">
+                                        #{frontOfficeModel.chosenBooking.visitPurpose}
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="ID Type" />
+                                    </div>
+                                    <div class="col-lg-6" align="right">
+                                        #{frontOfficeModel.chosenRoomMaster.visitor.documentType}
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="ID No." />
+                                    </div>
+                                    <div class="col-lg-6" align="right">
+                                        #{frontOfficeModel.chosenRoomMaster.visitor.documentId}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="Booking Details" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        Booked By: N/A
+                                    </div>
+                                    <div class="col-lg-6">
+                                        Room: #{frontOfficeModel.chosenRoomMaster.roomNumber} (#{frontOfficeModel.chosenRoomMaster.roomCategory.roomCategoryName})
+                                    </div>
+                                    <div class="col-lg-6">
+                                        CheckIn: #{frontOfficeModel.chosenBooking.checkInPeriod}
+                                    </div>
+                                    <div class="col-lg-6">
+                                        Expected Checkout: #{frontOfficeModel.chosenBooking.checkOutPeriod}
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 25px;">
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="Guest Details" />
+                                    </div>
+                                    <div class="col-lg-12">
+                                        #{frontOfficeModel.chosenRoomMaster.visitor.visitorName}
+                                    </div>
+                                    <div class="col-lg-12">
+                                        #{frontOfficeModel.chosenRoomMaster.visitor.address}
+                                    </div>
+                                    <div class="col-lg-12">
+                                        #{frontOfficeModel.chosenRoomMaster.visitor.phone}
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 25px;">
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="Service" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            Room Charge:
+                                        </div>
+                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                            #{frontOfficeModel.roomCharge}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12" style="padding-left: 25px; padding-top: 10px;">
+                                            Room No.: #{frontOfficeModel.chosenRoomMaster.roomNumber} (#{frontOfficeModel.chosenRoomMaster.roomCategory.roomCategoryName})
+                                            <div class="col-lg-12" style="padding-left: 25px;">
+                                                #{frontOfficeModel.checkInDate} - #{frontOfficeModel.currentDate} = #{frontOfficeModel.days} days
+                                            </div>
+                                            <div class="col-lg-12" style="padding-left: 25px;">
+                                                Tariff @ #{frontOfficeModel.chosenRoomMaster.roomCategory.price} / Per Day
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-lg-6">
+                                            Extra Service:
+                                        </div>
+                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                            #{frontOfficeModel.totalHouseKeeping}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12" style="padding-left: 25px; padding-top: 10px;">
+                                            Room No.: #{frontOfficeModel.chosenRoomMaster.roomNumber} (#{frontOfficeModel.chosenRoomMaster.roomCategory.roomCategoryName})
+                                            <c:forEach items="#{frontOfficeModel.houseKeepingServices}" var="elements" >
+                                                <div class="col-lg-12" style="padding-left: 25px;">
+                                                    #{elements.roomService.serviceName} #{elements.quantity} pcs
+                                                </div>
+                                                <div class="col-lg-12" style="padding-left: 25px; padding-bottom: 10px; ">
+                                                    Tariff @ #{elements.roomService.price} / Per pc
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-lg-6">
+                                            Food and Beverage:
+                                        </div>
+                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                            #{frontOfficeModel.foodAndBeverageTotal}
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-lg-4" style="padding-left: 50px;">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Particulars</th>
+                                                        <th scope="col">Qty</th>
+                                                        <th scope="col">Rate</th>
+                                                        <th scope="col">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="#{frontOfficeModel.tableTransactions}" var="item">
+                                                        <tr>
+                                                            <td>
+                                                                #{item.item.itemName}
+                                                            </td>
+                                                            <td>
+                                                                #{item.quantity}
+                                                            </td>
+                                                            <td>
+                                                                #{item.item.unitRate}
+                                                            </td>
+                                                            <td>
+                                                                #{item.item.unitRate * item.quantity}
+                                                            </td>
+                                                        </tr> 
+                                                    </c:forEach>                                  
+                                                </tbody>
+                                            </table>                   
+
+                                        </div>
+                                        <div class="col-lg-7" ></div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-lg-6" align="right">
+                                            Gross Amount:
+                                        </div>
+                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                            <h:outputLabel value="#{frontOfficeModel.roomCharge + frontOfficeModel.totalHouseKeeping + frontOfficeModel.foodAndBeverageTotal}"></h:outputLabel>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-lg-6" align="right">
+                                            Advance:
+                                        </div>
+                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                            <h:outputLabel value="#{frontOfficeModel.voucherTotal}"></h:outputLabel>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col-lg-6" align="right">
+                                            Net Amount:
+                                        </div>
+                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                            <h:outputLabel value="#{frontOfficeModel.roomCharge + frontOfficeModel.totalHouseKeeping + frontOfficeModel.foodAndBeverageTotal - frontOfficeModel.voucherTotal}"></h:outputLabel>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>            
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="Gender" />
+                                    </div>
+                                    <div class="col-lg-6" align="right">
+                                        #{frontOfficeModel.chosenRoomMaster.visitor.gender}
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="Grace Time" />
+                                    </div>
+                                    <div class="col-lg-6" align="right">
+                                        #{frontOfficeModel.chosenBooking.graceTime} Hours
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h:outputLabel value="Checkout Plan" />
+                                    </div>
+                                    <div class="col-lg-6" align="right">
+                                        12 Noon Checkout
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row" style="padding-top: 10px">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <p:commandButton class="btn btn-primary" value="Print" icon="pi pi-print">
+                                    <p:printer target="restaurantinvoice" />
+                                </p:commandButton>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+                        </div>
+                    </h:form>
+                </p:dialog>
+
+
+                <div class="block-header">
+                    <h2>
+                        FRONT-OFFICE
+                    </h2>
+                </div>
+                <!-- Advanced Form Example With Validation -->
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div>
+                            <h:form id="roomlist" style="padding-left: 50px;">
+                                <div class="row">
+                                    <center><h3>Rooms</h3></center>
+                                    <c:forEach items="#{frontOfficeModel.allRooms}" var="item">
+                                        <div class="col-sm-4">
+                                            <div class="card">
+                                                <div class="container-fluid">                            
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="tab-content-details shadow-reset">
+                                                                <div class="row">
+                                                                    <c:choose>
+                                                                        <c:when test="#{item.roomStatus eq 'TAKEN'}">
+                                                                            <h:outputLabel value="#{item.roomNumber}" class="btn btn-block btn-danger" />                                                                       
+                                                                        </c:when>
+                                                                        <c:when test="#{item.roomStatus eq 'CLEANING'}">
+                                                                            <h:outputLabel value="#{item.roomNumber}" class="btn btn-block" style="background-color: #007ee5" />                                                                       
+                                                                        </c:when>
+                                                                        <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                            <h:outputLabel value="#{item.roomNumber}" class="btn btn-block btn-success" />                                                                       
+                                                                        </c:when>
+                                                                    </c:choose> 
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.roomStatus eq 'TAKEN'}">
+                                                                                <h:outputLabel value="#{item.visitor.visitorName}" />                                                                      
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'CLEANING'}">
+                                                                                <h:outputLabel value="HouseKeeping" />                                                                  
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                                <h:outputLabel value="Available" />                                                                       
+                                                                            </c:when>
+                                                                        </c:choose>                                                                 
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="col-sm-6">
+                                                                            <c:choose>
+                                                                                <c:when test="#{item.roomStatus eq 'TAKEN'}">
+                                                                                    <p:commandButton style="height: 32px;"  oncomplete="PF('dlgBilling').show();" class="btn btn-bg-cl-google-tw border" value="At a Glance" >
+                                                                                        <p:ajax oncomplete="PF('dlgBilling').show();" listener="#{frontOfficeModel.updateCheckoutDetails(item)}" update=":dialogBilling" />
+                                                                                    </p:commandButton>                                                                        
+                                                                                </c:when>
+                                                                                <c:when test="#{item.roomStatus eq 'CLEANING'}">
+                                                                                    <h:outputLabel value="At Glance" />                                                                  
+                                                                                </c:when>
+                                                                                <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                                    <p:commandButton style="height: 32px;"  action="#{frontOfficeModel.navigateBooking(item)}" class="btn btn-bg-cl-google-tw border" value="Check-In" >
+                                                                                    </p:commandButton>                                                                       
+                                                                                </c:when>
+                                                                            </c:choose>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.roomStatus eq 'TAKEN'}">
+                                                                                <h:outputLabel value="#{item.visitor.phone}" />                                                                  
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'CLEANING'}">
+                                                                                <h:outputLabel value="Cleaning" />                                                                        
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                                <h:outputLabel value="#{item.roomCategory.roomCategoryName} #{item.roomCategory.price}" />                                                                       
+                                                                            </c:when>
+                                                                        </c:choose>     
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.roomStatus eq 'TAKEN'}">
+                                                                                <p:commandButton style="height: 32px;" class="btn btn-bg-cl-google-tw border" value="Services" action="#{frontOfficeModel.navigateService(item)}"></p:commandButton>                                                                   
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'CLEANING'}">
+                                                                                <p:commandButton style="height: 32px;"  value="HouseKeeping" update=":dialogHouseKeeping" oncomplete="PF('dlg2').show();" class="btn btn-bg-cl-google-tw border" >
+                                                                                    <p:ajax event="click" listener="#{frontOfficeModel.chooseRoom(item)}"/> 
+                                                                                </p:commandButton>                                                                     
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                                <h:outputLabel value="At Glance" />                                                                       
+                                                                            </c:when>
+                                                                        </c:choose>                                                                 
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.roomStatus eq 'TAKEN'}">
+                                                                                <h:outputLabel value="#{item.visitor.address}" />                                                
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'CLEANING'}">
+                                                                                <h:commandButton style="height: 32px;"  class="btn btn-link" value="#{item.floorMaster.floorName}" />                                                                  
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                                <h:commandButton style="height: 32px;"  class="btn btn-link" value="#{item.floorMaster.floorName}" />                                                           
+                                                                            </c:when>
+                                                                        </c:choose> 
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <c:choose>
+                                                                            <c:when test="#{item.roomStatus eq 'TAKEN'}">
+                                                                                <p:commandButton style="height: 32px;" class="btn btn-bg-cl-google-tw border" value="Checkout" action="#{frontOfficeModel.redirectCheckoutDetails(item)}" />
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'CLEANING'}">
+                                                                                <h:commandButton class="btn btn-link" value="History" />                                                                   
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                                <h:commandButton class="btn btn-link" value="History" />                                                           
+                                                                            </c:when>
+                                                                        </c:choose>  
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </c:forEach>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Advanced Form Example With Validation -->
+            </div>
+        </section>
+
+        <!-- Jquery Core Js -->
+        <!--<script src="./../plugins/jquery/jquery.min.js"></script>-->
+
+        <!-- Bootstrap Core Js -->
+        <script src="./../plugins/bootstrap/js/bootstrap.js"></script>
+
+        <!-- Select Plugin Js -->
+        <script src="./../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+        <!-- Jquery Validation Plugin Css -->
+        <script src="./../plugins/jquery-validation/jquery.validate.js"></script>
+
+        <!-- JQuery Steps Plugin Js -->
+        <script src="./../plugins/jquery-steps/jquery.steps.js"></script>
+
+        <!-- Slimscroll Plugin Js -->
+        <script src="./../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script src="./../plugins/node-waves/waves.js"></script>
+
+        <!-- Jquery DataTable Plugin Js -->
+        <script src="./../plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="./../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+        <!-- Custom Js -->
+        <script src="./../js/admin.js"></script>
+        <script src="./../js/pages/tables/jquery-datatable.js"></script>
+
+        <!-- Demo Js -->
+        <script src="./../js/demo.js"></script>        
+
+        <!-- Moment Plugin Js -->
+        <script src="./../plugins/momentjs/moment.js"></script>
+
+        <!-- Bootstrap Material Datetime Picker Plugin Js -->
+        <script src="./../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+        <!-- Bootstrap Datepicker Plugin Js -->
+        <script src="./../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+        <script src="./../js/pages/forms/basic-form-elements.js"></script>
+
+        <!-- Moment Plugin Js -->
+        <script src="../../plugins/momentjs/moment.js"></script>
+
+    </h:body>
+</html>
+
