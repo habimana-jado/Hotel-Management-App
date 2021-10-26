@@ -92,19 +92,26 @@
             <!-- Left Sidebar -->
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
-                <div class="user-info" >
-
+                
+                 <div class="user-info">
+                    <div class="image">
+                        <img src="./../../uploads/madras.jfif" width="48" height="48" alt="User" />
+                    </div>
                     <div class="info-container">
-                        <div class="email" ></div>    
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                        <!--<div class="email">john.doe@example.com</div>-->
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
                                 <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a><i class="material-icons">input</i>
+                                <li>
+                                    <a>
+                                        <i class="material-icons">input</i>
                                         <h:form>
-                                            <h:commandButton class="btn btn-link" value="Sign Out" action="#{userModel.logout()}" />
-                                        </h:form></a>
+                                            <h:commandButton class="btn btn-link" value="Logout" action="#{accountModel.logout()}" />
+                                        </h:form>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
