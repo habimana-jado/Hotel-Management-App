@@ -1,5 +1,9 @@
 # Hotel-Management-App
 
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+
 ## General Info
 
 This project is an application that can be used by medium Restaurants to medium Hotels to manage daily activities
