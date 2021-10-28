@@ -412,7 +412,7 @@
                             </h:form>
                         </p:dialog>
 
-                        <h:form>
+                        <h:form id="tablelist" >
                             <div class="card">
                                 <div class="body">
                                     <div class="icon-and-text-button-demo">
@@ -462,39 +462,6 @@
                                 </div>
                             </div>
                         </h:form>
-
-
-                        <!--<h3>Member Information</h3>-->
-                        <h:form id="tablelist" style="padding-left: 50px;">
-                            <p:growl sticky="true" />
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="tab-content-details shadow-reset">
-                                        <p:commandButton style="height: 32px;"  value="Add Service" update=":dialogAddService" oncomplete="PF('dlgAddService').show();" class="btn btn-bg-cl-google-tw border"></p:commandButton>         
-                                        <p:commandButton style="height: 32px;"  value="View/Edit Service" update=":dialogEditService" oncomplete="PF('dlgEditService').show();" class="btn btn-bg-cl-google-tw border" >
-                                            <p:ajax oncomplete="PF('dlgEditService').show();" listener="#{frontOfficeModel.chooseService}" update=":dialogEditService" />
-                                        </p:commandButton>         
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="View Services" style="padding-top: 5px;" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="tab-content-details shadow-reset">
-                                        <h:commandButton value="Add Voucher" class="btn btn-bg-cl-google-tw border" action="new-voucher.xhtml?faces-redirect=true"/>
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Edit Voucher" style="padding-top: 5px;" />
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="View Voucher" style="padding-top: 5px;" />                                    
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="tab-content-details shadow-reset">
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Add Services" />
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Edit Services" style="padding-top: 5px;" />
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Add Services" style="padding-top: 5px;" />                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </h:form>
-                    </div>
-                    <!-- Default Size -->
                 </div>
                 <!-- #END# Advanced Form Example With Validation -->
             </div>
