@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <title>SDORG</title>
+        <!-- Favicon-->
+        <link rel="icon" href="./../favicon.ico" type="image/x-icon"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
+
+        <!-- Bootstrap Core Css -->
+        <link href="./../plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+        <!-- Waves Effect Css -->
+        <link href="./../plugins/node-waves/waves.css" rel="stylesheet" />
+
+        <!-- Animation Css -->
+        <link href="./../plugins/animate-css/animate.css" rel="stylesheet" />
+
+        <!-- Sweet Alert Css -->
+        <link href="./../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+        <!-- Custom Css -->
+        <link href="./../css/style.css" rel="stylesheet"/>
+
+        <!-- JQuery DataTable Css -->
+        <link href="./../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"/>
+
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link href="./../css/themes/all-themes.css" rel="stylesheet" />
+    </h:head>
+    <h:body class="theme-blue">
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="preloader">
+                    <div class="spinner-layer pl-red">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Please wait...</p>
+            </div>
+        </div>
+        <!-- #END# Page Loader -->
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <!-- #END# Overlay For Sidebars -->
+        <!-- Search Bar -->
+
+        <!-- #END# Search Bar -->
+        <!-- Top Bar -->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                    <a href="javascript:void(0);" class="bars"></a>
+                    <a class="navbar-brand" href="../../index.html">RCLGS SYSTEM</a>
+                </div>
+
+            </div>
+        </nav>
+        <!-- #Top Bar -->
+        <section>
+            <!-- Left Sidebar -->
+            <aside id="leftsidebar" class="sidebar">
+                <!-- User Info -->
+
+                <div class="user-info">
+                    <div class="image">
+                        <img src="./../../uploads/madras.jfif" width="48" height="48" alt="User" />
+                    </div>
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                        <!--<div class="email">john.doe@example.com</div>-->
+                        <div class="btn-group user-helper-dropdown">
+                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a>
+                                        <i class="material-icons">input</i>
+                                        <h:form>
+                                            <h:commandButton class="btn btn-link" value="Logout" action="#{accountModel.logout()}" />
+                                        </h:form>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- User Info -->
+
+                <!-- #User Info -->
+                <!-- Menu -->
+                <div class="menu" >
+                    <ul class="list">
+                        <li class="header">MENU</li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons">home</i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="cooperatives.xhtml">
+                                <i class="material-icons">school</i>
+                                <span>Cooperative List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- #Menu -->
+                <!-- Footer -->
+                <div class="legal">
+                    <div class="copyright">
+                        &copy; 2020 <a href="javascript:void(0);">MUTORA Antoine</a>.
+                    </div>
+                </div>
+                <!-- #Footer -->
+            </aside>
+            <!-- #END# Left Sidebar -->
+            <!-- Right Sidebar -->
+
+            <!-- #END# Right Sidebar -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+
+                <div class="block-header">
+                    <h2>
+                        CHECK-IN PAGE
+                    </h2>
+
+                </div>
+                <!-- Advanced Form Example With Validation -->
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+                        <h:form id="tablelist" style="padding-left: 50px;">
+                            <p:growl sticky="true" />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h2>Booking Details</h2>
+                                        </div>
+                                        <div class="body">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Room Type:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:outputLabel value="#{frontOfficeModel.chosenRoomMaster.roomCategory.roomCategoryName}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Room Price:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:outputLabel value="#{frontOfficeModel.chosenRoomMaster.roomCategory.price}" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="header">
+                                            <h2>Guest Details</h2>
+                                        </div>
+                                        <div class="body">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Returning Guest**:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <p:inputText id="itemId" value="#{frontOfficeModel.visitorSearchKeyWord}" class="form-control" >
+                                                        <p:ajax event="keyup" listener="#{frontOfficeModel.searchVisitors()}" update="suggestionsTable"/>           
+                                                    </p:inputText>
+
+                                                    <h:dataTable id="suggestionsTable" value="#{frontOfficeModel.suggestedVisitors}" var="item">
+                                                        <h:column>
+                                                            <p:commandLink value="#{item.visitorName}" class="btn btn-link">
+                                                                <p:ajax event="click" listener="#{frontOfficeModel.chooseVisitor(item)}" update="@form"/> 
+                                                            </p:commandLink>
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 25px;">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Guest Name:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.visitor.visitorName}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 5px;">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Gender:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:selectOneMenu value="#{frontOfficeModel.gender}" class="form-control" >
+                                                        <f:selectItem itemLabel="Male" itemValue="Male" />
+                                                        <f:selectItem itemLabel="Female" itemValue="Female" />
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 10px;">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Address:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.visitor.address}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 5px;">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Mobile:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.visitor.phone}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 5px;">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Nationality:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.visitor.nationality}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 5px;">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">Email:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.visitor.email}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 5px;">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                    <label class="login2 pull-right pull-right-pro">ID No.:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.visitor.documentId}" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card" style="padding: 25px 50px">
+                                        <div class="header">
+                                            <h2>Check in Info</h2>
+                                        </div>
+                                        <div class="body">
+                                            <div class="row clearfix">
+                                                <div class="col-xs-12">
+                                                    <h2 class="card-inside-title">Check In Date:</h2>
+                                                    <div class="input-group date" id="bs_datepicker_component_container">
+                                                        <div class="form-line">
+                                                            <p:datePicker value="#{frontOfficeModel.booking.checkInDate}" pattern="dd/MM/yyyy" required="true" requiredMessage="Check in Date Required" ></p:datePicker>                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix" style="padding-top: 5px;">
+
+                                                <div class="col-xs-6">
+                                                    <h2 class="card-inside-title">Check Out Date:</h2>
+                                                    <div class="input-group date" id="bs_datepicker_component_container">
+                                                        <div class="form-line">
+                                                            <p:datePicker value="#{frontOfficeModel.booking.checkOutDate}" pattern="dd/MM/yyyy" required="true" requiredMessage="Check Out Date Required" ></p:datePicker>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="card-inside-title">Hour:</h2>
+                                                    <div class="form-group">
+                                                        <div class="form-line" id="bs_datepicker_container">
+                                                            <h:selectOneMenu value="#{frontOfficeModel.expectedCheckoutHour}" class="form-control" >
+                                                                <f:selectItem itemLabel="00" itemValue="00" />
+                                                                <f:selectItem itemLabel="01" itemValue="01" />
+                                                                <f:selectItem itemLabel="02" itemValue="02" />
+                                                                <f:selectItem itemLabel="03" itemValue="03" />
+                                                                <f:selectItem itemLabel="04" itemValue="04" />
+                                                                <f:selectItem itemLabel="05" itemValue="05" />
+                                                                <f:selectItem itemLabel="06" itemValue="06" />
+                                                                <f:selectItem itemLabel="07" itemValue="07" />
+                                                                <f:selectItem itemLabel="08" itemValue="08" />
+                                                                <f:selectItem itemLabel="09" itemValue="09" />
+                                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                                <f:selectItem itemLabel="11" itemValue="11" />
+                                                                <f:selectItem itemLabel="12" itemValue="12" />
+                                                                <f:selectItem itemLabel="13" itemValue="13" />
+                                                                <f:selectItem itemLabel="14" itemValue="14" />
+                                                                <f:selectItem itemLabel="15" itemValue="15" />
+                                                                <f:selectItem itemLabel="16" itemValue="16" />
+                                                                <f:selectItem itemLabel="17" itemValue="17" />
+                                                                <f:selectItem itemLabel="18" itemValue="18" />
+                                                                <f:selectItem itemLabel="19" itemValue="19" />
+                                                                <f:selectItem itemLabel="20" itemValue="20" />
+                                                                <f:selectItem itemLabel="21" itemValue="21" />
+                                                                <f:selectItem itemLabel="22" itemValue="22" />
+                                                                <f:selectItem itemLabel="23" itemValue="23" />
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="card-inside-title">Minute:</h2>
+                                                    <div class="input-group date" id="bs_datepicker_component_container">
+                                                        <div class="form-line">
+                                                            <h:selectOneMenu value="#{frontOfficeModel.expectedCheckOutMinute}" class="form-control" >
+                                                                <f:selectItem itemLabel="00" itemValue="00" />
+                                                                <f:selectItem itemLabel="01" itemValue="01" />
+                                                                <f:selectItem itemLabel="02" itemValue="02" />
+                                                                <f:selectItem itemLabel="03" itemValue="03" />
+                                                                <f:selectItem itemLabel="04" itemValue="04" />
+                                                                <f:selectItem itemLabel="05" itemValue="05" />
+                                                                <f:selectItem itemLabel="06" itemValue="06" />
+                                                                <f:selectItem itemLabel="07" itemValue="07" />
+                                                                <f:selectItem itemLabel="08" itemValue="08" />
+                                                                <f:selectItem itemLabel="09" itemValue="09" />
+                                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                                <f:selectItem itemLabel="11" itemValue="11" />
+                                                                <f:selectItem itemLabel="12" itemValue="12" />
+                                                                <f:selectItem itemLabel="13" itemValue="13" />
+                                                                <f:selectItem itemLabel="14" itemValue="14" />
+                                                                <f:selectItem itemLabel="15" itemValue="15" />
+                                                                <f:selectItem itemLabel="16" itemValue="16" />
+                                                                <f:selectItem itemLabel="17" itemValue="17" />
+                                                                <f:selectItem itemLabel="18" itemValue="18" />
+                                                                <f:selectItem itemLabel="19" itemValue="19" />
+                                                                <f:selectItem itemLabel="20" itemValue="20" />
+                                                                <f:selectItem itemLabel="21" itemValue="21" />
+                                                                <f:selectItem itemLabel="22" itemValue="22" />
+                                                                <f:selectItem itemLabel="23" itemValue="23" />
+                                                                <f:selectItem itemLabel="24" itemValue="24" />
+                                                                <f:selectItem itemLabel="25" itemValue="25" />
+                                                                <f:selectItem itemLabel="26" itemValue="26" />
+                                                                <f:selectItem itemLabel="27" itemValue="27" />
+                                                                <f:selectItem itemLabel="28" itemValue="28" />
+                                                                <f:selectItem itemLabel="29" itemValue="29" />
+                                                                <f:selectItem itemLabel="30" itemValue="30" />
+                                                                <f:selectItem itemLabel="31" itemValue="31" />
+                                                                <f:selectItem itemLabel="32" itemValue="32" />
+                                                                <f:selectItem itemLabel="33" itemValue="33" />
+                                                                <f:selectItem itemLabel="34" itemValue="34" />
+                                                                <f:selectItem itemLabel="35" itemValue="35" />
+                                                                <f:selectItem itemLabel="36" itemValue="36" />
+                                                                <f:selectItem itemLabel="37" itemValue="37" />
+                                                                <f:selectItem itemLabel="38" itemValue="38" />
+                                                                <f:selectItem itemLabel="39" itemValue="39" />
+                                                                <f:selectItem itemLabel="40" itemValue="40" />
+                                                                <f:selectItem itemLabel="41" itemValue="41" />
+                                                                <f:selectItem itemLabel="42" itemValue="42" />
+                                                                <f:selectItem itemLabel="43" itemValue="43" />
+                                                                <f:selectItem itemLabel="44" itemValue="44" />
+                                                                <f:selectItem itemLabel="45" itemValue="45" />
+                                                                <f:selectItem itemLabel="46" itemValue="46" />
+                                                                <f:selectItem itemLabel="47" itemValue="47" />
+                                                                <f:selectItem itemLabel="48" itemValue="48" />
+                                                                <f:selectItem itemLabel="49" itemValue="49" />
+                                                                <f:selectItem itemLabel="50" itemValue="50" />
+                                                                <f:selectItem itemLabel="51" itemValue="51" />
+                                                                <f:selectItem itemLabel="52" itemValue="52" />
+                                                                <f:selectItem itemLabel="53" itemValue="53" />
+                                                                <f:selectItem itemLabel="54" itemValue="54" />
+                                                                <f:selectItem itemLabel="55" itemValue="55" />
+                                                                <f:selectItem itemLabel="56" itemValue="56" />
+                                                                <f:selectItem itemLabel="57" itemValue="57" />
+                                                                <f:selectItem itemLabel="58" itemValue="58" />
+                                                                <f:selectItem itemLabel="59" itemValue="59" />
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row clearfix" style="padding-top: 10px;">
+                                                <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">-->
+                                                <label class="col-sm-4 col-lg-4 col-md-4 col-xs-12 col-form-label">Tariff:</label>
+                                                <!--</div>-->
+                                                <div class="col-sm-8 col-lg-8 col-md-8 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.booking.negociatedPrice}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 5px;">
+                                                <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">-->
+                                                <label class="col-sm-4 col-lg-4 col-md-4 col-xs-12 col-form-label">Grace Time:</label>
+                                                <!--</div>-->
+                                                <div class="col-sm-8 col-lg-8 col-md-8 col-xs-12">
+                                                    <h:selectOneMenu value="#{frontOfficeModel.booking.graceTime}" class="form-control" >
+                                                        <f:selectItem itemLabel="1 Hour" itemValue="1" />
+                                                        <f:selectItem itemLabel="2 Hours" itemValue="2" />
+                                                        <f:selectItem itemLabel="3 Hours" itemValue="3" />
+                                                        <f:selectItem itemLabel="4 Hours" itemValue="4" />
+                                                        <f:selectItem itemLabel="5 Hours" itemValue="5" />
+                                                        <f:selectItem itemLabel="6 Hours" itemValue="6" />
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 25px;">
+                                                <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">-->
+                                                <label class="col-sm-4 col-lg-4 col-md-4 col-xs-12 col-form-label">Purpose of visit:</label>
+                                                <!--</div>-->
+                                                <div class="col-sm-8 col-lg-8 col-md-8 col-xs-12">
+                                                    <h:inputText value="#{frontOfficeModel.booking.visitPurpose}" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 5px;">
+                                                <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">-->
+                                                <label class="col-sm-4 col-lg-4 col-md-4 col-xs-12 col-form-label">No of Persons:</label>
+                                                <!--</div>-->
+                                                <div class="col-sm-8 col-lg-8 col-md-8 col-xs-12">
+                                                    <h:selectOneMenu value="#{frontOfficeModel.booking.totalPerson}" class="form-control" >
+                                                        <f:selectItem itemLabel="1" itemValue="1" />
+                                                        <f:selectItem itemLabel="2" itemValue="2" />
+                                                        <f:selectItem itemLabel="3" itemValue="3" />
+                                                        <f:selectItem itemLabel="4" itemValue="4" />
+                                                        <f:selectItem itemLabel="5" itemValue="5" />
+                                                        <f:selectItem itemLabel="6" itemValue="6" />
+                                                        <f:selectItem itemLabel="7" itemValue="7" />
+                                                        <f:selectItem itemLabel="8" itemValue="8" />
+                                                        <f:selectItem itemLabel="9" itemValue="9" />
+                                                        <f:selectItem itemLabel="10" itemValue="10" />
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 25px;">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Male:</label>
+                                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                                            <h:selectOneMenu value="#{frontOfficeModel.booking.totalMale}" class="form-control" >
+                                                                <f:selectItem itemLabel="0" itemValue="0" />
+                                                                <f:selectItem itemLabel="1" itemValue="1" />
+                                                                <f:selectItem itemLabel="2" itemValue="2" />
+                                                                <f:selectItem itemLabel="3" itemValue="3" />
+                                                                <f:selectItem itemLabel="4" itemValue="4" />
+                                                                <f:selectItem itemLabel="5" itemValue="5" />
+                                                                <f:selectItem itemLabel="6" itemValue="6" />
+                                                                <f:selectItem itemLabel="7" itemValue="7" />
+                                                                <f:selectItem itemLabel="8" itemValue="8" />
+                                                                <f:selectItem itemLabel="9" itemValue="9" />
+                                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Female:</label>
+                                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                                            <h:selectOneMenu value="#{frontOfficeModel.booking.totalFemale}" class="form-control" >
+                                                                <f:selectItem itemLabel="0" itemValue="0" />
+                                                                <f:selectItem itemLabel="1" itemValue="1" />
+                                                                <f:selectItem itemLabel="2" itemValue="2" />
+                                                                <f:selectItem itemLabel="3" itemValue="3" />
+                                                                <f:selectItem itemLabel="4" itemValue="4" />
+                                                                <f:selectItem itemLabel="5" itemValue="5" />
+                                                                <f:selectItem itemLabel="6" itemValue="6" />
+                                                                <f:selectItem itemLabel="7" itemValue="7" />
+                                                                <f:selectItem itemLabel="8" itemValue="8" />
+                                                                <f:selectItem itemLabel="9" itemValue="9" />
+                                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>                                            
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Children:</label>
+                                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                                            <h:selectOneMenu value="#{frontOfficeModel.booking.totalChildren}" class="form-control" >
+                                                                <f:selectItem itemLabel="0" itemValue="0" />
+                                                                <f:selectItem itemLabel="1" itemValue="1" />
+                                                                <f:selectItem itemLabel="2" itemValue="2" />
+                                                                <f:selectItem itemLabel="3" itemValue="3" />
+                                                                <f:selectItem itemLabel="4" itemValue="4" />
+                                                                <f:selectItem itemLabel="5" itemValue="5" />
+                                                                <f:selectItem itemLabel="6" itemValue="6" />
+                                                                <f:selectItem itemLabel="7" itemValue="7" />
+                                                                <f:selectItem itemLabel="8" itemValue="8" />
+                                                                <f:selectItem itemLabel="9" itemValue="9" />
+                                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>     
+
+                                                </div>
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-3" style="padding-top: 35px;">
+                                                    <h:commandButton class="btn btn-success" value="CheckIn" action="#{frontOfficeModel.checkInRoom()}" />
+                                                </div>
+                                                <div class="col-lg-3"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <!-- #END# Advanced Form Example With Validation -->
+            </div>
+        </section>
+
+        <!-- Jquery Core Js -->
+        <!--<script src="./../plugins/jquery/jquery.min.js"></script>-->
+
+        <!-- Bootstrap Core Js -->
+        <script src="./../plugins/bootstrap/js/bootstrap.js"></script>
+
+        <!-- Select Plugin Js -->
+        <script src="./../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+        <!-- Jquery Validation Plugin Css -->
+        <script src="./../plugins/jquery-validation/jquery.validate.js"></script>
+
+        <!-- JQuery Steps Plugin Js -->
+        <script src="./../plugins/jquery-steps/jquery.steps.js"></script>
+
+        <!-- Slimscroll Plugin Js -->
+        <script src="./../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script src="./../plugins/node-waves/waves.js"></script>
+
+        <!-- Jquery DataTable Plugin Js -->
+        <script src="./../plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="./../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="./../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+        <!-- Custom Js -->
+        <script src="./../js/admin.js"></script>
+        <script src="./../js/pages/tables/jquery-datatable.js"></script>
+
+        <!-- Demo Js -->
+        <script src="./../js/demo.js"></script>
+
+    </h:body>
+</html>
+
