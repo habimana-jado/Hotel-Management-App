@@ -92,8 +92,8 @@
             <!-- Left Sidebar -->
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
-                
-                 <div class="user-info">
+
+                <div class="user-info">
                     <div class="image">
                         <img src="./../../uploads/madras.jfif" width="48" height="48" alt="User" />
                     </div>
@@ -125,16 +125,130 @@
                     <ul class="list">
                         <li class="header">MENU</li>
                         <li>
-                            <a href="#">
-                                <i class="material-icons">home</i>
-                                <span>Dashboard</span>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">group_add</i>
+                                <span>User Configuration</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="department.xhtml">Departments</a>
+                                </li>
+                                <li>
+                                    <a href="employee.xhtml">Users</a>
+                                </li>
+                                <li>
+                                    <a href="user-right.xhtml">User Rights</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="cooperatives.xhtml">
-                                <i class="material-icons">school</i>
-                                <span>Cooperative List</span>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">menu</i>
+                                <span>Menu Configuration</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="itemcategory.xhtml">Menu Category</a>
+                                </li>
+                                <li>
+                                    <a href="menu-item.xhtml">Menu Master</a>
+                                </li>
+                                <li>
+                                    <a href="itemunit.xhtml">Unit Master</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">restaurant</i>
+                                <span>Restaurant Configuration</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="restaurant.xhtml">Restaurant Setting</a>
+                                </li>
+                                <li>
+                                    <a href="tablecategory.xhtml">Table Group Master</a>
+                                </li>
+                                <li>
+                                    <a href="table.xhtml">Table Master</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">hotel</i>
+                                <span>FrontOffice Configuration</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="roomcategory.xhtml">Room Category</a>
+                                </li>
+                                <li>
+                                    <a href="floormaster.xhtml">Floor Master</a>
+                                </li>
+                                <li>
+                                    <a href="room.xhtml">Room Master</a>
+                                </li>
+                                <li>
+                                    <a href="servicecategory.xhtml">Room Service Category</a>
+                                </li>
+                                <li>
+                                    <a href="service.xhtml">Room Service Master</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">local_grocery_store</i>
+                                <span>Inventory Configuration</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="purchase.xhtml">Purchase</a>
+                                </li>
+                                <li>
+                                    <a href="expense.xhtml">Expense</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">report</i>
+                                <span>Report Configuration</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="daily-sales-report.xhtml">Daily Sales Report</a>
+                                </li>
+                                <li>
+                                    <a href="item-wise.xhtml">Income Report</a>
+                                </li>
+                                <li>
+                                    <a href="expense-report.xhtml">Expense Report</a>
+                                </li>
+                                <li>
+                                    <a href="profit-report.xhtml">Item Report</a>
+                                </li>
+                                <li>
+                                    <a href="closing-report.xhtml">Store Sheet Report</a>
+                                </li>
+<!--                                <li>
+                                    <a href="credit-report">Credit Report</a>
+                                </li>-->
+                                <li>
+                                    <a href="transaction-logs.xhtml">Deleted Transactions Report</a>
+                                </li>
+                                <li>
+                                    <a href="collection-report.xhtml">Room Collection Report</a>
+                                </li>
+                                <li>
+                                    <a href="police-report.xhtml">Police Report</a>
+                                </li>
+                                <li>
+                                    <a href="inhouseguest-report.xhtml">Inhouse Guest Report</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -142,7 +256,7 @@
                 <!-- Footer -->
                 <div class="legal">
                     <div class="copyright">
-                        &copy; 2020 <a href="javascript:void(0);">MUTORA Antoine</a>.
+                        &copy; 2021 <a href="javascript:void(0);">Hotel Management App</a>.
                     </div>
                 </div>
                 <!-- #Footer -->
@@ -169,15 +283,15 @@
                             <div class="header">
                                 <h2>CLOSING REPORT</h2>
                             </div>
-                            <div>
+                            <div class="body">
                                 <div>
-                                    <h:form>
+                                    <h:form style="padding-top: 10px;">
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                From:  <h:inputText value="#{adminModel.from}" class="datepicker" ></h:inputText>  
+                                                From:  <p:datePicker pattern="dd/MM/yyyy" value="#{adminModel.from}" ></p:datePicker>  
                                             </div>
                                             <div class="col-lg-4">
-                                                To:  <h:inputText value="#{adminModel.to}" class="datepicker" ></h:inputText> 
+                                                To:  <p:datePicker pattern="dd/MM/yyyy" value="#{adminModel.to}" ></p:datePicker> 
                                             </div>
                                             <div class="col-lg-4">
                                                 <h:commandButton value="Search" class="btn btn-primary" action="#{adminModel.searchCloseStock()}"/>
@@ -191,7 +305,7 @@
                                         <div class="row" style="padding-left: 50px;">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-8">
-                                                <h5>Store Daily Report From #{adminModel.dateFrom} To #{adminModel.dateTo}</h5>
+                                                <h4>Store Daily Report From #{adminModel.dateFrom} To #{adminModel.dateTo}</h4>
                                             </div>
                                             <div class="col-lg-2"></div>
                                         </div>
@@ -257,7 +371,7 @@
         </section>
 
         <!-- Jquery Core Js -->
-        <script src="./../plugins/jquery/jquery.min.js"></script>
+        <!--<script src="./../plugins/jquery/jquery.min.js"></script>-->
 
         <!-- Bootstrap Core Js -->
         <script src="./../plugins/bootstrap/js/bootstrap.js"></script>
