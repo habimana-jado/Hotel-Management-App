@@ -215,54 +215,31 @@
                                                                 <th class="border-0">#</th>
                                                                 <th class="border-0">Room No.</th>
                                                                 <th class="border-0">Guest Name</th>
-                                                                <th class="border-0">Phone</th>
-                                                                <th class="border-0">Address</th>
+                                                                <th class="border-0">Mobile</th>
+                                                                <th class="border-0">Full Address</th>
                                                                 <th class="border-0">Nationality</th>
-                                                                <th class="border-0">Document Type</th>
-                                                                <th class="border-0">Document No.</th>
-                                                                <th class="border-0">Total Person</th>
+                                                                <th class="border-0">ID Type</th>
+                                                                <th class="border-0">ID No.</th>
+                                                                <th class="border-0">No. of Person</th>
                                                                 <th class="border-0">Purpose</th>
-                                                                <th class="border-0">Check-In</th>
-                                                                <th class="border-0">Check-Out</th>
+                                                                <th class="border-0">Arrival Date</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <c:forEach items="#{frontOfficeModel.roomBookings}" var="elements" varStatus="status">
-                                                                <c:choose>
-                                                                    <c:when test="#{elements.checkOutDate eq frontOfficeModel.nowDate}">
-                                                                        <tr style="background-color: #00749F">
-                                                                            <td>${status.index+1}</td>
-                                                                            <td>#{elements.roomMaster.roomNumber}</td>
-                                                                            <td>#{elements.visitor.visitorName}</td>
-                                                                            <td>#{elements.visitor.phone}</td>
-                                                                            <td>#{elements.visitor.address}</td>
-                                                                            <td>#{elements.visitor.nationality}</td>    
-                                                                            <td>#{elements.visitor.documentType}</td>
-                                                                            <td>#{elements.visitor.documentId}</td>
-                                                                            <td>#{elements.totalPerson}</td>
-                                                                            <td>#{elements.visitPurpose}</td>    
-                                                                            <td>#{elements.checkInPeriod}</td>      
-                                                                            <td>#{elements.checkOutDate}</td>                                               
-                                                                        </tr>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        <tr style="background-color: #00ff00">
-                                                                            <td>${status.index+1}</td>
-                                                                            <td>#{elements.roomMaster.roomNumber}</td>
-                                                                            <td>#{elements.visitor.visitorName}</td>
-                                                                            <td>#{elements.visitor.phone}</td>
-                                                                            <td>#{elements.visitor.address}</td>
-                                                                            <td>#{elements.visitor.nationality}</td>    
-                                                                            <td>#{elements.visitor.documentType}</td>
-                                                                            <td>#{elements.visitor.documentId}</td>
-                                                                            <td>#{elements.totalPerson}</td>
-                                                                            <td>#{elements.visitPurpose}</td>    
-                                                                            <td>#{elements.checkInPeriod}</td>      
-                                                                            <td>#{elements.checkOutDate}</td>                                               
-                                                                        </tr>
-                                                                    </c:otherwise>
-                                                                </c:choose>
-
+                                                                <tr>
+                                                                    <td>${status.index+1}</td>
+                                                                    <td>#{elements.roomMaster.roomNumber}</td>
+                                                                    <td>#{elements.visitor.visitorName}</td>
+                                                                    <td>#{elements.visitor.phone}</td>
+                                                                    <td>#{elements.visitor.address}</td>
+                                                                    <td>#{elements.visitor.nationality}</td>    
+                                                                    <td>#{elements.visitor.documentType}</td>
+                                                                    <td>#{elements.visitor.documentId}</td>
+                                                                    <td>#{elements.totalPerson}</td>
+                                                                    <td>#{elements.visitPurpose}</td>    
+                                                                    <td>#{elements.checkInPeriod}</td>                                                  
+                                                                </tr>
                                                             </c:forEach>
                                                         </tbody>
 
