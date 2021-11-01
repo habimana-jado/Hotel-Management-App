@@ -46,38 +46,38 @@ public class AccountModel {
             switch (account.getUserDepartment().getDepartmentName()) {
                 case "ADMINISTRATOR":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/Admin/employee.xhtml");
-                    return "pages/Admin/employee?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/Admin/employee.xhtml");
+                    return "page/Admin/employee?faces-redirect=true";
                 case "FRONTOFFICE":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/Frontoffice/main.xhtml");
-                    return "pages/Frontoffice/main.xhtml?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/Frontoffice/main.xhtml");
+                    return "page/Frontoffice/main.xhtml?faces-redirect=true";
                 case "CASHIER":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/Cashier/main.xhtml");
-                    return "pages/Cashier/main.xhtml?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/Cashier/main.xhtml");
+                    return "page/Cashier/main.xhtml?faces-redirect=true";
                 case "Back Office":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/home.xhtml");
-                    return "pages/home.xhtml?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/home.xhtml");
+                    return "page/home.xhtml?faces-redirect=true";
                 
                 case "Bar":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/home.xhtml");
-                    return "pages/home.xhtml?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/home.xhtml");
+                    return "page/home.xhtml?faces-redirect=true";
                 case "HOUSEKEEPING":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/Housekeeping/main.xhtml");
-                    return "pages/Housekeeping/main.xhtml?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/Housekeeping/main.xhtml");
+                    return "page/Housekeeping/main.xhtml?faces-redirect=true";
                 case "Security":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/home.xhtml");
-                    return "pages/home.xhtml?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/home.xhtml");
+                    return "page/home.xhtml?faces-redirect=true";
                 
                 case "SUPERADMIN":
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", account);
-                    ec.redirect(ec.getRequestContextPath() + "/pages/SuperAdmin/main.xhtml");
-                    return "pages/SuperAdmin/main?faces-redirect=true";
+                    ec.redirect(ec.getRequestContextPath() + "/page/SuperAdmin/main.xhtml");
+                    return "page/SuperAdmin/main?faces-redirect=true";
                 default:
                     account = null;
 
