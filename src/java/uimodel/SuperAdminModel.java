@@ -29,22 +29,22 @@ public class SuperAdminModel {
 
     public void redirectAdmin() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(ec.getRequestContextPath() + "/pages/Admin/employee.xhtml");
+        ec.redirect(ec.getRequestContextPath() + "/page/Admin/employee.xhtml");
     }
 
     public void redirectCashier() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(ec.getRequestContextPath() + "/pages/Cashier/main.xhtml");
+        ec.redirect(ec.getRequestContextPath() + "/page/Cashier/main.xhtml");
     }
 
     public void redirectFrontOffice() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(ec.getRequestContextPath() + "/pages/Frontoffice/main.xhtml");
+        ec.redirect(ec.getRequestContextPath() + "/page/Frontoffice/main.xhtml");
     }
 
     public void redirectHouseKeeping() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(ec.getRequestContextPath() + "/pages/Housekeeping/main.xhtml");
+        ec.redirect(ec.getRequestContextPath() + "/page/Housekeeping/main.xhtml");
     }
 
     public void redirectCashierHome() throws IOException {

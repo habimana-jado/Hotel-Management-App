@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jean de Dieu HABIMANA @2021
  */
-@WebFilter("/pages/*")
+@WebFilter("/page/*")
 public class AuthenticationFilter implements Filter {
  
     private static final String AJAX_REDIRECT_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"

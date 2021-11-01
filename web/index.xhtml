@@ -10,6 +10,8 @@
         <link href="css/pagecontrol.css" rel="stylesheet" type="text/css"/>
         <link href="css/Gridstyle.css" rel="stylesheet" type="text/css"/>
         <link href="/resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap Core Css -->
+        <link href="page/plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
         <style type="text/css">
             h1 {
                 text-shadow: 0 1px 0 #ccc,
@@ -74,10 +76,10 @@
                                                         </tr>
                                                         <tr>
                                                             <td align="left" style="background-color: #3399CC; padding-left: 10px; height: 40px; width: 225px; border-top-right-radius: 5em">
-                                                                <label for="txtUserName" id="Label2" style="color: #FFFFFF; font-size: small; font-family: Verdana;">User Name :</label>
+                                                                <label for="txtUserName" id="Label2" style="color: #FFFFFF; font-family: Verdana;">Username :</label>
                                                             </td>
                                                             <td align="left" style="padding-left: 10px">
-                                                                <h:inputText value="#{accountModel.username}" id="txtUserName" class="textboxcsslogin" style="width:300px;"/>
+                                                                <h:inputText class="form-control" value="#{accountModel.username}" id="txtUserName" style="width:300px;"/>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -85,7 +87,7 @@
                                                                 <label for="txtPassword" id="Label3" style="color: #FFFFFF; font-family: Verdana;">Password :</label>
                                                             </td>
                                                             <td style="padding-left: 10px">
-                                                                <h:inputSecret value="#{accountModel.password}" id="txtPassword" class="textboxcsspassword" style="width:300px;"/>
+                                                                <h:inputSecret value="#{accountModel.password}" id="txtPassword" class="form-control" style="width:300px;"/>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -94,7 +96,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2" style="text-align: center; background-color: #3399CC; height: 60px">
-                                                                <h:commandButton action="#{accountModel.login()}" type="submit" value="Login" id="Button1" class="btn btn-primary" style="width:120px;"/>
+                                                                <h:commandButton action="#{accountModel.login()}" type="submit" value="Login" id="Button1" class="btn btn-success" style="width:120px;"/>
                                                             </td>
                                                         </tr>
                                                         
@@ -124,6 +126,9 @@
                 </tbody>
             </table>
         </h:form>
+        
+        <!-- Bootstrap Core Js -->
+        <script src="page/plugins/bootstrap/js/bootstrap.js"></script>
     </h:body>
 </html>
 

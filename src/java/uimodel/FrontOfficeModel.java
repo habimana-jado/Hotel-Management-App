@@ -270,7 +270,7 @@ public class FrontOfficeModel {
                         Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice();
                     } else if (checkOutTime.getHourOfDay() < 18) {
                         days = 1;
-                        Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice() + 30000;
+                        Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice();
                     } else {
                         days = 2;
                         Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice() * 2;
@@ -284,7 +284,7 @@ public class FrontOfficeModel {
                 if (checkOutTime.getHourOfDay() < (11 + chosenBooking.getGraceTime())) {
                     Charge = days * chosenBooking.getRoomMaster().getRoomCategory().getPrice();
                 } else if (checkOutTime.getHourOfDay() < 18) {
-                    Charge = days * chosenBooking.getRoomMaster().getRoomCategory().getPrice() + 30000;
+                    Charge = days * chosenBooking.getRoomMaster().getRoomCategory().getPrice();
                 } else if (checkOutTime.getHourOfDay() > 18) {
                     days = days + 1;
                     Charge = days * chosenBooking.getRoomMaster().getRoomCategory().getPrice();

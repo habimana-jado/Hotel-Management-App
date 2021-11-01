@@ -67,9 +67,21 @@
                 <div class="navbar-header">
                     <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                     <a href="javascript:void(0);" class="bars"></a>
-                    <a class="navbar-brand" href="../../index.html">RCLGS SYSTEM</a>
+                    <a class="navbar-brand" href="../../index.html">HMA</a>
                 </div>
 
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li style="margin-top: 20px; padding-right: 70px;">    
+                            <h:form>
+                                <p:commandLink action="#{accountModel.logout()}" class="btn btn-success waves-effect">
+                                    <i class="material-icons">person_pin</i>
+                                    <span>LOGOUT</span>
+                                </p:commandLink>
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <!-- #Top Bar -->
@@ -83,23 +95,9 @@
                         <img src="./../../uploads/madras.jfif" width="48" height="48" alt="User" />
                     </div>
                     <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MADRAS HOTEL AND APARTS</div>
                         <!--<div class="email">john.doe@example.com</div>-->
-                        <div class="btn-group user-helper-dropdown">
-                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li>
-                                    <a>
-                                        <i class="material-icons">input</i>
-                                        <h:form>
-                                            <h:commandButton class="btn btn-link" value="Logout" action="#{accountModel.logout()}" />
-                                        </h:form>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
                 <!-- User Info -->
@@ -109,17 +107,31 @@
                 <div class="menu" >
                     <ul class="list">
                         <li class="header">MENU</li>
-                        <li>
-                            <a href="#">
+                        <li class="active">
+                            <a href="main.xhtml">
                                 <i class="material-icons">home</i>
-                                <span>Dashboard</span>
+                                <span>HOME</span>
                             </a>
                         </li>
                         <li>
-                            <a href="cooperatives.xhtml">
-                                <i class="material-icons">school</i>
-                                <span>Cooperative List</span>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">report</i>
+                                <span>Report Configuration</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="daily-sales-report.xhtml">Daily Sales Report</a>
+                                </li>
+                                <li>
+                                    <a href="collection-report.xhtml">Room Collection Report</a>
+                                </li>
+                                <li>
+                                    <a href="police-report.xhtml">Police Report</a>
+                                </li>
+                                <li>
+                                    <a href="inhouseguest-report.xhtml">Inhouse Guest Report</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -127,7 +139,7 @@
                 <!-- Footer -->
                 <div class="legal">
                     <div class="copyright">
-                        &copy; 2020 <a href="javascript:void(0);">MUTORA Antoine</a>.
+                        &copy; 2021 <a href="javascript:void(0);">Hotel Management App</a>.
                     </div>
                 </div>
                 <!-- #Footer -->
@@ -412,7 +424,7 @@
                             </h:form>
                         </p:dialog>
 
-                        <h:form>
+                        <h:form id="tablelist" >
                             <div class="card">
                                 <div class="body">
                                     <div class="icon-and-text-button-demo">
@@ -462,39 +474,7 @@
                                 </div>
                             </div>
                         </h:form>
-
-
-                        <!--<h3>Member Information</h3>-->
-                        <h:form id="tablelist" style="padding-left: 50px;">
-                            <p:growl sticky="true" />
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="tab-content-details shadow-reset">
-                                        <p:commandButton style="height: 32px;"  value="Add Service" update=":dialogAddService" oncomplete="PF('dlgAddService').show();" class="btn btn-bg-cl-google-tw border"></p:commandButton>         
-                                        <p:commandButton style="height: 32px;"  value="View/Edit Service" update=":dialogEditService" oncomplete="PF('dlgEditService').show();" class="btn btn-bg-cl-google-tw border" >
-                                            <p:ajax oncomplete="PF('dlgEditService').show();" listener="#{frontOfficeModel.chooseService}" update=":dialogEditService" />
-                                        </p:commandButton>         
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="View Services" style="padding-top: 5px;" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="tab-content-details shadow-reset">
-                                        <h:commandButton value="Add Voucher" class="btn btn-bg-cl-google-tw border" action="new-voucher.xhtml?faces-redirect=true"/>
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Edit Voucher" style="padding-top: 5px;" />
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="View Voucher" style="padding-top: 5px;" />                                    
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="tab-content-details shadow-reset">
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Add Services" />
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Edit Services" style="padding-top: 5px;" />
-                                        <h:commandButton class="btn btn-bg-cl-google-tw" value="Add Services" style="padding-top: 5px;" />                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </h:form>
                     </div>
-                    <!-- Default Size -->
                 </div>
                 <!-- #END# Advanced Form Example With Validation -->
             </div>
