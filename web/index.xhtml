@@ -1,89 +1,134 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Login</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <!--===============================================================================================-->	
-        <link rel="icon" type="image/png" href="Login_v1/images/icons/favicon.ico"/>
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="Login_v1/vendor/bootstrap/css/bootstrap.min.css"/>
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="Login_v1/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="Login_v1/vendor/animate/animate.css"/>
-        <!--===============================================================================================-->	
-        <link rel="stylesheet" type="text/css" href="Login_v1/vendor/css-hamburgers/hamburgers.min.css"/>
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="Login_v1/vendor/select2/select2.min.css"/>
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="Login_v1/css/util.css"/>
-        <link rel="stylesheet" type="text/css" href="Login_v1/css/main.css"/>
-        <!--===============================================================================================-->
-
+         <link href="background/logo.ico" rel="shortcut icon"/>
+        <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)"/>
+        <meta http-equiv="Page-Exit" content="blendTrans(Duration=0)"/>
+        <title>HMS Login</title>
+        <link href="css/pagecontrol.css" rel="stylesheet" type="text/css"/>
+        <link href="css/Gridstyle.css" rel="stylesheet" type="text/css"/>
+        <link href="/resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap Core Css -->
+        <link href="page/plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+        <style type="text/css">
+            h1 {
+                text-shadow: 0 1px 0 #ccc,
+                    0 2px 0 #c9c9c9,
+                    0 3px 0 #bbb,
+                    0 4px 0 #b9b9b9,
+                    0 5px 0 #aaa,
+                    0 6px 1px rgba(0,0,0,.1),
+                    0 0 5px rgba(0,0,0,.1),
+                    0 1px 3px rgba(0,0,0,.3),
+                    0 3px 5px rgba(0,0,0,.2),
+                    0 5px 10px rgba(0,0,0,.25),
+                    0 10px 10px rgba(0,0,0,.2),
+                    0 10px 20px rgba(0,0,0,.15);
+            }
+        </style>
     </h:head>
     <h:body>
+        <h:form id="form1">
 
-        <div class="limiter">
-            <div class="container-login100">
-                <div class="wrap-login100">
-                    <div class="login100-pic js-tilt" data-tilt="true">
-                        <img src="Login_v1/images/img-01.png" alt="IMG"/>
-                    </div>
+            <table width="100%" align="center" style="height: 100%; position: absolute">
+                <tbody>
+                    <tr>
+                        <td align="center">
 
-                    <h:form class="login100-form validate-form">
-                        <p:growl />
-                        <span class="login100-form-title">
-                            HMA LOGIN
-                        </span>
+                            <table width="1095px" style="margin-top: 10px">
+                                <tbody>
+                                    <tr>
+                                        <td align="left">
+                                            <!--<img id="Image1" src="images/logo.jpg" style="border-width:0px;"/>-->
+                                        </td>
+                                        <td valign="bottom" align="right">
+                                            <!--<h1><span style="font-size: 35px; color: #ffffff">360HMS</span></h1>-->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="left" style="background-color: #3399CC; height: 30px">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table cellpadding="0" cellspacing="0" style="background-repeat: repeat; width: 1090px">
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td align="center">
 
-                        <div class="wrap-input100 validate-input" data-validate = "Valid username is required">
-                            <h:inputText class="input100" value="#{accountModel.username}" pt:placeholder="Username" />
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </span>
-                        </div>
 
-                        <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <h:inputSecret class="input100" value="#{accountModel.password}" pt:placeholder="Password" />
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                            </span>
-                        </div>
+                                            <div id="Panel1" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'Button1')">
 
-                        <div class="container-login100-form-btn">
-                            <h:commandButton class="login100-form-btn" value="Sign In" action="#{accountModel.login()}"></h:commandButton>
-                        </div>
+                                                <table width="670px" cellspacing="0" style="border: 4px solid #F1F0FF;box-shadow: 10px 10px 20px gray; margin-top: 30px">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2" align="left" style="background-color: #3399CC; height: 50px; padding-left: 10px">
+                                                                <span id="Label1" style="color: #FFFFFF; font-weight: 700; font-size: large; font-family: Verdana;">Sign In</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left" colspan="2" style="padding-left: 10px; height: 40px">
 
-                        
-                    </h:form>
-                </div>
-            </div>
-        </div>
-
-        <!--===============================================================================================-->	
-        <script src="Login_v1/vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="Login_v1/vendor/bootstrap/js/popper.js"></script>
-        <script src="Login_v1/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="Login_v1/vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="Login_v1/vendor/tilt/tilt.jquery.min.js"></script>
-        <script >
-            $('.js-tilt').tilt({
-                scale: 1.1
-            })
-        </script>
-        <!--===============================================================================================-->
-        <script src="Login_v1/js/main.js"></script>
-
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left" style="background-color: #3399CC; padding-left: 10px; height: 40px; width: 225px; border-top-right-radius: 5em">
+                                                                <label for="txtUserName" id="Label2" style="color: #FFFFFF; font-family: Verdana;">Username :</label>
+                                                            </td>
+                                                            <td align="left" style="padding-left: 10px">
+                                                                <h:inputText class="form-control" value="#{accountModel.username}" id="txtUserName" style="width:300px;"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left" style="background-color: #3399CC; padding-left: 10px; height: 40px; width: 225px; border-bottom-right-radius: 5em">
+                                                                <label for="txtPassword" id="Label3" style="color: #FFFFFF; font-family: Verdana;">Password :</label>
+                                                            </td>
+                                                            <td style="padding-left: 10px">
+                                                                <h:inputSecret value="#{accountModel.password}" id="txtPassword" class="form-control" style="width:300px;"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" colspan="2" style="height: 30px">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" style="text-align: center; background-color: #3399CC; height: 60px">
+                                                                <h:commandButton action="#{accountModel.login()}" type="submit" value="Login" id="Button1" class="btn btn-success" style="width:120px;"/>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 50px">
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td style="padding-top: 2px">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="background-color: #3399CC; height: 30px">
+                                            <!--<marquee><span id="lblExpiry" style="color:#FFCE45;font-size:Medium;font-weight:bold;"></span></marquee>-->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </h:form>
+        
+        <!-- Bootstrap Core Js -->
+        <script src="page/plugins/bootstrap/js/bootstrap.js"></script>
     </h:body>
 </html>
 
