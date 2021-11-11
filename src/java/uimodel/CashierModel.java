@@ -272,7 +272,8 @@ public class CashierModel {
         tableTransactions = new TableTransactionDao().findByTableAndStatus(tableMaster, "Sent");
 
         tableMasters = new TableMasterDao().findAllGrouped();
-
+        
+        System.out.println("Test Test Test Food = "+totalBilledFoods +" Beverage = "+totalBilledBeverage);
     }
 
     public void removeUnsavedTransactions() {
