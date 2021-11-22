@@ -34,21 +34,6 @@
         <!-- JQuery DataTable Css -->
         <link href="./../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"/>
 
-        <!-- Bootstrap Material Datetime Picker Css -->
-        <link href="./../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
-
-        <!-- Bootstrap DatePicker Css -->
-        <link href="./../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-
-        <!-- Wait Me Css -->
-        <link href="./../plugins/waitme/waitMe.css" rel="stylesheet" />
-
-        <!-- Bootstrap Select Css -->
-        <link href="./../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-
-        <!-- Moment Plugin Js -->
-        <script src="./../plugins/momentjs/moment.js"></script>
-
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="./../css/themes/all-themes.css" rel="stylesheet" />
     </h:head>
@@ -104,7 +89,7 @@
             <!-- Left Sidebar -->
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
-                
+
                 <div class="user-info">
                     <div class="image">
                         <img src="./../../uploads/madras.jfif" width="48" height="48" alt="User" />
@@ -112,7 +97,7 @@
                     <div class="info-container">
                         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MADRAS HOTEL AND APARTS</div>
                         <!--<div class="email">john.doe@example.com</div>-->
-                        
+
                     </div>
                 </div>
                 <!-- User Info -->
@@ -173,7 +158,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">hotel</i>
                                 <span>FrontOffice Configuration</span>
@@ -210,7 +195,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">report</i>
                                 <span>Report Configuration</span>
@@ -270,10 +255,9 @@
 
         <section class="content">
             <div class="container-fluid">
-
                 <div class="block-header">
                     <h2>
-                        REPORT PAGE
+                        INVOICE PAGE
                     </h2>
                 </div>
                 <!-- Advanced Form Example With Validation -->
@@ -282,153 +266,204 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>PROFIT REPORT</h2>
+                                <!--<h2>ADD VOUCHER</h2>-->
                             </div>
                             <div>
-                                <div class="row" style="padding-top: 30px;">
-                                    <h:form>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-3"></div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="form-group-inner">
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                <label class="login2 pull-right pull-right-pro">From Date:</label>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                                <p:datePicker value="#{adminModel.from}" pattern="dd/MM/yyyy" required="true" requiredMessage="Please Choose Date" ></p:datePicker>
-
-                                                            </div>
+                                <div class="body">
+                                    <!--<h3>Member Information</h3>-->
+                                    <h:form id="billForm">
+                                        <div class="row" style="padding-top: 25px; padding-bottom: 25px;">                        
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                <div class="row" style="padding-top: 20px;">
+                                                    <div class="col-lg-3 col-md-3">
+                                                        <img src="./../../uploads/madras.jfif" height="70px" width="70px" />    
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5">
+                                                        <h4 class="text-center"><strong>MADRAS HOTEL AND APARTMENTS</strong></h4>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <h4 class="text-right text-primary"><strong>Invoice</strong></h4>
+                                                        <h6 class="text-right"><strong>VAT No.:xxxxx</strong></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-left: 25px;">                                        
+                                                    <h5 class="text-left"><strong>Gisozi Road, Kg 14 Ave</strong></h5>
+                                                    <h5 class="text-left"><strong>+250788305684, www.madras.rw</strong></h5>
+                                                </div>
+                                                <hr></hr>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="col-lg-12">
+                                                            <h:outputLabel value="To," />
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            #{adminModel.chosenRoomMaster.visitor.visitorName}
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            #{adminModel.chosenRoomMaster.visitor.address}
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            #{adminModel.chosenRoomMaster.visitor.phone}
                                                         </div>
                                                     </div>
-                                                    <div class="form-group-inner">
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                <label class="login2 pull-right pull-right-pro">To Date:</label>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                                <p:datePicker value="#{adminModel.to}" pattern="dd/MM/yyyy" required="true" requiredMessage="Please Choose Date" ></p:datePicker>
-
-                                                            </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="col-lg-12">
+                                                            <h6 class="text-right">Room: #{adminModel.chosenRoomMaster.roomNumber} (#{adminModel.chosenRoomMaster.roomCategory.roomCategoryName})</h6>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group-inner">
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                                <label class="login2 pull-right pull-right-pro">Item:</label>
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                                <h:selectOneMenu value="#{adminModel.itemUnitId}" class="form-control" >
-                                                                    <f:selectItem itemValue="all" itemLabel="all" />
-                                                                    <f:selectItems value="#{adminModel.items}" var="w" itemLabel="#{w.itemName}" itemValue="#{w.itemId}" />
-                                                                </h:selectOneMenu>
-                                                            </div>
+                                                        <div class="col-lg-12" style="padding-top: 2px;">
+                                                            <h6 class="text-right">CheckIn On: #{adminModel.chosenBooking.checkInPeriod}</h6>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group-inner">
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-
-                                                            </div>
-                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                                <h:commandButton class="btn btn-primary" value="Search" action="#{adminModel.searchTransactionsByDateBetween()}" />
-                                                            </div>
+                                                        <div class="col-lg-12" style="padding-top: 2px;">
+                                                            <h6 class="text-right">Checkout On: #{adminModel.checkOutDate}</h6>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3"></div>
+                                                <hr></hr>
+                                                <div class="row">
+                                                    <div class="row" style="padding-left: 25px;">
+                                                        <div class="col-lg-6" style="padding-left: 10px;">
+                                                            Room Charge:
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            #{adminModel.roomCharge}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-left: 25px;">
+                                                        <div class="col-lg-12" style="padding-left: 10px; padding-top: 10px;">
+                                                            Room No.: #{adminModel.chosenRoomMaster.roomNumber} (#{adminModel.chosenRoomMaster.roomCategory.roomCategoryName})
+                                                            <div class="col-lg-12" style="padding-left: 25px;">
+                                                                #{adminModel.checkInDate} - #{adminModel.currentDate} = #{adminModel.days} days
+                                                            </div>
+                                                            <div class="col-lg-12" style="padding-left: 25px;">
+                                                                Tariff @ #{adminModel.chosenRoomMaster.roomCategory.price} / Per Day
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-left: 25px;">
+                                                        <div class="col-lg-6" style="padding-left: 10px;">
+                                                            Extra Service:
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            #{adminModel.totalHouseKeeping}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12" style="padding-left: 25px;">
+                                                            <div class="row" style="padding-top: 10px;">
+                                                                <c:forEach items="#{frontOfficeModel.houseKeepingServices}" var="item">
+                                                                    <div class="col-lg-12" style="padding-left: 25px;">
+                                                                        #{item.roomService.serviceName} - #{item.quantity} Pcs.
+                                                                    </div>
+                                                                    <div class="col-lg-12" style="padding-left: 25px; padding-bottom: 10px;">
+                                                                        Rate @ #{item.roomService.price} / Per Pcs.
+                                                                    </div>
+                                                                </c:forEach>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-left: 25px;">
+                                                        <div class="col-lg-6" style="padding-left: 10px;">
+                                                            Food and Beverage:
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            #{adminModel.foodAndBeverageTotal}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-top: 10px;">
+                                                        <div class="col-lg-4 text-left" style="padding-left: 50px;">
+                                                            <c:forEach items="#{frontOfficeModel.tableTransactions}" var="item">
+                                                                <h6 class="text-left">#{item.quantity} #{item.item.itemName} </h6>
+                                                                <h6 class="text-left">Tariff: #{item.item.unitRate} /Pcs</h6>
+                                                            </c:forEach>
+                                                        </div>
+                                                        <div class="col-lg-7" ></div>
+                                                    </div>                                
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            Discount:<h:outputLabel value="#{adminModel.discount}" />
+                                                        </div>                                            
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            <hr></hr>
+                                                        </div>                                            
+                                                    </div>
+
+                                                    <div class="row" style="padding-top: 10px;">
+                                                        <div class="col-lg-6" align="right">
+
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            <h:outputLabel value="Gross Amount: #{adminModel.roomCharge + adminModel.foodAndBeverageTotal + frontOfficeModel.totalHouseKeeping}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-top: 10px;">
+                                                        <div class="col-lg-6" align="right">
+
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            <h:outputLabel value="Less Advance Paid: #{adminModel.voucherTotal}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-top: 10px;">
+                                                        <div class="col-lg-6" align="right">
+
+                                                        </div>
+                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                            <h:outputLabel value="Balance: #{adminModel.roomCharge + adminModel.foodAndBeverageTotal + frontOfficeModel.totalHouseKeeping - frontOfficeModel.discount - frontOfficeModel.voucherTotal}" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>                      
+                                            <div class="col-lg-1 col-md-1 col-sm-1"></div>       
+                                        </div>
+
+                                        <div class="row" style="padding-top: 2px;">
+                                            <div class="col-lg-2"></div>
+                                            <div class="col-lg-4">
+                                                <h6 class="text-right" style="padding-top: 60px;"> Receptionist </h6>
+                                            </div>
+                                            <div class="col-lg-2"></div>
+                                            <div class="col-lg-4">
+                                                <h6 class="text-left" style="padding-top: 60px;">Manager  </h6>
                                             </div>
                                         </div>
                                     </h:form>
-                                </div>
-
-                                <h:form id="reportPrint">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-xs-12">
-                                            <div class="tab-content-details shadow-reset">
-                                                <h5>Income</h5>
-                                                <!--List Users-->
-                                                <p:growl />
-                                                <table class="table table-striped table-hover">
-                                                    <thead class="bg-light">
-                                                        <tr class="border-0">
-                                                            <th class="border-0">#</th>
-                                                            <th class="border-0">Item Name</th>
-                                                            <th class="border-0">Unit Price</th>
-                                                            <th class="border-0">Quantity</th>
-                                                            <th class="border-0">Total Price</th>
-                                                            <th class="border-0">Payment Mode</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach items="#{adminModel.tableTransactions}" var="elements" varStatus="status">
-                                                            <tr>
-                                                                <td>${status.index+1}</td>
-                                                                <td>
-                                                                    #{elements.item.itemName}
-                                                                </td>
-                                                                <td>#{elements.item.unitRate}</td>
-                                                                <td>#{elements.quantity}</td>
-                                                                <td>#{elements.item.unitRate * elements.quantity}</td>
-                                                                <td>#{elements.payment.paymentMode}</td>                                                    
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>Total(Cash)</td>
-                                                            <td>#{adminModel.totalCash}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>Total(MoMo)</td>
-                                                            <td>#{adminModel.totalMomo}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>Total(Credit)</td>
-                                                            <td>#{adminModel.totalCredit}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>Total(Quant)</td>
-                                                            <td>#{adminModel.totalQuantityIncome}</td>
-                                                            <td>Grand Total</td>
-                                                            <td>#{adminModel.totalCash + adminModel.totalMomo + adminModel.totalCredit}</td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                    <h:form>
+                                        <div class="row" style="padding-top: 5px;">
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-8">
+                                                <h6 class="text-left">Madras Hotel and Apartments EQUITY Bank Account No.: 99999999XXXXX99999  </h6>
+                                                <div class="col-lg-2 col-md-2 col-sm-2"></div>
                                             </div>
                                         </div>
+                                        <div class="row" style="padding-top: 10px;">
+                                            <div class="col-lg-4" align="center">
+                                                
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <p:commandButton class="btn btn-primary" value="Print" icon="pi pi-print">
+                                                    <p:printer target="billForm" />
+                                                </p:commandButton>
+                                            </div>
+                                            <div class="col-lg-4" align="left">
+                                                <p:commandButton class="btn btn-primary" action="main.xhtml?faces-redirect=true" value="Back" >
+                                                </p:commandButton>
+                                            </div>
 
-                                    </div>
-                                </h:form>
-
-                                <h:form style="padding-top: 10px;">
-                                    <div class="col-lg-4" />
-                                    <div class="col-lg-4">
-                                        <p:commandButton class="btn btn-primary" value="Print" type="button" icon="pi pi-print" style="display:block;margin-bottom: 20px">
-                                            <p:printer target="reportPrint" />
-                                        </p:commandButton>
-                                    </div>
-
-                                    <div class="col-lg-4" />
-                                </h:form>
+                                        </div>
+                                    </h:form>
+                                </div>
                                 <!-- Default Size -->
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -473,21 +508,7 @@
         <script src="./../js/pages/tables/jquery-datatable.js"></script>
 
         <!-- Demo Js -->
-        <script src="./../js/demo.js"></script>        
-
-        <!-- Moment Plugin Js -->
-        <script src="./../plugins/momentjs/moment.js"></script>
-
-        <!-- Bootstrap Material Datetime Picker Plugin Js -->
-        <script src="./../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-
-        <!-- Bootstrap Datepicker Plugin Js -->
-        <script src="./../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-
-        <script src="./../js/pages/forms/basic-form-elements.js"></script>
-
-        <!-- Moment Plugin Js -->
-        <script src="../../plugins/momentjs/moment.js"></script>
+        <script src="./../js/demo.js"></script>
 
     </h:body>
 </html>

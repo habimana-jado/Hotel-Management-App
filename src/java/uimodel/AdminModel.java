@@ -2,9 +2,11 @@ package uimodel;
 
 import common.FileUpload;
 import common.PassCode;
+import dao.BookingDao;
 import dao.DeletedTransactionDao;
 import dao.FloorMasterDao;
 import dao.HotelConfigDao;
+import dao.HouseKeepingServiceDao;
 import dao.ItemCategoryDao;
 import dao.ItemDao;
 import dao.ItemUnitDao;
@@ -21,10 +23,12 @@ import dao.TableGroupDao;
 import dao.TableMasterDao;
 import dao.TableTransactionDao;
 import dao.UserDepartmentDao;
+import dao.VoucherDao;
 import domain.Booking;
 import domain.DeletedTransaction;
 import domain.FloorMaster;
 import domain.HotelConfig;
+import domain.HouseKeepingService;
 import domain.Item;
 import domain.ItemCategory;
 import domain.ItemUnit;
@@ -41,10 +45,14 @@ import domain.TableGroup;
 import domain.TableMaster;
 import domain.TableTransaction;
 import domain.UserDepartment;
+import domain.Voucher;
+import dto.FrontOfficeCollectionDto;
 import dto.TableTransactionDto;
+import enums.EPaymentMode;
 import enums.ERoomStatus;
 import enums.EStatus;
 import enums.ETableStatus;
+import enums.EType;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,6 +62,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -62,6 +71,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import org.joda.time.DateTime;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.chart.PieChartModel;
 import static uimodel.CashierModel.now;
@@ -169,6 +179,30 @@ public class AdminModel {
     private List<RoomService> services = new ServiceDao().findAll(RoomService.class);
     private String serviceCategoryId = new String();
     private RoomService chosenRoomService = new RoomService();
+    private List<Booking> roomPaymentBookings = new ArrayList<>();
+    private Date bookingFrom;
+    private Date bookingTo;
+    private Double amountCash = 0.0;
+    private Double amountMomo = 0.0;
+    private Double amountCard = 0.0;
+    private Double totalAmount = 0.0;
+    private Double discount = 0.0;
+    private List<FrontOfficeCollectionDto> roomCollections = new ArrayList<>();
+    private Double voucherTotal = 0.0;
+    private Double foodAndBeverageTotal = 0.0;
+    private List<Voucher> vouchers = new ArrayList<>();
+    private Double totalHouseKeeping = 0.0;
+    private RoomMaster chosenRoomMaster = new RoomMaster();
+    private Booking chosenBooking = new Booking();
+    private String currentDate = new String();
+    private String checkInDate = new String();
+    private String checkOutDate = new String();
+    private long days = 0;
+    private List<HouseKeepingService> houseKeepingServices = new ArrayList<>();
+    private Payment chosenPayment = new Payment();
+    private Double roomCharge = 0.0;
+    private Person waiter = new Person();
+    private Payment payment = new Payment();
 
     @PostConstruct
     public void init() {
@@ -229,11 +263,11 @@ public class AdminModel {
         loggedInUser = (Person) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session");
     }
 
-    public void returnAdmin() throws IOException{
+    public void returnAdmin() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(ec.getRequestContextPath() + "/pages/Admin/employee.xhtml");
     }
-    
+
     public void registerServiceCategory() {
         new ServiceCategoryDao().register(serviceCategory);
         serviceCategorys = new ServiceCategoryDao().findAll(ServiceCategory.class);
@@ -1092,6 +1126,109 @@ public class AdminModel {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Room Master Registered"));
     }
 
+    public void findBookingPaymentByDate() {
+        roomCollections = new BookingDao().findByDateBetweenAndPaidGroup(bookingFrom, bookingTo);
+
+        amountCash = 0.0;
+        amountCard = 0.0;
+        amountMomo = 0.0;
+        discount = 0.0;
+        totalAmount = 0.0;
+
+        roomPaymentBookings = new BookingDao().findByDateBetweenAndPaid(bookingFrom, bookingTo);
+
+        for (FrontOfficeCollectionDto b : roomCollections) {
+            amountCash = amountCash + b.getAmountPaidCash();
+            amountMomo = amountMomo + b.getAmountPaidMomo();
+            discount = discount + b.getDiscount();
+        }
+    }
+
+    public String redirectReprintInvoice(Booking b) throws ParseException {
+        voucherTotal = 0.0;
+        foodAndBeverageTotal = 0.0;
+        totalHouseKeeping = 0.0;
+        vouchers = new ArrayList<>();
+        chosenRoomMaster = b.getRoomMaster();
+        chosenBooking = b;
+        checkInDate = new SimpleDateFormat("dd MMM yyyy").format(chosenBooking.getCheckInPeriod());
+        checkOutDate = new SimpleDateFormat("dd MMM yyyy hh:mm").format(chosenBooking.getCheckOutDate());
+        currentDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
+        days = dateDifferenceInDays(new SimpleDateFormat("dd MMM yyyy").parse(checkOutDate), new SimpleDateFormat("dd MMM yyyy").parse(checkInDate));
+        tableTransactions = new TableTransactionDao().findByBookingAndPaymentMode(chosenBooking, EPaymentMode.POSTTOROOM);
+        houseKeepingServices = new HouseKeepingServiceDao().findByBooking(chosenBooking);
+
+        chosenPayment = new PaymentDao().findByBookingAndType(chosenBooking, EType.ROOM);
+        for (Voucher v : new VoucherDao().findAll(Voucher.class)) {
+            if (v.getBooking().getBookingId().equals(chosenBooking.getBookingId())) {
+                vouchers.add(v);
+                voucherTotal = voucherTotal + v.getCredit();
+            }
+        }
+        roomCharge = calculateRoomCharge();
+
+        for (TableTransaction t : tableTransactions) {
+            foodAndBeverageTotal = foodAndBeverageTotal + (t.getQuantity() * t.getItem().getUnitRate());
+        }
+
+        for (HouseKeepingService s : houseKeepingServices) {
+            totalHouseKeeping = totalHouseKeeping + (s.getQuantity() * s.getRoomService().getPrice());
+        }
+
+        for (TableTransaction t : tableTransactions) {
+            payment = t.getPayment();
+            tableMaster = t.getTableMaster();
+            waiter = t.getWaiter();
+        }
+        return "invoice.xhtml?faces-redirect=true";
+    }
+
+    private long dateDifferenceInDays(Date dateFrom, Date dateTo) {
+        long diffInMillies = Math.abs(dateTo.getTime() - dateFrom.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+        return diff;
+    }
+
+    private Double calculateRoomCharge() {
+        Double Charge = 0.0;
+
+        DateTime checkInTime = new DateTime(chosenBooking.getCheckInPeriod());
+        DateTime checkOutTime = new DateTime(chosenBooking.getCheckOutPeriod());
+
+        switch (Integer.parseInt(days + "")) {
+            case 0:
+                if (checkInTime.getHourOfDay() >= 0 && checkInTime.getHourOfDay() <= 5) {
+                    if (checkOutTime.getHourOfDay() < (11 + chosenBooking.getGraceTime())) {
+                        days = 1;
+                        Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice();
+                    } else if (checkOutTime.getHourOfDay() < 18) {
+                        days = 1;
+                        Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice();
+                    } else {
+                        days = 2;
+                        Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice() * 2;
+                    }
+                } else {
+                    days = 1;
+                    Charge = chosenBooking.getRoomMaster().getRoomCategory().getPrice();
+                }
+                break;
+            default:
+                if (checkOutTime.getHourOfDay() < (11 + chosenBooking.getGraceTime())) {
+                    Charge = days * chosenBooking.getRoomMaster().getRoomCategory().getPrice();
+                } else if (checkOutTime.getHourOfDay() < 18) {
+                    Charge = days * chosenBooking.getRoomMaster().getRoomCategory().getPrice();
+                } else if (checkOutTime.getHourOfDay() > 18) {
+                    days = days + 1;
+                    Charge = days * chosenBooking.getRoomMaster().getRoomCategory().getPrice();
+                }
+                break;
+        }
+
+        return Charge;
+    }
+    
     public void chooseItemEdit(Item i) {
         chosenItem = i;
     }
@@ -1854,6 +1991,198 @@ public class AdminModel {
 
     public void setChosenRoomCategory(RoomCategory chosenRoomCategory) {
         this.chosenRoomCategory = chosenRoomCategory;
+    }
+
+    public List<Booking> getRoomPaymentBookings() {
+        return roomPaymentBookings;
+    }
+
+    public void setRoomPaymentBookings(List<Booking> roomPaymentBookings) {
+        this.roomPaymentBookings = roomPaymentBookings;
+    }
+
+    public Date getBookingFrom() {
+        return bookingFrom;
+    }
+
+    public void setBookingFrom(Date bookingFrom) {
+        this.bookingFrom = bookingFrom;
+    }
+
+    public Date getBookingTo() {
+        return bookingTo;
+    }
+
+    public void setBookingTo(Date bookingTo) {
+        this.bookingTo = bookingTo;
+    }
+
+    public Double getAmountCash() {
+        return amountCash;
+    }
+
+    public void setAmountCash(Double amountCash) {
+        this.amountCash = amountCash;
+    }
+
+    public Double getAmountMomo() {
+        return amountMomo;
+    }
+
+    public void setAmountMomo(Double amountMomo) {
+        this.amountMomo = amountMomo;
+    }
+
+    public Double getAmountCard() {
+        return amountCard;
+    }
+
+    public void setAmountCard(Double amountCard) {
+        this.amountCard = amountCard;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public List<FrontOfficeCollectionDto> getRoomCollections() {
+        return roomCollections;
+    }
+
+    public void setRoomCollections(List<FrontOfficeCollectionDto> roomCollections) {
+        this.roomCollections = roomCollections;
+    }
+
+    public Double getVoucherTotal() {
+        return voucherTotal;
+    }
+
+    public void setVoucherTotal(Double voucherTotal) {
+        this.voucherTotal = voucherTotal;
+    }
+
+    public Double getFoodAndBeverageTotal() {
+        return foodAndBeverageTotal;
+    }
+
+    public void setFoodAndBeverageTotal(Double foodAndBeverageTotal) {
+        this.foodAndBeverageTotal = foodAndBeverageTotal;
+    }
+
+    public List<Voucher> getVouchers() {
+        return vouchers;
+    }
+
+    public void setVouchers(List<Voucher> vouchers) {
+        this.vouchers = vouchers;
+    }
+
+    public Double getTotalHouseKeeping() {
+        return totalHouseKeeping;
+    }
+
+    public void setTotalHouseKeeping(Double totalHouseKeeping) {
+        this.totalHouseKeeping = totalHouseKeeping;
+    }
+
+    public RoomMaster getChosenRoomMaster() {
+        return chosenRoomMaster;
+    }
+
+    public void setChosenRoomMaster(RoomMaster chosenRoomMaster) {
+        this.chosenRoomMaster = chosenRoomMaster;
+    }
+
+    public Booking getChosenBooking() {
+        return chosenBooking;
+    }
+
+    public void setChosenBooking(Booking chosenBooking) {
+        this.chosenBooking = chosenBooking;
+    }
+
+    public String getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    public String getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(String checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public String getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(String checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
+    public long getDays() {
+        return days;
+    }
+
+    public void setDays(long days) {
+        this.days = days;
+    }
+
+    public List<HouseKeepingService> getHouseKeepingServices() {
+        return houseKeepingServices;
+    }
+
+    public void setHouseKeepingServices(List<HouseKeepingService> houseKeepingServices) {
+        this.houseKeepingServices = houseKeepingServices;
+    }
+
+    public Payment getChosenPayment() {
+        return chosenPayment;
+    }
+
+    public void setChosenPayment(Payment chosenPayment) {
+        this.chosenPayment = chosenPayment;
+    }
+
+    public Double getRoomCharge() {
+        return roomCharge;
+    }
+
+    public void setRoomCharge(Double roomCharge) {
+        this.roomCharge = roomCharge;
+    }
+
+    public Person getWaiter() {
+        return waiter;
+    }
+
+    public void setWaiter(Person waiter) {
+        this.waiter = waiter;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
 }

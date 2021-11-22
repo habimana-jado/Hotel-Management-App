@@ -222,9 +222,6 @@ public class FrontOfficeModel {
         }
         roomCharge = calculateRoomCharge();
 
-//        for (Payment p : new PaymentDao().findByRoomBookingAndType(chosenBooking, EType.POST_TO_ROOM)) {
-//            foodAndBeverageTotal = foodAndBeverageTotal + p.getAmountPaidPostToRoom();
-//        }
         for (TableTransaction t : tableTransactions) {
             foodAndBeverageTotal = foodAndBeverageTotal + (t.getQuantity() * t.getItem().getUnitRate());
         }
@@ -264,9 +261,6 @@ public class FrontOfficeModel {
         }
         roomCharge = calculateRoomCharge();
 
-//        for (Payment p : new PaymentDao().findByRoomBookingAndType(chosenBooking, EType.POST_TO_ROOM)) {
-//            foodAndBeverageTotal = foodAndBeverageTotal + p.getAmountPaidPostToRoom();
-//        }
         for (TableTransaction t : tableTransactions) {
             foodAndBeverageTotal = foodAndBeverageTotal + (t.getQuantity() * t.getItem().getUnitRate());
         }
