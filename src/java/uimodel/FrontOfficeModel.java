@@ -39,7 +39,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
 
 /**
  *
@@ -105,6 +104,7 @@ public class FrontOfficeModel {
     private Boolean foodAndBeverageRendering = Boolean.FALSE;
     private Boolean extraServiceRendering = Boolean.FALSE;
     private String invoiceRendering = "All";
+    private List<Payment> paidRoomTransactions = new ArrayList<>();
 
     @PostConstruct
     public void init() {
@@ -446,7 +446,7 @@ public class FrontOfficeModel {
         }
         new RoomMasterDao().update(chosenRoomMaster);
         chosenRoomMaster = new RoomMaster();
-        
+
         allRooms = new RoomMasterDao().findAllSorted();
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Updated"));
@@ -629,21 +629,29 @@ public class FrontOfficeModel {
             discount = discount + b.getDiscount();
         }
     }
-    
-    public void checkRendering(){
+
+    public void checkRendering() {
         invoiceRendering = new String();
-        
-        if(foodAndBeverageRendering && extraServiceRendering){
+
+        if (foodAndBeverageRendering && extraServiceRendering) {
             invoiceRendering = "None";
-        }else if(extraServiceRendering){
+        } else if (extraServiceRendering) {
             invoiceRendering = "ExtraService";
-        }else if(foodAndBeverageRendering){
+        } else if (foodAndBeverageRendering) {
             invoiceRendering = "FoodAndBeverage";
-        }else{
+        } else {
             invoiceRendering = "All";
         }
-        
-        System.out.println("Invoice Rendering "+invoiceRendering);
+
+        System.out.println("Invoice Rendering " + invoiceRendering);
+    }
+
+    
+    public void retrieveRoomTransactions(Booking p) {
+        paidRoomTransactions.clear();
+        for (Payment pay : new PaymentDao().findByBookingAndStatus(p, "Completed")) {
+            paidRoomTransactions.add(pay);
+        }
     }
 
     public List<RoomMaster> getAllRooms() {
@@ -1088,6 +1096,14 @@ public class FrontOfficeModel {
 
     public void setInvoiceRendering(String invoiceRendering) {
         this.invoiceRendering = invoiceRendering;
+    }
+
+    public List<Payment> getPaidRoomTransactions() {
+        return paidRoomTransactions;
+    }
+
+    public void setPaidRoomTransactions(List<Payment> paidRoomTransactions) {
+        this.paidRoomTransactions = paidRoomTransactions;
     }
 
 }

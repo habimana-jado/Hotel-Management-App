@@ -180,7 +180,7 @@
                                                                     <label class="login2 pull-right pull-right-pro">From Date:</label>
                                                                 </div>
                                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                                    <p:datePicker value="#{frontOfficeModel.bookingFrom}" required="true" requiredMessage="Please Choose Date">
+                                                                    <p:datePicker value="#{frontOfficeModel.bookingFrom}" pattern="dd/MMM/yyyy" required="true" requiredMessage="Please Choose Date">
                                                                         <!--<f:convertDateTime pattern="dd/MM/yyyy" />-->
                                                                     </p:datePicker>
                                                                 </div>
@@ -192,7 +192,7 @@
                                                                     <label class="login2 pull-right pull-right-pro">To Date:</label>
                                                                 </div>
                                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                                    <p:datePicker value="#{frontOfficeModel.bookingTo}" required="true" requiredMessage="Please Choose Date">
+                                                                    <p:datePicker value="#{frontOfficeModel.bookingTo}" pattern="dd/MMM/yyyy" required="true" requiredMessage="Please Choose Date">
                                                                         <!--<f:convertDateTime pattern="dd/MM/yyyy" />-->
                                                                     </p:datePicker>
                                                                 </div>
@@ -225,7 +225,7 @@
                                             <center><h2>#{adminModel.hotel.hotelName}</h2></center>
                                             <center><h4>Room Collection Report</h4></center>
                                             <p:dataTable var="car" value="#{frontOfficeModel.roomPaymentBookings}">
-                                                <p:ajax event="rowToggle" listener="#{adminModel.retrieveRoomTransactions(car)}" update="trans" />
+                                                <p:ajax event="rowToggle" listener="#{frontOfficeModel.retrieveRoomTransactions(car)}" update="trans" />
                                                 <p:column style="width:32px">
                                                     <p:rowToggler ></p:rowToggler>
                                                 </p:column>
@@ -249,7 +249,7 @@
                                                 </p:column>
 
                                                 <p:rowExpansion>
-                                                    <p:dataTable id="trans" var="c" value="#{adminModel.paidRoomTransactions}">
+                                                    <p:dataTable id="trans" var="c" value="#{frontOfficeModel.paidRoomTransactions}">
                                                         <p:column headerText="Bill Date">
                                                             <h:outputText value="#{car.checkOutDate}" />
                                                         </p:column>
