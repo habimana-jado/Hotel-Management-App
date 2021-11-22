@@ -97,7 +97,7 @@
                     <div class="info-container">
                         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MADRAS HOTEL AND APARTS</div>
                         <!--<div class="email">john.doe@example.com</div>-->
-                        
+
                     </div>
                 </div>
                 <!-- User Info -->
@@ -248,7 +248,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-12" style="padding-left: 25px;">
                                                             <div class="row" style="padding-top: 10px;">
-                                                                <c:forEach items="#{frontOfficeModel.houseKeepingServices}" var="item">
+                                                                <c:forEach  rendered="#{frontOfficeModel.invoiceRendering == 'All' || frontOfficeModel.invoiceRendering != 'ExtraService'}" items="#{frontOfficeModel.houseKeepingServices}" var="item">
                                                                     <div class="col-lg-12" style="padding-left: 25px;">
                                                                         #{item.roomService.serviceName} - #{item.quantity} Pcs.
                                                                     </div>
@@ -269,7 +269,7 @@
                                                     </div>
                                                     <div class="row" style="padding-top: 10px;">
                                                         <div class="col-lg-4 text-left" style="padding-left: 50px;">
-                                                            <c:forEach items="#{frontOfficeModel.tableTransactions}" var="item">
+                                                            <c:forEach id="fb" rendered="#{frontOfficeModel.invoiceRendering == 'All' || frontOfficeModel.invoiceRendering != 'FoodAndBeverage'}" items="#{frontOfficeModel.tableTransactions}" var="item">
                                                                 <h6 class="text-left">#{item.quantity} #{item.item.itemName} </h6>
                                                                 <h6 class="text-left">Tariff: #{item.item.unitRate} /Pcs</h6>
                                                             </c:forEach>
@@ -322,6 +322,7 @@
                                             </div>                      
                                             <div class="col-lg-1 col-md-1 col-sm-1"></div>       
                                         </div>
+
                                         <div class="row" style="padding-top: 2px;">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-4">
@@ -334,7 +335,27 @@
                                         </div>
                                     </h:form>
                                     <h:form>
-                                        <div class="row">
+                                        <div class="row" style="padding-top: 5px;">
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-8">
+                                                <h6 class="text-left">Madras Hotel and Apartments EQUITY Bank Account No.: 99999999XXXXX99999  </h6>
+                                                <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-top: 10px;">
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-3">
+                                                <p:selectBooleanCheckbox value="#{frontOfficeModel.extraServiceRendering}" class="chk-col-light-blue" itemLabel="Print Without Extra Service"></p:selectBooleanCheckbox>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <p:selectBooleanCheckbox value="#{frontOfficeModel.foodAndBeverageRendering}" class="chk-col-light-green" itemLabel="Print Without Food and Beverage"/>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                                <h:commandButton class="btn btn-warning" value="Check" action="#{frontOfficeModel.checkRendering()}" />
+                                            </div>
+                                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                                        </div>
+                                        <div class="row" style="padding-top: 10px;">
                                             <div class="col-lg-4" align="center">
                                                 <p:commandButton class="btn btn-primary" action="#{frontOfficeModel.checkoutRoom()}" value="Check-out" >
                                                 </p:commandButton>

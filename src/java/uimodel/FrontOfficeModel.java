@@ -39,7 +39,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
+import org.slf4j.Logger;
 
 /**
  *
@@ -102,6 +102,9 @@ public class FrontOfficeModel {
     private Payment payment = new Payment();
     private TableMaster tableMaster = new TableMaster();
     private List<FrontOfficeCollectionDto> roomCollections = new ArrayList<>();
+    private Boolean foodAndBeverageRendering = Boolean.FALSE;
+    private Boolean extraServiceRendering = Boolean.FALSE;
+    private String invoiceRendering = "All";
 
     @PostConstruct
     public void init() {
@@ -626,6 +629,22 @@ public class FrontOfficeModel {
             discount = discount + b.getDiscount();
         }
     }
+    
+    public void checkRendering(){
+        invoiceRendering = new String();
+        
+        if(foodAndBeverageRendering && extraServiceRendering){
+            invoiceRendering = "None";
+        }else if(extraServiceRendering){
+            invoiceRendering = "ExtraService";
+        }else if(foodAndBeverageRendering){
+            invoiceRendering = "FoodAndBeverage";
+        }else{
+            invoiceRendering = "All";
+        }
+        
+        System.out.println("Invoice Rendering "+invoiceRendering);
+    }
 
     public List<RoomMaster> getAllRooms() {
         return allRooms;
@@ -1045,6 +1064,30 @@ public class FrontOfficeModel {
 
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
+    }
+
+    public Boolean getExtraServiceRendering() {
+        return extraServiceRendering;
+    }
+
+    public void setExtraServiceRendering(Boolean extraServiceRendering) {
+        this.extraServiceRendering = extraServiceRendering;
+    }
+
+    public Boolean getFoodAndBeverageRendering() {
+        return foodAndBeverageRendering;
+    }
+
+    public void setFoodAndBeverageRendering(Boolean foodAndBeverageRendering) {
+        this.foodAndBeverageRendering = foodAndBeverageRendering;
+    }
+
+    public String getInvoiceRendering() {
+        return invoiceRendering;
+    }
+
+    public void setInvoiceRendering(String invoiceRendering) {
+        this.invoiceRendering = invoiceRendering;
     }
 
 }

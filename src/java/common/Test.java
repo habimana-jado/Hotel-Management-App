@@ -19,11 +19,12 @@ import enums.EType;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 import uimodel.FrontOfficeModel;
 
 public class Test {
 
-    public static void main(String[] args) throws Exception {
+//    public static void main(String[] args) throws Exception {
 
 //        HibernateUtil.getSessionFactory().openSession();
 //        HibernateUtil.getSessionFactory().close();
@@ -121,9 +122,7 @@ public class Test {
 //        Date from = new DateTime(new Date()).plusDays(1).toDate();
 //
 //        System.out.println(new StockDao().isStockAvailable(from));
-
 //        Item i = new ItemDao().findOne(Item.class, "3384d0df-febe-4433-8b89-cc259ab4458d");
-
 //for (TableTransactionDto t : new TableTransactionDao().findTransactionDetailsByDateBetween("Completed", from, from)) {
 //    System.out.println(t.getItemName()+" "+t.getQuantity());
 //                    if (t.getItemName().equalsIgnoreCase(i.getItemName())) {
@@ -135,15 +134,12 @@ public class Test {
 //if(new PurchaseDao().findByItemAndDate(from, i) != null) {
 //            System.out.println(new PurchaseDao().findByItemAndDate(from, i).getQuantity());
 //        }
-
 //        Double total = 0.0;
 //        for(Payment p: new PaymentDao().findByStatusAndDateBetween("Completed", new Date(), new Date())){
 //            total = total + p.getDiscount();
 //        }
 //        
 //        System.out.println("Total = " + total);
-
-
 //        for(Payment p: new PaymentDao().findByStatusAndDateBetweenAndMobileNumber("Completed", new Date(), new Date())){
 //            System.out.println(p.getMobileNumber());
 //        }
@@ -151,14 +147,12 @@ public class Test {
 //            System.out.println(p.getMobileNumber() +" "+p.getAmountPaidCredit());
 //        }
 //        System.out.println("Hotel = "+new HotelConfigDao().findOne(HotelConfig.class, Long.parseLong("1")).getHotelName());
-
-        Date from = new SimpleDateFormat("dd/MM/yyyy hh:mm").parse("31/07/2021 00:30");
-        Date to = new SimpleDateFormat("dd/MM/yyyy hh:mm").parse("31/07/2022 23:00");
+//        Date from = new SimpleDateFormat("dd/MM/yyyy hh:mm").parse("31/07/2021 00:30");
+//        Date to = new SimpleDateFormat("dd/MM/yyyy hh:mm").parse("31/07/2022 23:00");
 //        
 //        for(TableTransactionDto t: new TableTransactionDao().findTransactionDetailsByDateAndHourBetween("Completed", from, to)){
 //            System.out.println(t.getQuantity());
 //        }
-
 //         Rectangle small = new Rectangle(292, 720);
 //        Font smallfont = new Font(Font.HELVETICA, 10);
 //        Font boldfont = new Font(Font.HELVETICA, 10, Font.BOLD);
@@ -188,12 +182,84 @@ public class Test {
 //        for(Payment t : new PaymentDao().findByStatusAndDateBetweenAndNotRoomPayment("Completed", from, to)){
 //            System.out.println(t.getAmountPaid());
 //        }
-
 //        System.out.println(new PaymentDao().findByBookingAndType(new BookingDao().findOne(Booking.class, "6dcbd9a1-efb3-400a-9bed-72f3c2eb8bfb"), EType.ROOM));
+//        for(FrontOfficeCollectionDto f: new BookingDao().findByDateBetweenAndPaidGroup(from, to)){
+//            System.out.println(f.getAmount()+"----"+f.getDiscount()+"----"+f.getGuestName()+"----"+f.getRoomNo()+"---"+f.getAmountPaidCash()+"---"+f.getAmountPaidMomo());
+//            
+//        }
+//        int arr[] = {1, 3, 5, 8, 10};
+//
+//        new Test().test(arr);
+
         
-        for(FrontOfficeCollectionDto f: new BookingDao().findByDateBetweenAndPaidGroup(from, to)){
-            System.out.println(f.getAmount()+"----"+f.getDiscount()+"----"+f.getGuestName()+"----"+f.getRoomNo()+"---"+f.getAmountPaidCash()+"---"+f.getAmountPaidMomo());
-            
+//    }
+public static void main(String args[]) {
+
+        int i, s, j, p;
+        int arr[] = new int[100];
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter size of an array:");
+        s = sc.nextInt();
+
+        System.out.print("Enter array elements:");
+        for (i = 0; i < s; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("All prime numbers are:");
+
+        for (i = 0; i < s; i++) {
+            j = 2;
+            p = 1;
+            while (j < arr[i]) {
+                if (arr[i] % j == 0) {
+                    p = 0;
+                    break;
+                }
+                j++;
+            }
+            if (p == 1) {
+                System.out.print(" " + arr[i]);
+            }
+        }
+
+    }
+    public int[] isPrimeThenReplace(int arr[]) {
+
+        int[] returnedValue = new int[arr.length];
+
+        for (int i = 2; i < arr.length; i++) {
+
+            if (arr[i] % i + 2 == 0) {
+                arr[i] = -1;
+//                break;
+            }
+
+            System.out.println("Out = " + arr[i]);
+        }
+
+//        for(int i=0; i<arr.length; i++){
+//            System.out.println(returnedValue[i]);
+//        }
+        return returnedValue;
+    }
+
+    public void test(int array[]) {
+        for (int i = 0; i < array.length; i++) {
+            boolean isPrime = true;
+
+            for (int j = 2; j < i; j++) {
+
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                System.out.println(i + " are the prime numbers in the array ");
+            }
         }
     }
 }
