@@ -246,8 +246,10 @@
                                                 </p:column>
                                                 <p:column headerText="Cashier">
                                                     <h:outputText value="#{car.payment.cashier.names}" />
+                                                </p:column>                                                
+                                                <p:column headerText="Action">
+                                                    <h:commandButton class="btn btn-link btn-success btn-sm" action="#{frontOfficeModel.redirectReprintInvoice(car)}" value="Invoice" />
                                                 </p:column>
-
                                                 <p:rowExpansion>
                                                     <p:dataTable id="trans" var="c" value="#{frontOfficeModel.paidRoomTransactions}">
                                                         <p:column headerText="Bill Date">

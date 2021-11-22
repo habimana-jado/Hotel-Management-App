@@ -241,6 +241,48 @@ public class FrontOfficeModel {
         return "checkout.xhtml?faces-redirect=true";
     }
 
+    public String redirectReprintInvoice(Booking b) throws ParseException {
+        voucherTotal = 0.0;
+        foodAndBeverageTotal = 0.0;
+        totalHouseKeeping = 0.0;
+        vouchers = new ArrayList<>();
+        chosenRoomMaster = b.getRoomMaster();
+        chosenBooking = b;
+        checkInDate = new SimpleDateFormat("dd MMM yyyy").format(chosenBooking.getCheckInPeriod());
+        checkOutDate = new SimpleDateFormat("dd MMM yyyy hh:mm").format(chosenBooking.getCheckOutDate());
+        currentDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
+        days = dateDifferenceInDays(new SimpleDateFormat("dd MMM yyyy").parse(checkOutDate), new SimpleDateFormat("dd MMM yyyy").parse(checkInDate));
+        tableTransactions = new TableTransactionDao().findByBookingAndPaymentMode(chosenBooking, EPaymentMode.POSTTOROOM);
+        houseKeepingServices = new HouseKeepingServiceDao().findByBooking(chosenBooking);
+
+        chosenPayment = new PaymentDao().findByBookingAndType(chosenBooking, EType.ROOM);
+        for (Voucher v : new VoucherDao().findAll(Voucher.class)) {
+            if (v.getBooking().getBookingId().equals(chosenBooking.getBookingId())) {
+                vouchers.add(v);
+                voucherTotal = voucherTotal + v.getCredit();
+            }
+        }
+        roomCharge = calculateRoomCharge();
+
+//        for (Payment p : new PaymentDao().findByRoomBookingAndType(chosenBooking, EType.POST_TO_ROOM)) {
+//            foodAndBeverageTotal = foodAndBeverageTotal + p.getAmountPaidPostToRoom();
+//        }
+        for (TableTransaction t : tableTransactions) {
+            foodAndBeverageTotal = foodAndBeverageTotal + (t.getQuantity() * t.getItem().getUnitRate());
+        }
+
+        for (HouseKeepingService s : houseKeepingServices) {
+            totalHouseKeeping = totalHouseKeeping + (s.getQuantity() * s.getRoomService().getPrice());
+        }
+
+        for (TableTransaction t : tableTransactions) {
+            payment = t.getPayment();
+            tableMaster = t.getTableMaster();
+            waiter = t.getWaiter();
+        }
+        return "invoice.xhtml?faces-redirect=true";
+    }
+
     public String navigateBooking(RoomMaster m) {
         voucher = new Voucher();
         booking = new Booking();
@@ -263,7 +305,7 @@ public class FrontOfficeModel {
         Double Charge = 0.0;
 
         DateTime checkInTime = new DateTime(chosenBooking.getCheckInPeriod());
-        DateTime checkOutTime = new DateTime(new Date());
+        DateTime checkOutTime = new DateTime(chosenBooking.getCheckOutPeriod());
 
         switch (Integer.parseInt(days + "")) {
             case 0:
