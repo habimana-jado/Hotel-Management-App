@@ -2,6 +2,7 @@ package dao;
 
 import domain.RoomMaster;
 import enums.ERoomStatus;
+import enums.ETableStatus;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -30,4 +31,13 @@ public class RoomMasterDao extends GenericDao<RoomMaster>{
         return list;
     }
       
+    public Long findTotalByStatus(ERoomStatus status) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Query q = s.createQuery("SELECT COUNT(a.roomId) FROM RoomMaster a WHERE a.roomStatus = :x");
+        q.setParameter("x", status);
+        Long list = (Long) q.uniqueResult();
+        s.close();
+        return list;
+    }
+
 }

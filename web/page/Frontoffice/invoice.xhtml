@@ -237,45 +237,49 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row" style="padding-left: 25px;">
-                                                        <div class="col-lg-6" style="padding-left: 10px;">
-                                                            Extra Service:
-                                                        </div>
-                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
-                                                            #{frontOfficeModel.totalHouseKeeping}
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12" style="padding-left: 25px;">
-                                                            <div class="row" style="padding-top: 10px;">
-                                                                <c:forEach  rendered="#{frontOfficeModel.invoiceRendering == 'All' || frontOfficeModel.invoiceRendering != 'ExtraService'}" items="#{frontOfficeModel.houseKeepingServices}" var="item">
-                                                                    <div class="col-lg-12" style="padding-left: 25px;">
-                                                                        #{item.roomService.serviceName} - #{item.quantity} Pcs.
-                                                                    </div>
-                                                                    <div class="col-lg-12" style="padding-left: 25px; padding-bottom: 10px;">
-                                                                        Rate @ #{item.roomService.price} / Per Pcs.
-                                                                    </div>
-                                                                </c:forEach>
+                                                    <p:outputPanel id="extraService" rendered="#{frontOfficeModel.invoiceRendering == 'All' || frontOfficeModel.invoiceRendering != 'ExtraService'}">
+                                                        <div class="row" style="padding-left: 25px;">
+                                                            <div class="col-lg-6" style="padding-left: 10px;">
+                                                                Extra Service:
+                                                            </div>
+                                                            <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                                #{frontOfficeModel.totalHouseKeeping}
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row" style="padding-left: 25px;">
-                                                        <div class="col-lg-6" style="padding-left: 10px;">
-                                                            Food and Beverage:
+                                                        <div class="row">
+                                                            <div class="col-lg-12" style="padding-left: 25px;">
+                                                                <div class="row" style="padding-top: 10px;">
+                                                                    <c:forEach items="#{frontOfficeModel.houseKeepingServices}" var="item">
+                                                                        <div class="col-lg-12" style="padding-left: 25px;">
+                                                                            #{item.roomService.serviceName} - #{item.quantity} Pcs.
+                                                                        </div>
+                                                                        <div class="col-lg-12" style="padding-left: 25px; padding-bottom: 10px;">
+                                                                            Rate @ #{item.roomService.price} / Per Pcs.
+                                                                        </div>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-6" align="right" style="padding-right: 50px;">
-                                                            #{frontOfficeModel.foodAndBeverageTotal}
+                                                    </p:outputPanel>
+                                                    <p:outputPanel id="foodAndBeverage" rendered="#{frontOfficeModel.invoiceRendering == 'All' || frontOfficeModel.invoiceRendering != 'FoodAndBeverage'}">
+                                                        <div class="row" style="padding-left: 25px;">
+                                                            <div class="col-lg-6" style="padding-left: 10px;">
+                                                                Food and Beverage:
+                                                            </div>
+                                                            <div class="col-lg-6" align="right" style="padding-right: 50px;">
+                                                                #{frontOfficeModel.foodAndBeverageTotal}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row" style="padding-top: 10px;">
-                                                        <div class="col-lg-4 text-left" style="padding-left: 50px;">
-                                                            <c:forEach id="fb" rendered="#{frontOfficeModel.invoiceRendering == 'All' || frontOfficeModel.invoiceRendering != 'FoodAndBeverage'}" items="#{frontOfficeModel.tableTransactions}" var="item">
-                                                                <h6 class="text-left">#{item.quantity} #{item.item.itemName} </h6>
-                                                                <h6 class="text-left">Tariff: #{item.item.unitRate} /Pcs</h6>
-                                                            </c:forEach>
-                                                        </div>
-                                                        <div class="col-lg-7" ></div>
-                                                    </div>                                
+                                                        <div class="row" style="padding-top: 10px;">
+                                                            <div class="col-lg-4 text-left" style="padding-left: 50px;">
+                                                                <c:forEach id="fb" items="#{frontOfficeModel.tableTransactions}" var="item">
+                                                                    <h6 class="text-left">#{item.quantity} #{item.item.itemName} </h6>
+                                                                    <h6 class="text-left">Tariff: #{item.item.unitRate} /Pcs</h6>
+                                                                </c:forEach>
+                                                            </div>
+                                                            <div class="col-lg-7" ></div>
+                                                        </div>   
+                                                    </p:outputPanel>
                                                     <div class="row">
                                                         <div class="col-lg-6">
 

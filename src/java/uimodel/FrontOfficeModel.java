@@ -105,10 +105,23 @@ public class FrontOfficeModel {
     private Boolean extraServiceRendering = Boolean.FALSE;
     private String invoiceRendering = "All";
     private List<Payment> paidRoomTransactions = new ArrayList<>();
+    private String newDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
+    private Long availableRoom;
+    private Long occupiedRoom;
+    private Long maintenanceRoom;
+    private Long housekeepingRoom;
 
     @PostConstruct
     public void init() {
         userInit();
+        calculateTotalRoomStatuses();
+    }
+
+    public void calculateTotalRoomStatuses() {
+        availableRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.AVAILABLE);
+        maintenanceRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.REPAIR);
+        occupiedRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.TAKEN);
+        housekeepingRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.CLEANING);
     }
 
     public void userInit() {
@@ -144,8 +157,9 @@ public class FrontOfficeModel {
             new RoomMasterDao().update(chosenRoomMaster);
             allRooms = new RoomMasterDao().findAllSorted();
 
-//            booking = new Booking();
             visitor = new Visitor();
+            
+            calculateTotalRoomStatuses();
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Checked-In"));
             return "add-voucher.xhtml?faces-redirect=true";
@@ -491,7 +505,6 @@ public class FrontOfficeModel {
     public String checkoutRoom() {
         Booking book = new BookingDao().findOne(Booking.class, chosenRoomMaster.getCuurentBookingId());
 
-//        Payment payment = new BookingDao().findOne(Booking.class, chosenRoomMaster.getCuurentBookingId()).getPayment();
         for (Payment payment : new PaymentDao().findByBookingAndStatus(book, "Initialized")) {
             switch (payment.getPaymentType()) {
                 case POST_TO_ROOM:
@@ -590,11 +603,10 @@ public class FrontOfficeModel {
                 default:
                     break;
             }
-//            payment.setDiscount(discount);
             payment.setPaymentDate(new Date());
             payment.setStatus("Completed");
-//            payment.setAmountPaid(foodAndBeverageTotal + totalHouseKeeping + roomCharge - discount);
             new PaymentDao().update(payment);
+
         }
 
         chosenRoomMaster.setRoomStatus(ERoomStatus.CLEANING);
@@ -605,6 +617,9 @@ public class FrontOfficeModel {
         book.setCheckOutPeriod(new Timestamp(System.currentTimeMillis()));
         book.setDaysSpent(Integer.parseInt(days + ""));
         new BookingDao().update(book);
+
+        calculateTotalRoomStatuses();
+
         return "main.xhtml?faces-redirect=true";
     }
 
@@ -682,7 +697,6 @@ public class FrontOfficeModel {
         System.out.println("Invoice Rendering " + invoiceRendering);
     }
 
-    
     public void retrieveRoomTransactions(Booking p) {
         paidRoomTransactions.clear();
         for (Payment pay : new PaymentDao().findByBookingAndStatus(p, "Completed")) {
@@ -1140,6 +1154,46 @@ public class FrontOfficeModel {
 
     public void setPaidRoomTransactions(List<Payment> paidRoomTransactions) {
         this.paidRoomTransactions = paidRoomTransactions;
+    }
+
+    public String getNewDate() {
+        return newDate;
+    }
+
+    public void setNewDate(String newDate) {
+        this.newDate = newDate;
+    }
+
+    public Long getAvailableRoom() {
+        return availableRoom;
+    }
+
+    public void setAvailableRoom(Long availableRoom) {
+        this.availableRoom = availableRoom;
+    }
+
+    public Long getOccupiedRoom() {
+        return occupiedRoom;
+    }
+
+    public void setOccupiedRoom(Long occupiedRoom) {
+        this.occupiedRoom = occupiedRoom;
+    }
+
+    public Long getMaintenanceRoom() {
+        return maintenanceRoom;
+    }
+
+    public void setMaintenanceRoom(Long maintenanceRoom) {
+        this.maintenanceRoom = maintenanceRoom;
+    }
+
+    public Long getHousekeepingRoom() {
+        return housekeepingRoom;
+    }
+
+    public void setHousekeepingRoom(Long housekeepingRoom) {
+        this.housekeepingRoom = housekeepingRoom;
     }
 
 }
