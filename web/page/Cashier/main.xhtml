@@ -8,7 +8,7 @@
     <h:head>
         <meta charset="UTF-8"/>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-        <title>SDORG</title>
+        <title>HMA</title>
         <!-- Favicon-->
         <link rel="icon" href="./../favicon.ico" type="image/x-icon"/>
 
@@ -26,31 +26,31 @@
         <link href="./../plugins/animate-css/animate.css" rel="stylesheet" />
 
         <!-- Sweet Alert Css -->
-        <link href="./../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+        <!--<link href="./../plugins/sweetalert/sweetalert.css" rel="stylesheet" />-->
 
         <!-- Custom Css -->
         <link href="./../css/style.css" rel="stylesheet"/>
 
         <!-- JQuery DataTable Css -->
-        <link href="./../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"/>
+        <!--<link href="./../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"/>-->
 
         <!-- Bootstrap Material Datetime Picker Css -->
-        <link href="./../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+        <!--<link href="./../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />-->
 
         <!-- Bootstrap DatePicker Css -->
-        <link href="./../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+        <!--<link href="./../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />-->
 
         <!-- Wait Me Css -->
-        <link href="./../plugins/waitme/waitMe.css" rel="stylesheet" />
+        <!--<link href="./../plugins/waitme/waitMe.css" rel="stylesheet" />-->
 
         <!-- Bootstrap Select Css -->
         <link href="./../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
         <!-- Moment Plugin Js -->
-        <script src="./../plugins/momentjs/moment.js"></script>
+        <!--<script src="./../plugins/momentjs/moment.js"></script>-->
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-        <link href="./../css/themes/all-themes.css" rel="stylesheet" />
+        <link href="./../css/themes/theme-blue.css" rel="stylesheet" />
     </h:head>
     <h:body class="theme-blue">
         <!-- Page Loader -->
@@ -104,7 +104,7 @@
             <!-- Left Sidebar -->
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
-                
+
                 <!-- User Info -->
 
                 <!-- #User Info -->
@@ -368,7 +368,6 @@
                 <p:dialog header="Restaurant Payment" id="dialogPayment" widgetVar="dlgpayment" modal="true">
                     <p:ajax update="tablelist, leftMenu" event="close" listener="#{cashierModel.updatePaymentTables()}" />
                     <h:form id="restaurantpayment">
-                        <p:growl />
                         <div class="row">                        
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="row">
@@ -426,11 +425,12 @@
                                             <td>#{cashierModel.totalBilledBeverage}</td>                                        
                                             <td>Food Amount:</td>
                                             <td>#{cashierModel.totalBilledFoods}</td>
-                                            <td>Gross Amount:</td>
+                                            <td>Net Amount:</td>
                                             <td>#{cashierModel.totalBilledBeverage + cashierModel.totalBilledFoods}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
+
 
                                 <div class="form-group-inner">
                                     <div class="row">
@@ -453,15 +453,10 @@
                                                 <f:selectItem itemValue="CASH" itemLabel="CASH" />
                                                 <f:selectItem itemValue="MOBILEMONEY" itemLabel="MOBILE MONEY" />
                                                 <f:selectItem itemValue="CASH + MOBILE MONEY" itemLabel="CASH + MOBILE MONEY" />
-                                                <f:selectItem itemValue="CARD" itemLabel="CARD" />
-                                                <f:selectItem itemValue="CARD + MOBILE MONEY" itemLabel="CARD + MOBILE MONEY" />
-                                                <f:selectItem itemValue="CASH + CARD" itemLabel="CARD + CASH" />
-
                                                 <f:selectItem itemValue="NC" itemLabel="NC" />
                                                 <f:selectItem itemValue="CREDIT" itemLabel="CREDIT" />
                                                 <f:selectItem itemValue="CASH + CREDIT" itemLabel="CASH + CREDIT" />
                                                 <f:selectItem itemValue="CREDIT + MOBILE MONEY" itemLabel="MOBILE MONEY + CREDIT" />
-                                                <f:selectItem itemValue="POSTTOROOM" itemLabel="POSTTOROOM" />
                                             </h:selectOneMenu>
                                         </div>
                                     </div>
@@ -520,55 +515,6 @@
                                         </div>
                                     </div>
                                 </h:panelGrid>
-                                <h:panelGrid columns="2" id="cardMomo" rendered="#{cashierModel.paymentMode == 'CARD + MOBILE MONEY'}">    
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <label class="login2 pull-right pull-right-pro">Mobile Money:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
-                                            <h:inputText value="#{cashierModel.momo3}" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="row" >
-                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <label class="login2 pull-right pull-right-pro">Card:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
-                                            <h:inputText value="#{cashierModel.card1}" class="form-control" />
-                                        </div>
-                                    </div>
-                                </h:panelGrid>
-                                <h:panelGrid columns="2" id="cashCard" rendered="#{cashierModel.paymentMode == 'CASH + CARD'}">    
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <label class="login2 pull-right pull-right-pro">Cash:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                            <h:inputText value="#{cashierModel.cash3}" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <label class="login2 pull-right pull-right-pro">Card:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                            <h:inputText value="#{cashierModel.card2}" class="form-control" />
-                                        </div>
-                                    </div>
-                                </h:panelGrid>
-                                <h:panelGrid columns="2" id="postToRoom" rendered="#{cashierModel.paymentMode == 'POSTTOROOM'}">    
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <label class="login2 pull-right pull-right-pro">Room:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
-                                            <h:selectOneMenu class="form-control" value="#{cashierModel.roomId}" >
-                                                <f:selectItems value="#{cashierModel.occupiedRooms}" var="el"  itemValue="#{el.roomId}" itemLabel="#{el.roomNumber}" />
-                                            </h:selectOneMenu>
-                                        </div>
-                                    </div>
-
-                                </h:panelGrid>
                                 <div class="form-group-inner" style="padding-top: 20px;">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -581,6 +527,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>  
                     </h:form>
@@ -588,7 +535,7 @@
 
                 <div>
                     <h:form id="leftMenu">
-                        
+
                     </h:form>
                 </div>
 
@@ -722,28 +669,28 @@
         <script src="./../plugins/node-waves/waves.js"></script>
 
         <!-- Jquery DataTable Plugin Js -->
-        <script src="./../plugins/jquery-datatable/jquery.dataTables.js"></script>
-        <script src="./../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-        <script src="./../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-        <script src="./../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-        <script src="./../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-        <script src="./../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-        <script src="./../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-        <script src="./../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-        <script src="./../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+        <!--        <script src="./../plugins/jquery-datatable/jquery.dataTables.js"></script>
+                <script src="./../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+                <script src="./../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+                <script src="./../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+                <script src="./../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+                <script src="./../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+                <script src="./../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+                <script src="./../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+                <script src="./../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>-->
 
         <!-- Custom Js -->
         <script src="./../js/admin.js"></script>
-        <script src="./../js/pages/tables/jquery-datatable.js"></script>
+        <!--<script src="./../js/pages/tables/jquery-datatable.js"></script>-->
 
         <!-- Demo Js -->
-        <script src="./../js/demo.js"></script>        
+        <!--<script src="./../js/demo.js"></script>-->        
 
         <!-- Moment Plugin Js -->
-        <script src="./../plugins/momentjs/moment.js"></script>
+        <!--<script src="./../plugins/momentjs/moment.js"></script>-->
 
         <!-- Bootstrap Material Datetime Picker Plugin Js -->
-        <script src="./../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+        <!--<script src="./../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>-->
 
         <!-- Bootstrap Datepicker Plugin Js -->
         <script src="./../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
@@ -751,7 +698,7 @@
         <script src="./../js/pages/forms/basic-form-elements.js"></script>
 
         <!-- Moment Plugin Js -->
-        <script src="../../plugins/momentjs/moment.js"></script>
+        <!--<script src="../../plugins/momentjs/moment.js"></script>-->
 
     </h:body>
 </html>

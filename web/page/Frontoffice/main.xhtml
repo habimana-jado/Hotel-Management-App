@@ -8,7 +8,7 @@
     <h:head>
         <meta charset="UTF-8"/>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-        <title>SDORG</title>
+        <title>HMA</title>
         <!-- Favicon-->
         <link rel="icon" href="./../favicon.ico" type="image/x-icon"/>
 
@@ -110,16 +110,12 @@
                 <!-- #User Info -->
                 <!-- Menu -->
                 <div class="menu" >
-                    <div align="left">
-                        <h4 style="background-color: #c8cac9">Date as on: #{cashierModel.newDate}</h4>
-                        <h5 style="padding-top: 10px;">Your Collection: #{cashierModel.dailyCollection}</h5>
-                        <h5 style="padding-top: 10px;">Table Billed: #{cashierModel.dailyBilled}</h5>
-                    </div>
-                    <div align="left" style="padding-top: 20px;">
-                        <h2><span class="btn btn-success btn-block btn-lg">Available: #{cashierModel.availableTable}</span></h2>
-                        <h2><span class="btn btn-danger btn-block btn-lg">Occupied: #{cashierModel.occupiedTable}</span></h2>
-                        <h2><span class="btn btn-primary btn-block btn-lg">Billed: #{cashierModel.billedTable}</span></h2>
-                        <h2><span class="btn bg-black btn-block btn-lg">Total: #{cashierModel.occupiedTable + cashierModel.billedTable + cashierModel.availableTable}</span></h2>
+                    <div align="left" style="padding-top: 2px;">
+                        <h2><span class="btn btn-success btn-block btn-lg">Available: #{frontOfficeModel.availableRoom}</span></h2>
+                        <h2><span class="btn btn-danger btn-block btn-lg">Occupied: #{frontOfficeModel.occupiedRoom}</span></h2>
+                        <h2><span class="btn btn-warning btn-block btn-lg">Maintenance: #{frontOfficeModel.maintenanceRoom}</span></h2>
+                        <h2><span class="btn btn-primary btn-block btn-lg">Housekeeping: #{frontOfficeModel.housekeepingRoom}</span></h2>
+                        <h2><span class="btn bg-black btn-block btn-lg">Total: #{frontOfficeModel.availableRoom + frontOfficeModel.occupiedRoom + frontOfficeModel.maintenanceRoom + frontOfficeModel.housekeepingRoom}</span></h2>
                     </div>
                     <ul class="list">
                         <li class="header">MENU</li>
@@ -479,6 +475,9 @@
                                                                         <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
                                                                             <h:outputLabel value="#{item.roomNumber}" class="btn btn-block btn-success" />                                                                       
                                                                         </c:when>
+                                                                        <c:when test="#{item.roomStatus eq 'REPAIR'}">
+                                                                            <h:outputLabel value="#{item.roomNumber}" class="btn btn-block btn-warning" />                                                                       
+                                                                        </c:when>
                                                                     </c:choose> 
                                                                 </div>
                                                                 <div class="row">
@@ -492,6 +491,9 @@
                                                                             </c:when>
                                                                             <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
                                                                                 <h:outputLabel value="Available" />                                                                       
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'REPAIR'}">
+                                                                                <h:outputLabel value="Maintenance" />                                                                       
                                                                             </c:when>
                                                                         </c:choose>                                                                 
                                                                     </div>
@@ -510,6 +512,9 @@
                                                                                     <p:commandButton style="height: 32px;"  action="#{frontOfficeModel.navigateBooking(item)}" class="btn btn-bg-cl-google-tw border" value="Check-In" >
                                                                                     </p:commandButton>                                                                       
                                                                                 </c:when>
+                                                                                <c:when test="#{item.roomStatus eq 'REPAIR'}">
+                                                                                    <h:outputLabel value="Blocked" />                                                                  
+                                                                                </c:when>
                                                                             </c:choose>
                                                                         </div>
                                                                     </div>
@@ -526,6 +531,9 @@
                                                                             <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
                                                                                 <h:outputLabel value="#{item.roomCategory.roomCategoryName} #{item.roomCategory.price}" />                                                                       
                                                                             </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'REPAIR'}">
+                                                                                <h:outputLabel value="#{item.roomCategory.roomCategoryName} #{item.roomCategory.price}" style="padding-top: 5px;" />                                                                       
+                                                                            </c:when>
                                                                         </c:choose>     
                                                                     </div>
                                                                     <div class="col-sm-6">
@@ -539,6 +547,9 @@
                                                                                 </p:commandButton>                                                                     
                                                                             </c:when>
                                                                             <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
+                                                                                <h:outputLabel value="At Glance" />                                                                       
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'REPAIR'}">
                                                                                 <h:outputLabel value="At Glance" />                                                                       
                                                                             </c:when>
                                                                         </c:choose>                                                                 
@@ -556,6 +567,9 @@
                                                                             <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
                                                                                 <h:commandButton style="height: 32px;"  class="btn btn-link" value="#{item.floorMaster.floorName}" />                                                           
                                                                             </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'REPAIR'}">
+                                                                                <h:commandButton style="height: 32px;"  class="btn btn-link" value="#{item.floorMaster.floorName}" />                                                           
+                                                                            </c:when>
                                                                         </c:choose> 
                                                                     </div>
                                                                     <div class="col-sm-6">
@@ -568,6 +582,9 @@
                                                                             </c:when>
                                                                             <c:when test="#{item.roomStatus eq 'AVAILABLE'}">
                                                                                 <h:commandButton class="btn btn-link" value="History" />                                                           
+                                                                            </c:when>
+                                                                            <c:when test="#{item.roomStatus eq 'REPAIR'}">
+                                                                                <h:outputLabel value="History" />                                                                       
                                                                             </c:when>
                                                                         </c:choose>  
                                                                     </div>

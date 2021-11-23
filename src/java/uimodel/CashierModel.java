@@ -670,33 +670,35 @@ public class CashierModel {
         }
     }
 
+    
     public void payTransaction() {
 
         RoomMaster rm = new RoomMasterDao().findOne(RoomMaster.class, roomId);
 
         nowDate = now();
         try {
-            if (paymentMode.equalsIgnoreCase("CASH + MOBILE MONEY")) {
-                if (cash1 < 1 || momo1 < 1) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Cash + Momo"));
-                }
-            } else if (paymentMode.equalsIgnoreCase("CASH + CREDIT")) {
-                if (cash2 < 1 || credit1 < 1) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Cash + Credit"));
-                }
-            } else if (paymentMode.equalsIgnoreCase("CREDIT + MOBILE MONEY")) {
-                if (credit2 < 1 || momo2 < 1) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Credit + Momo"));
-                }
-            } else if (paymentMode.equalsIgnoreCase("CARD + MOBILE MONEY")) {
-                if (card1 < 1 || momo3 < 1) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Card + Momo"));
-                }
-            } else if (paymentMode.equalsIgnoreCase("CASH + CARD")) {
-                if (cash3 < 1 || card2 < 1) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Cash + Card"));
-                }
-            } else {
+//            if (paymentMode.equalsIgnoreCase("CASH + MOBILE MONEY")) {
+//                System.out.println("Failed");
+//                if (cash1 < 1 || momo1 < 1) {
+//                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Cash + Momo"));
+//                }
+//            } else if (paymentMode.equalsIgnoreCase("CASH + CREDIT")) {
+//                if (cash2 < 1 || credit1 < 1) {
+//                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Cash + Credit"));
+//                }
+//            } else if (paymentMode.equalsIgnoreCase("CREDIT + MOBILE MONEY")) {
+//                if (credit2 < 1 || momo2 < 1) {
+//                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Credit + Momo"));
+//                }
+//            } else if (paymentMode.equalsIgnoreCase("CARD + MOBILE MONEY")) {
+//                if (card1 < 1 || momo3 < 1) {
+//                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Card + Momo"));
+//                }
+//            } else if (paymentMode.equalsIgnoreCase("CASH + CARD")) {
+//                if (cash3 < 1 || card2 < 1) {
+//                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fill Cash + Card"));
+//                }
+//            } else {
                 TableMaster master = new TableMaster();
                 String billId = UUID.randomUUID().toString().substring(0, 5);
 
@@ -712,7 +714,7 @@ public class CashierModel {
 
                     payment.setAmountPaid(payment.getAmountPaid() + table.getTotalPrice());
 
-                }
+//                }
 
                 if (paymentMode.equalsIgnoreCase("CASH")) {
                     payment.setPaymentMode(EPaymentMode.CASH);
@@ -727,6 +729,7 @@ public class CashierModel {
                     payment.setPaymentMode(EPaymentMode.MOBILEMONEY);
                     payment.setAmountPaidMomo(payment.getAmountPaid());
                 } else if (paymentMode.equalsIgnoreCase("CASH + MOBILE MONEY")) {
+                System.out.println("Pass");
                     payment.setAmountPaidCash(cash1);
                     payment.setAmountPaidMomo(momo1);
                     payment.setPaymentMode(EPaymentMode.CASH_MOBILEMONEY);
@@ -778,7 +781,7 @@ public class CashierModel {
             e.printStackTrace();
         }
     }
-
+    
     public void searchItems() {
         nowDate = now();
         try {

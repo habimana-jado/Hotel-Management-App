@@ -39,7 +39,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 /**
  *
@@ -60,6 +59,7 @@ public class FrontOfficeModel {
     private final Timestamp currentPeriod = new Timestamp(System.currentTimeMillis());
     private String currentDate = new String();
     private String checkInDate = new String();
+    private String checkInDatePeriod = new String();
     private String checkOutDate = new String();
     private long days = 0;
     private String expectedCheckoutHour = new String();
@@ -102,10 +102,26 @@ public class FrontOfficeModel {
     private Payment payment = new Payment();
     private TableMaster tableMaster = new TableMaster();
     private List<FrontOfficeCollectionDto> roomCollections = new ArrayList<>();
+    private Boolean foodAndBeverageRendering = Boolean.TRUE;
+    private Boolean extraServiceRendering = Boolean.TRUE;
+    private List<Payment> paidRoomTransactions = new ArrayList<>();
+    private String newDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
+    private Long availableRoom;
+    private Long occupiedRoom;
+    private Long maintenanceRoom;
+    private Long housekeepingRoom;
 
     @PostConstruct
     public void init() {
         userInit();
+        calculateTotalRoomStatuses();
+    }
+
+    public void calculateTotalRoomStatuses() {
+        availableRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.AVAILABLE);
+        maintenanceRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.REPAIR);
+        occupiedRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.TAKEN);
+        housekeepingRoom = new RoomMasterDao().findTotalByStatus(ERoomStatus.CLEANING);
     }
 
     public void userInit() {
@@ -141,8 +157,9 @@ public class FrontOfficeModel {
             new RoomMasterDao().update(chosenRoomMaster);
             allRooms = new RoomMasterDao().findAllSorted();
 
-//            booking = new Booking();
             visitor = new Visitor();
+            
+            calculateTotalRoomStatuses();
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Checked-In"));
             return "add-voucher.xhtml?faces-redirect=true";
@@ -204,6 +221,7 @@ public class FrontOfficeModel {
         chosenRoomMaster = master;
         chosenBooking = new BookingDao().findOne(Booking.class, chosenRoomMaster.getCuurentBookingId());
         checkInDate = new SimpleDateFormat("dd MMM yyyy").format(chosenBooking.getCheckInPeriod());
+        checkInDatePeriod = new SimpleDateFormat("dd MMM yyyy hh:mm").format(chosenBooking.getCheckInPeriod());
         checkOutDate = new SimpleDateFormat("dd MMM yyyy hh:mm").format(new Date());
         currentDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
         days = dateDifferenceInDays(new SimpleDateFormat("dd MMM yyyy").parse(currentDate), new SimpleDateFormat("dd MMM yyyy").parse(checkInDate));
@@ -219,9 +237,6 @@ public class FrontOfficeModel {
         }
         roomCharge = calculateRoomCharge();
 
-//        for (Payment p : new PaymentDao().findByRoomBookingAndType(chosenBooking, EType.POST_TO_ROOM)) {
-//            foodAndBeverageTotal = foodAndBeverageTotal + p.getAmountPaidPostToRoom();
-//        }
         for (TableTransaction t : tableTransactions) {
             foodAndBeverageTotal = foodAndBeverageTotal + (t.getQuantity() * t.getItem().getUnitRate());
         }
@@ -236,6 +251,45 @@ public class FrontOfficeModel {
             waiter = t.getWaiter();
         }
         return "checkout.xhtml?faces-redirect=true";
+    }
+
+    public String redirectReprintInvoice(Booking b) throws ParseException {
+        voucherTotal = 0.0;
+        foodAndBeverageTotal = 0.0;
+        totalHouseKeeping = 0.0;
+        vouchers = new ArrayList<>();
+        chosenRoomMaster = b.getRoomMaster();
+        chosenBooking = b;
+        checkInDate = new SimpleDateFormat("dd MMM yyyy").format(chosenBooking.getCheckInPeriod());
+        checkOutDate = new SimpleDateFormat("dd MMM yyyy hh:mm").format(chosenBooking.getCheckOutDate());
+        currentDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
+        days = dateDifferenceInDays(new SimpleDateFormat("dd MMM yyyy").parse(checkOutDate), new SimpleDateFormat("dd MMM yyyy").parse(checkInDate));
+        tableTransactions = new TableTransactionDao().findByBookingAndPaymentMode(chosenBooking, EPaymentMode.POSTTOROOM);
+        houseKeepingServices = new HouseKeepingServiceDao().findByBooking(chosenBooking);
+
+        chosenPayment = new PaymentDao().findByBookingAndType(chosenBooking, EType.ROOM);
+        for (Voucher v : new VoucherDao().findAll(Voucher.class)) {
+            if (v.getBooking().getBookingId().equals(chosenBooking.getBookingId())) {
+                vouchers.add(v);
+                voucherTotal = voucherTotal + v.getCredit();
+            }
+        }
+        roomCharge = calculateRoomCharge();
+
+        for (TableTransaction t : tableTransactions) {
+            foodAndBeverageTotal = foodAndBeverageTotal + (t.getQuantity() * t.getItem().getUnitRate());
+        }
+
+        for (HouseKeepingService s : houseKeepingServices) {
+            totalHouseKeeping = totalHouseKeeping + (s.getQuantity() * s.getRoomService().getPrice());
+        }
+
+        for (TableTransaction t : tableTransactions) {
+            payment = t.getPayment();
+            tableMaster = t.getTableMaster();
+            waiter = t.getWaiter();
+        }
+        return "invoice.xhtml?faces-redirect=true";
     }
 
     public String navigateBooking(RoomMaster m) {
@@ -260,7 +314,7 @@ public class FrontOfficeModel {
         Double Charge = 0.0;
 
         DateTime checkInTime = new DateTime(chosenBooking.getCheckInPeriod());
-        DateTime checkOutTime = new DateTime(new Date());
+        DateTime checkOutTime = new DateTime(chosenBooking.getCheckOutPeriod());
 
         switch (Integer.parseInt(days + "")) {
             case 0:
@@ -443,7 +497,7 @@ public class FrontOfficeModel {
         }
         new RoomMasterDao().update(chosenRoomMaster);
         chosenRoomMaster = new RoomMaster();
-        
+
         allRooms = new RoomMasterDao().findAllSorted();
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Updated"));
@@ -452,7 +506,6 @@ public class FrontOfficeModel {
     public String checkoutRoom() {
         Booking book = new BookingDao().findOne(Booking.class, chosenRoomMaster.getCuurentBookingId());
 
-//        Payment payment = new BookingDao().findOne(Booking.class, chosenRoomMaster.getCuurentBookingId()).getPayment();
         for (Payment payment : new PaymentDao().findByBookingAndStatus(book, "Initialized")) {
             switch (payment.getPaymentType()) {
                 case POST_TO_ROOM:
@@ -551,11 +604,10 @@ public class FrontOfficeModel {
                 default:
                     break;
             }
-//            payment.setDiscount(discount);
             payment.setPaymentDate(new Date());
             payment.setStatus("Completed");
-//            payment.setAmountPaid(foodAndBeverageTotal + totalHouseKeeping + roomCharge - discount);
             new PaymentDao().update(payment);
+
         }
 
         chosenRoomMaster.setRoomStatus(ERoomStatus.CLEANING);
@@ -566,6 +618,9 @@ public class FrontOfficeModel {
         book.setCheckOutPeriod(new Timestamp(System.currentTimeMillis()));
         book.setDaysSpent(Integer.parseInt(days + ""));
         new BookingDao().update(book);
+
+        calculateTotalRoomStatuses();
+
         return "main.xhtml?faces-redirect=true";
     }
 
@@ -624,6 +679,13 @@ public class FrontOfficeModel {
             amountCash = amountCash + b.getAmountPaidCash();
             amountMomo = amountMomo + b.getAmountPaidMomo();
             discount = discount + b.getDiscount();
+        }
+    }
+
+    public void retrieveRoomTransactions(Booking p) {
+        paidRoomTransactions.clear();
+        for (Payment pay : new PaymentDao().findByBookingAndStatus(p, "Completed")) {
+            paidRoomTransactions.add(pay);
         }
     }
 
@@ -1045,6 +1107,78 @@ public class FrontOfficeModel {
 
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
+    }
+
+    public Boolean getExtraServiceRendering() {
+        return extraServiceRendering;
+    }
+
+    public void setExtraServiceRendering(Boolean extraServiceRendering) {
+        this.extraServiceRendering = extraServiceRendering;
+    }
+
+    public Boolean getFoodAndBeverageRendering() {
+        return foodAndBeverageRendering;
+    }
+
+    public void setFoodAndBeverageRendering(Boolean foodAndBeverageRendering) {
+        this.foodAndBeverageRendering = foodAndBeverageRendering;
+    }
+
+    public List<Payment> getPaidRoomTransactions() {
+        return paidRoomTransactions;
+    }
+
+    public void setPaidRoomTransactions(List<Payment> paidRoomTransactions) {
+        this.paidRoomTransactions = paidRoomTransactions;
+    }
+
+    public String getNewDate() {
+        return newDate;
+    }
+
+    public void setNewDate(String newDate) {
+        this.newDate = newDate;
+    }
+
+    public Long getAvailableRoom() {
+        return availableRoom;
+    }
+
+    public void setAvailableRoom(Long availableRoom) {
+        this.availableRoom = availableRoom;
+    }
+
+    public Long getOccupiedRoom() {
+        return occupiedRoom;
+    }
+
+    public void setOccupiedRoom(Long occupiedRoom) {
+        this.occupiedRoom = occupiedRoom;
+    }
+
+    public Long getMaintenanceRoom() {
+        return maintenanceRoom;
+    }
+
+    public void setMaintenanceRoom(Long maintenanceRoom) {
+        this.maintenanceRoom = maintenanceRoom;
+    }
+
+    public Long getHousekeepingRoom() {
+        return housekeepingRoom;
+    }
+
+    public void setHousekeepingRoom(Long housekeepingRoom) {
+        this.housekeepingRoom = housekeepingRoom;
+    }
+
+    public String getCheckInDatePeriod() {
+        return checkInDatePeriod;
+    }
+
+    public void setCheckInDatePeriod(String checkInDatePeriod) {
+        this.checkInDatePeriod = checkInDatePeriod;
     }
 
 }

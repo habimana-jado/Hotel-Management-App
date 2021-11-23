@@ -89,7 +89,7 @@
             <!-- Left Sidebar -->
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
-                
+
                 <div class="user-info">
                     <div class="image">
                         <img src="./../../uploads/madras.jfif" width="48" height="48" alt="User" />
@@ -158,7 +158,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">hotel</i>
                                 <span>FrontOffice Configuration</span>
@@ -195,7 +195,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">report</i>
                                 <span>Report Configuration</span>
@@ -255,67 +255,10 @@
 
         <section class="content">
             <div class="container-fluid">
-
-                <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="defaultModalLabel">New Room</h4>
-                            </div>
-                            <h:form>
-                                <div class="modal-body">
-
-                                    <div class="row clearfix">
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <h:inputText value="#{adminModel.roomMaster.roomNumber}" class="form-control" required="true" requiredMessage="Please Fill Table No"/>
-                                                    <label class="form-label">Room No.</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <h:selectOneMenu class="form-control" value="#{adminModel.roomCategoryId}" required="true" requiredMessage="Select Category">
-                                                        <f:selectItem itemLabel="-- Please Select Category --" itemValue="#{null}" />
-                                                        <f:selectItems value="#{adminModel.roomCategorys}" var="dep" itemLabel="#{dep.roomCategoryName}" itemValue="#{dep.roomCategoryId}" />
-                                                    </h:selectOneMenu>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12" style="padding-top: 10px;">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <h:selectOneMenu class="form-control" value="#{adminModel.floorMasterId}" required="true" requiredMessage="Select Floor">
-                                                        <f:selectItem itemLabel="-- Please Select Floor --" itemValue="#{null}" />
-                                                        <f:selectItems value="#{adminModel.floorMasters}" var="dep" itemLabel="#{dep.floorName}" itemValue="#{dep.floorMasterId}" />
-                                                    </h:selectOneMenu>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer" style="padding-top: 30px;">
-                                    <h:commandButton class="btn btn-primary btn-sm" action="#{adminModel.registerRoom()}" value="REGISTER"></h:commandButton>
-                                                            
-                                    <button type="button" class="btn bg-blue-grey waves-effect" data-dismiss="modal">CLOSE</button>
-                                </div>
-                            </h:form>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="block-header">
                     <h2>
-                        ROOM PAGE
+                        REPORT PAGE
                     </h2>
-
-                    <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">New Room</button>
-
                 </div>
                 <!-- Advanced Form Example With Validation -->
 
@@ -323,49 +266,123 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>ROOM LIST</h2>
+                                <h2>DAILY SALES</h2>
                             </div>
-                            <div>
-                                <div>
-                                    <!--<h3>Member Information</h3>-->
-                                    <h:form>
-                                        <p:growl />
-                                        <table class="table table-striped table-hover dataTable js-exportable">
-                                            <thead class="bg-light">
-                                                <tr class="border-0">
-                                                    <th class="border-0">#</th>
-                                                    <th class="border-0">Room No</th>
-                                                    <th class="border-0">Category Name</th>
-                                                    <th class="border-0">Price</th>
-                                                    <th class="border-0">Floor Name</th>
-                                                    <th class="border-0">Status</th>
-                                                    <th class="border-0">Edit</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="#{adminModel.roomMasters}" var="elements" varStatus="status">
-                                                    <tr>
-                                                        <td>${status.index+1}</td>
-                                                        <td>
-                                                            #{elements.roomNumber}
-                                                        </td>
-                                                        <td>
-                                                            #{elements.roomCategory.roomCategoryName}
-                                                        </td>
-                                                        <td>#{elements.roomCategory.price}</td>
-                                                        <td>#{elements.floorMaster.floorName}</td>
-                                                        <td>#{elements.roomStatus}</td>
-                                                        <td>
-                                                            <h:commandLink action="#{adminModel.navigateEditEmployee(elements)}">
-                                                                <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#PrimaryModalalert2">Edit</a>
-                                                            </h:commandLink>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </h:form>
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <h:form>
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-3"></div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                    <label class="login2 pull-right pull-right-pro">From Date:</label>
+                                                                </div>
+                                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                                    <p:datePicker value="#{adminModel.bookingFrom}" pattern="dd/MMM/yyyy" required="true" requiredMessage="Please Choose Date">
+                                                                        <!--<f:convertDateTime pattern="dd/MM/yyyy" />-->
+                                                                    </p:datePicker>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                    <label class="login2 pull-right pull-right-pro">To Date:</label>
+                                                                </div>
+                                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                                    <p:datePicker value="#{adminModel.bookingTo}" pattern="dd/MMM/yyyy" required="true" requiredMessage="Please Choose Date">
+                                                                        <!--<f:convertDateTime pattern="dd/MM/yyyy" />-->
+                                                                    </p:datePicker>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+
+                                                                </div>
+                                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                                    <h:commandButton class="btn btn-warning" value="Search" action="#{adminModel.findBookingPaymentByDate()}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3"></div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-lg-3"></div>
                                 </div>
+                                <h:form id="reportPrint">
+                                    <div class="row">
+
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-8">
+                                            <center><h2>#{adminModel.hotel.hotelName}</h2></center>
+                                            <center><h4>Room Collection Report</h4></center>
+                                            <p:dataTable var="car" value="#{adminModel.roomPaymentBookings}">
+                                                <p:ajax event="rowToggle" listener="#{adminModel.retrieveRoomTransactions(car)}" update="trans" />
+                                                <p:column style="width:32px">
+                                                    <p:rowToggler ></p:rowToggler>
+                                                </p:column>
+                                                <p:column headerText="Bill Date">
+                                                    <h:outputText value="#{car.checkOutDate}" />
+                                                </p:column>
+                                                <p:column headerText="Guest Name ">
+                                                    <h:outputText value="#{car.visitor.visitorName}" />
+                                                </p:column>
+                                                <p:column headerText="Room No">
+                                                    <h:outputText value="#{car.roomMaster.roomNumber}" />
+                                                </p:column>
+                                                <p:column headerText="Mode" width="100">
+                                                    <h:outputText value="#{car.payment.paymentMode}" />
+                                                </p:column>
+                                                <p:column headerText="Discount">
+                                                    <h:outputText value="#{car.payment.discount}" />
+                                                </p:column>
+                                                <p:column headerText="Cashier">
+                                                    <h:outputText value="#{car.payment.cashier.names}" />
+                                                </p:column>                                                
+                                                <p:column headerText="Action">
+                                                    <h:commandButton class="btn btn-link btn-success btn-sm" action="#{adminModel.redirectReprintInvoice(car)}" value="Invoice" />
+                                                </p:column>
+                                                <p:rowExpansion>
+                                                    <p:dataTable id="trans" var="c" value="#{adminModel.paidRoomTransactions}">
+                                                        <p:column headerText="Bill Date">
+                                                            <h:outputText value="#{car.checkOutDate}" />
+                                                        </p:column>
+                                                        <p:column headerText="Charge">
+                                                            <h:outputText value="#{c.amountPaid}" />
+                                                        </p:column> 
+                                                        <p:column headerText="Type">
+                                                            <h:outputText value="#{c.paymentType}" />
+                                                        </p:column>                                                     
+                                                    </p:dataTable>
+                                                </p:rowExpansion>
+                                            </p:dataTable>
+                                        </div>
+                                        <div class="col-lg-2"></div>
+                                    </div>
+                                </h:form>
+                                <h:form style="padding-top: 10px;">
+                                    <div class="col-lg-4" />
+                                    <div class="col-lg-4">
+                                        <p:commandButton class="btn btn-primary" value="Print" type="button" icon="pi pi-print" style="display:block;margin-bottom: 20px">
+                                            <p:printer target="reportPrint" />
+                                        </p:commandButton>
+                                    </div>
+
+                                    <div class="col-lg-4" />
+                                </h:form>
+
+
                                 <!-- Default Size -->
                             </div>
                         </div>
@@ -376,7 +393,7 @@
         </section>
 
         <!-- Jquery Core Js -->
-        <script src="./../plugins/jquery/jquery.min.js"></script>
+        <!--<script src="./../plugins/jquery/jquery.min.js"></script>-->
 
         <!-- Bootstrap Core Js -->
         <script src="./../plugins/bootstrap/js/bootstrap.js"></script>
