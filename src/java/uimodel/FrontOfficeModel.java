@@ -59,6 +59,7 @@ public class FrontOfficeModel {
     private final Timestamp currentPeriod = new Timestamp(System.currentTimeMillis());
     private String currentDate = new String();
     private String checkInDate = new String();
+    private String checkInDatePeriod = new String();
     private String checkOutDate = new String();
     private long days = 0;
     private String expectedCheckoutHour = new String();
@@ -101,9 +102,8 @@ public class FrontOfficeModel {
     private Payment payment = new Payment();
     private TableMaster tableMaster = new TableMaster();
     private List<FrontOfficeCollectionDto> roomCollections = new ArrayList<>();
-    private Boolean foodAndBeverageRendering = Boolean.FALSE;
-    private Boolean extraServiceRendering = Boolean.FALSE;
-    private String invoiceRendering = "All";
+    private Boolean foodAndBeverageRendering = Boolean.TRUE;
+    private Boolean extraServiceRendering = Boolean.TRUE;
     private List<Payment> paidRoomTransactions = new ArrayList<>();
     private String newDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
     private Long availableRoom;
@@ -221,6 +221,7 @@ public class FrontOfficeModel {
         chosenRoomMaster = master;
         chosenBooking = new BookingDao().findOne(Booking.class, chosenRoomMaster.getCuurentBookingId());
         checkInDate = new SimpleDateFormat("dd MMM yyyy").format(chosenBooking.getCheckInPeriod());
+        checkInDatePeriod = new SimpleDateFormat("dd MMM yyyy hh:mm").format(chosenBooking.getCheckInPeriod());
         checkOutDate = new SimpleDateFormat("dd MMM yyyy hh:mm").format(new Date());
         currentDate = new SimpleDateFormat("dd MMM yyyy").format(new Date());
         days = dateDifferenceInDays(new SimpleDateFormat("dd MMM yyyy").parse(currentDate), new SimpleDateFormat("dd MMM yyyy").parse(checkInDate));
@@ -681,22 +682,6 @@ public class FrontOfficeModel {
         }
     }
 
-    public void checkRendering() {
-        invoiceRendering = new String();
-
-        if (foodAndBeverageRendering && extraServiceRendering) {
-            invoiceRendering = "None";
-        } else if (extraServiceRendering) {
-            invoiceRendering = "ExtraService";
-        } else if (foodAndBeverageRendering) {
-            invoiceRendering = "FoodAndBeverage";
-        } else {
-            invoiceRendering = "All";
-        }
-
-        System.out.println("Invoice Rendering " + invoiceRendering);
-    }
-
     public void retrieveRoomTransactions(Booking p) {
         paidRoomTransactions.clear();
         for (Payment pay : new PaymentDao().findByBookingAndStatus(p, "Completed")) {
@@ -1140,14 +1125,6 @@ public class FrontOfficeModel {
         this.foodAndBeverageRendering = foodAndBeverageRendering;
     }
 
-    public String getInvoiceRendering() {
-        return invoiceRendering;
-    }
-
-    public void setInvoiceRendering(String invoiceRendering) {
-        this.invoiceRendering = invoiceRendering;
-    }
-
     public List<Payment> getPaidRoomTransactions() {
         return paidRoomTransactions;
     }
@@ -1194,6 +1171,14 @@ public class FrontOfficeModel {
 
     public void setHousekeepingRoom(Long housekeepingRoom) {
         this.housekeepingRoom = housekeepingRoom;
+    }
+
+    public String getCheckInDatePeriod() {
+        return checkInDatePeriod;
+    }
+
+    public void setCheckInDatePeriod(String checkInDatePeriod) {
+        this.checkInDatePeriod = checkInDatePeriod;
     }
 
 }
