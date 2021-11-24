@@ -104,8 +104,8 @@
             <!-- Left Sidebar -->
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
-                
-                 
+
+
                 <div class="user-info">
                     <div class="image">
                         <img src="./../../uploads/madras.jfif" width="48" height="48" alt="User" />
@@ -113,7 +113,7 @@
                     <div class="info-container">
                         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MADRAS HOTEL AND APARTS</div>
                         <!--<div class="email">john.doe@example.com</div>-->
-                        
+
                     </div>
                 </div>
                 <!-- User Info -->
@@ -232,9 +232,9 @@
                                 <li>
                                     <a href="closing-report.xhtml">Store Sheet Report</a>
                                 </li>
-<!--                                <li>
-                                    <a href="credit-report">Credit Report</a>
-                                </li>-->
+                                <!--                                <li>
+                                                                    <a href="credit-report">Credit Report</a>
+                                                                </li>-->
                                 <li>
                                     <a href="transaction-logs.xhtml">Deleted Transactions Report</a>
                                 </li>
@@ -287,57 +287,57 @@
                             </div>
                             <div>
                                 <div class="row" style="padding-top: 30px;">
-                        <h:form>
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-3"></div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group-inner">
+                                    <h:form>
+                                        <div class="col-lg-12">
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="login2 pull-right pull-right-pro">From Date:</label>
-                                                </div>
-                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                    <p:datePicker class="datepicker" value="#{frontOfficeModel.bookingFrom}" pattern="dd/MM/yyyy" required="true" requiredMessage="Please Choose Date" ></p:datePicker> 
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group-inner">
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="login2 pull-right pull-right-pro">To Date:</label>
-                                                </div>
-                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                    <p:datePicker class="datepicker" value="#{frontOfficeModel.bookingTo}" pattern="dd/MM/yyyy" required="true" requiredMessage="Please Choose Date" ></p:datePicker> 
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                <label class="login2 pull-right pull-right-pro">From Date:</label>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                                <p:datePicker class="datepicker" value="#{frontOfficeModel.bookingFrom}" pattern="dd/MM/yyyy" required="true" requiredMessage="Please Choose Date" ></p:datePicker> 
 
-                                        <div class="form-group-inner">
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                <label class="login2 pull-right pull-right-pro">To Date:</label>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                                <p:datePicker class="datepicker" value="#{frontOfficeModel.bookingTo}" pattern="dd/MM/yyyy" required="true" requiredMessage="Please Choose Date" ></p:datePicker> 
 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                                <h:commandButton class="btn btn-warning" value="Search" action="#{frontOfficeModel.findBookingPaymentByDate()}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                    <h:commandButton class="btn btn-warning" value="Search" action="#{frontOfficeModel.findBookingPaymentByDate()}" />
-                                                </div>
+                                                <div class="col-lg-3"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-3"></div>
+                                    </h:form>
                                 </div>
-                            </div>
-                        </h:form>
-                    </div>
                                 <h:form id="reportPrint">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="tab-content-details shadow-reset">
                                                 <!--List Users-->
                                                 <p:growl />
-                                                <table class="table table-striped table-hover dataTable js-exportable">
+                                                <table class="table table-striped table-hover">
                                                     <thead class="bg-light">
                                                         <tr class="border-0">
                                                             <th class="border-0">#</th>
@@ -407,7 +407,7 @@
                                 </h:form>
                                 <!-- Default Size -->
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

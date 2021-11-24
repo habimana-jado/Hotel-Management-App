@@ -178,7 +178,7 @@
                                                                 <label class="login2 pull-right pull-right-pro">From Date:</label>
                                                             </div>
                                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                                                <p:datePicker value="#{frontOfficeModel.bookingFrom}" required="true" requiredMessage="Please Choose Date">
+                                                                <p:datePicker value="#{frontOfficeModel.bookingFrom}" autocomplete="off" pattern="dd/MM/yyyy" required="true" requiredMessage="Please Choose Date">
                                                                     <!--<f:convertDateTime pattern="dd/MM/yyyy" />-->
                                                                 </p:datePicker>
                                                             </div>
@@ -221,7 +221,7 @@
                                                 <div class="tab-content-details shadow-reset">
                                                     <!--List Users-->
                                                     <p:growl />
-                                                    <table class="table table-striped table-hover dataTable js-exportable">
+                                                    <table class="table table-striped table-hover">
                                                         <thead class="bg-light">
                                                             <tr class="border-0">
                                                                 <th class="border-0">#</th>
